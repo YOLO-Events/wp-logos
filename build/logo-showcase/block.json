@@ -1,0 +1,167 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wp-logos/logo-showcase",
+  "version": "1.0.0",
+  "title": "Logo Showcase",
+  "category": "media",
+  "icon": "images-alt",
+  "description": "Display your logos in a beautiful carousel, grid, or flexbox showcase.",
+  "keywords": [
+    "logo",
+    "brand",
+    "showcase",
+    "carousel",
+    "grid",
+    "flexbox",
+    "slider"
+  ],
+  "textdomain": "wp-logos",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "viewScript": "file:./view.js",
+  "attributes": {
+    "categoryId": {
+      "type": "number",
+      "default": 0
+    },
+    "showcaseType": {
+      "type": "string",
+      "default": "grid",
+      "enum": [
+        "grid",
+        "carousel",
+        "flexbox"
+      ]
+    },
+    "theme": {
+      "type": "string",
+      "default": "standard",
+      "enum": [
+        "standard",
+        "light",
+        "dark"
+      ]
+    },
+    "logoRatio": {
+      "type": "string",
+      "default": "original",
+      "enum": [
+        "original",
+        "fixed"
+      ]
+    },
+    "columns": {
+      "type": "object",
+      "default": {
+        "mobile": 2,
+        "tablet": 3,
+        "laptop": 4,
+        "desktop": 5
+      }
+    },
+    "gap": {
+      "type": "number",
+      "default": 20
+    },
+    "showTitle": {
+      "type": "boolean",
+      "default": false
+    },
+    "grayscale": {
+      "type": "boolean",
+      "default": false
+    },
+    "carouselAutoplay": {
+      "type": "boolean",
+      "default": true
+    },
+    "carouselSpeed": {
+      "type": "number",
+      "default": 3000
+    },
+    "carouselInfinite": {
+      "type": "boolean",
+      "default": true
+    },
+    "carouselArrows": {
+      "type": "boolean",
+      "default": true
+    },
+    "carouselDots": {
+      "type": "boolean",
+      "default": true
+    },
+    "carouselTicker": {
+      "type": "boolean",
+      "default": false
+    },
+    "carouselTickerSpeed": {
+      "type": "number",
+      "default": 1
+    },
+    "flexboxAlign": {
+      "type": "string",
+      "default": "center",
+      "enum": [
+        "left",
+        "center",
+        "right"
+      ]
+    },
+    "flexboxLogoWidth": {
+      "type": "number",
+      "default": 160
+    },
+    "logoMaxHeight": {
+      "type": "number",
+      "default": 80
+    },
+    "logoMaxWidth": {
+      "type": "number",
+      "default": 160
+    },
+    "padding": {
+      "type": "number",
+      "default": 15
+    },
+    "backgroundColor": {
+      "type": "string",
+      "default": ""
+    },
+    "borderWidth": {
+      "type": "number",
+      "default": 0
+    },
+    "borderColor": {
+      "type": "string",
+      "default": "#e0e0e0"
+    },
+    "borderRadius": {
+      "type": "number",
+      "default": 0
+    },
+    "customCSS": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "supports": {
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "html": false,
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
+  "example": {
+    "attributes": {
+      "showcaseType": "grid",
+      "theme": "standard"
+    }
+  }
+}

@@ -1,0 +1,181 @@
+# Copyright (C) 2024 WP Logos
+# This file is distributed under the same license as the WP Logos plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Logos 1.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/YOLO-Events/wp-logos/issues\n"
+"POT-Creation-Date: 2024-01-01T00:00:00+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2024-01-01T00:00:00+00:00\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Domain: wp-logos\n"
+
+msgctxt "Post type general name"
+msgid "Logos"
+msgstr ""
+
+msgctxt "Post type singular name"
+msgid "Logo"
+msgstr ""
+
+msgctxt "Admin menu text"
+msgid "Logos"
+msgstr ""
+
+msgctxt "Add new on toolbar"
+msgid "Logo"
+msgstr ""
+
+msgid "Add New"
+msgstr ""
+
+msgid "Add New Logo"
+msgstr ""
+
+msgid "New Logo"
+msgstr ""
+
+msgid "Edit Logo"
+msgstr ""
+
+msgid "View Logo"
+msgstr ""
+
+msgid "All Logos"
+msgstr ""
+
+msgid "Search Logos"
+msgstr ""
+
+msgid "No logos found."
+msgstr ""
+
+msgid "No logos found in Trash."
+msgstr ""
+
+msgctxt "Taxonomy general name"
+msgid "Logo Categories"
+msgstr ""
+
+msgctxt "Taxonomy singular name"
+msgid "Logo Category"
+msgstr ""
+
+msgid "Logo Images"
+msgstr ""
+
+msgid "Logo Details"
+msgstr ""
+
+msgid "Main Logo"
+msgstr ""
+
+msgid "The primary logo image."
+msgstr ""
+
+msgid "Light Version"
+msgstr ""
+
+msgid "Optional: light/white logo for dark backgrounds."
+msgstr ""
+
+msgid "Dark Version"
+msgstr ""
+
+msgid "Optional: dark logo for light backgrounds."
+msgstr ""
+
+msgid "Upload / Select Image"
+msgstr ""
+
+msgid "Change Image"
+msgstr ""
+
+msgid "Remove"
+msgstr ""
+
+msgid "Website URL"
+msgstr ""
+
+msgid "Optional: link to the brand's website."
+msgstr ""
+
+msgid "Alt Text"
+msgstr ""
+
+msgid "Accessible alt text for the logo image. Falls back to the logo title if empty."
+msgstr ""
+
+msgid "Sort Order"
+msgstr ""
+
+msgid "Lower numbers appear first. Logos with the same sort order are ordered by title."
+msgstr ""
+
+msgid "WP Logos Settings"
+msgstr ""
+
+msgid "WP Logos"
+msgstr ""
+
+msgid "Default Showcase Type"
+msgstr ""
+
+msgid "Default Logo Theme"
+msgstr ""
+
+msgid "Default Gap (px)"
+msgstr ""
+
+msgid "Default Logo Max Height (px)"
+msgstr ""
+
+msgid "Default Logo Max Width (px)"
+msgstr ""
+
+msgid "Grayscale Logos by Default"
+msgstr ""
+
+msgid "Enable Carousel Autoplay by Default"
+msgstr ""
+
+msgid "Default Autoplay Speed (ms)"
+msgstr ""
+
+msgid "Grid"
+msgstr ""
+
+msgid "Carousel"
+msgstr ""
+
+msgid "Flexbox"
+msgstr ""
+
+msgid "Standard"
+msgstr ""
+
+msgid "Light"
+msgstr ""
+
+msgid "Dark"
+msgstr ""
+
+msgid "Settings"
+msgstr ""
+
+msgid "No logos found. Add logos in the WP Logos admin panel."
+msgstr ""
+
+msgid "Previous"
+msgstr ""
+
+msgid "Next"
+msgstr ""
+
+msgid "Carousel navigation"
+msgstr ""

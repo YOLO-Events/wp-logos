@@ -37,7 +37,7 @@ class Settings {
 			__( 'YOLO Logos Settings', 'yolo-logos' ),
 			__( 'YOLO Logos', 'yolo-logos' ),
 			'manage_options',
-			'wp-logos-settings',
+			'yolo-logos-settings',
 			array( $this, 'render_page' )
 		);
 	}
@@ -59,7 +59,7 @@ class Settings {
 			'wp_logos_defaults_section',
 			__( 'Global Defaults', 'yolo-logos' ),
 			null,
-			'wp-logos-settings'
+			'yolo-logos-settings'
 		);
 
 		$fields = array(
@@ -120,7 +120,7 @@ class Settings {
 				'wp_logos_' . $field['id'],
 				$field['label'],
 				array( $this, 'render_field' ),
-				'wp-logos-settings',
+				'yolo-logos-settings',
 				'wp_logos_defaults_section',
 				$field
 			);
@@ -241,7 +241,7 @@ class Settings {
 			<form method="post" action="options.php">
 				<?php
 				settings_fields( 'wp_logos_settings_group' );
-				do_settings_sections( 'wp-logos-settings' );
+				do_settings_sections( 'yolo-logos-settings' );
 				submit_button();
 				?>
 			</form>

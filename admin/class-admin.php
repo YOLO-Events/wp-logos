@@ -309,7 +309,7 @@ class WP_Logos_Admin {
 	 */
 	public function plugin_action_links( array $links ): array {
 		$plugin_links = array(
-			'<a href="' . admin_url( 'options-general.php?page=wp-logos-settings' ) . '">' . __( 'Settings', 'yolo-logos' ) . '</a>',
+			'<a href="' . admin_url( 'options-general.php?page=yolo-logos-settings' ) . '">' . __( 'Settings', 'yolo-logos' ) . '</a>',
 			'<a href="' . admin_url( 'edit.php?post_type=wp_logo' ) . '">' . __( 'Logos', 'yolo-logos' ) . '</a>',
 		);
 

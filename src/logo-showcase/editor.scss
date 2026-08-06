@@ -1,0 +1,40 @@
+/**
+ * WP Logos – Editor Styles
+ */
+
+.wp-logos-editor-header {
+	display: flex;
+	align-items: center;
+	margin-bottom: 10px;
+
+	.wp-logos-editor-label {
+		font-size: 11px;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		color: #757575;
+		background: #f0f0f0;
+		border-radius: 3px;
+		padding: 3px 8px;
+	}
+}
+
+.wp-logos-editor-loading {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 20px;
+	color: #757575;
+}
+
+.wp-logos-editor-preview {
+	width: 100%;
+}
+
+.wp-logos-editor-item {
+	transition: box-shadow 0.2s;
+
+	&:hover {
+		box-shadow: 0 0 0 2px #007cba;
+	}
+}

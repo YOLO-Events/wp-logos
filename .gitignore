@@ -1,0 +1,23 @@
+# WP Logos – Build artifacts & dependencies
+
+# Node modules
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Build artefacts that we DO commit for the WordPress plugin to work
+# (build/ is intentionally tracked)
+
+# Temporary files
+*.log
+npm-debug.log*
+
+# Environment files
+.env
+.env.local

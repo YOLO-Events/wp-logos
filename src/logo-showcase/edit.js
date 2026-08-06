@@ -86,10 +86,10 @@ function LogoPreviewItem( { logo, attributes } ) {
  */
 function ColumnSettings( { columns, onChange } ) {
 	const breakpoints = [
-		{ key: 'mobile',  label: __( 'Mobile (< 600px)', 'wp-logos' ) },
-		{ key: 'tablet',  label: __( 'Tablet (600–900px)', 'wp-logos' ) },
-		{ key: 'laptop',  label: __( 'Laptop (900–1200px)', 'wp-logos' ) },
-		{ key: 'desktop', label: __( 'Desktop (≥ 1200px)', 'wp-logos' ) },
+		{ key: 'mobile',  label: __( 'Mobile (< 600px)', 'yolo-logos' ) },
+		{ key: 'tablet',  label: __( 'Tablet (600–900px)', 'yolo-logos' ) },
+		{ key: 'laptop',  label: __( 'Laptop (900–1200px)', 'yolo-logos' ) },
+		{ key: 'desktop', label: __( 'Desktop (≥ 1200px)', 'yolo-logos' ) },
 	];
 
 	return (
@@ -178,7 +178,7 @@ export default function Edit( { attributes, setAttributes } ) {
 
 	/* --- Category options for the SelectControl --- */
 	const categoryOptions = useMemo( () => {
-		const opts = [ { label: __( '— All Logos —', 'wp-logos' ), value: 0 } ];
+		const opts = [ { label: __( '— All Logos —', 'yolo-logos' ), value: 0 } ];
 		categories.forEach( ( cat ) => {
 			opts.push( { label: cat.name, value: cat.id } );
 		} );
@@ -216,12 +216,12 @@ export default function Edit( { attributes, setAttributes } ) {
 	const inspector = (
 		<InspectorControls>
 			{/* ---- Source ---- */}
-			<PanelBody title={ __( 'Source', 'wp-logos' ) } initialOpen={ true }>
+			<PanelBody title={ __( 'Source', 'yolo-logos' ) } initialOpen={ true }>
 				{ ! categoriesLoaded ? (
 					<Spinner />
 				) : (
 					<SelectControl
-						label={ __( 'Logo Category', 'wp-logos' ) }
+						label={ __( 'Logo Category', 'yolo-logos' ) }
 						value={ categoryId }
 						options={ categoryOptions }
 						onChange={ ( val ) => setAttributes( { categoryId: parseInt( val, 10 ) } ) }
@@ -230,34 +230,34 @@ export default function Edit( { attributes, setAttributes } ) {
 			</PanelBody>
 
 			{/* ---- Showcase Type ---- */}
-			<PanelBody title={ __( 'Showcase Type', 'wp-logos' ) } initialOpen={ true }>
+			<PanelBody title={ __( 'Showcase Type', 'yolo-logos' ) } initialOpen={ true }>
 				<SelectControl
-					label={ __( 'Type', 'wp-logos' ) }
+					label={ __( 'Type', 'yolo-logos' ) }
 					value={ showcaseType }
 					options={ [
-						{ label: __( 'Grid', 'wp-logos' ),     value: 'grid' },
-						{ label: __( 'Carousel', 'wp-logos' ), value: 'carousel' },
-						{ label: __( 'Flexbox', 'wp-logos' ),  value: 'flexbox' },
+						{ label: __( 'Grid', 'yolo-logos' ),     value: 'grid' },
+						{ label: __( 'Carousel', 'yolo-logos' ), value: 'carousel' },
+						{ label: __( 'Flexbox', 'yolo-logos' ),  value: 'flexbox' },
 					] }
 					onChange={ ( val ) => setAttributes( { showcaseType: val } ) }
 				/>
 				<SelectControl
-					label={ __( 'Logo Theme', 'wp-logos' ) }
+					label={ __( 'Logo Theme', 'yolo-logos' ) }
 					value={ theme }
 					options={ [
-						{ label: __( 'Standard', 'wp-logos' ), value: 'standard' },
-						{ label: __( 'Light',    'wp-logos' ), value: 'light' },
-						{ label: __( 'Dark',     'wp-logos' ), value: 'dark' },
+						{ label: __( 'Standard', 'yolo-logos' ), value: 'standard' },
+						{ label: __( 'Light',    'yolo-logos' ), value: 'light' },
+						{ label: __( 'Dark',     'yolo-logos' ), value: 'dark' },
 					] }
 					onChange={ ( val ) => setAttributes( { theme: val } ) }
-					help={ __( 'Selects the logo image variant to display.', 'wp-logos' ) }
+					help={ __( 'Selects the logo image variant to display.', 'yolo-logos' ) }
 				/>
 				<SelectControl
-					label={ __( 'Logo Ratio', 'wp-logos' ) }
+					label={ __( 'Logo Ratio', 'yolo-logos' ) }
 					value={ logoRatio }
 					options={ [
-						{ label: __( 'Original (max-width / max-height)', 'wp-logos' ), value: 'original' },
-						{ label: __( 'Fixed (exact width × height)',       'wp-logos' ), value: 'fixed' },
+						{ label: __( 'Original (max-width / max-height)', 'yolo-logos' ), value: 'original' },
+						{ label: __( 'Fixed (exact width × height)',       'yolo-logos' ), value: 'fixed' },
 					] }
 					onChange={ ( val ) => setAttributes( { logoRatio: val } ) }
 				/>
@@ -265,7 +265,7 @@ export default function Edit( { attributes, setAttributes } ) {
 
 			{/* ---- Grid / Columns ---- */}
 			{ ( showcaseType === 'grid' || showcaseType === 'carousel' ) && (
-				<PanelBody title={ __( 'Columns', 'wp-logos' ) } initialOpen={ false }>
+				<PanelBody title={ __( 'Columns', 'yolo-logos' ) } initialOpen={ false }>
 					<ColumnSettings
 						columns={ columns }
 						onChange={ ( val ) => setAttributes( { columns: val } ) }
@@ -275,19 +275,19 @@ export default function Edit( { attributes, setAttributes } ) {
 
 			{/* ---- Flexbox ---- */}
 			{ showcaseType === 'flexbox' && (
-				<PanelBody title={ __( 'Flexbox Options', 'wp-logos' ) } initialOpen={ false }>
+				<PanelBody title={ __( 'Flexbox Options', 'yolo-logos' ) } initialOpen={ false }>
 					<SelectControl
-						label={ __( 'Alignment', 'wp-logos' ) }
+						label={ __( 'Alignment', 'yolo-logos' ) }
 						value={ flexboxAlign }
 						options={ [
-							{ label: __( 'Left',   'wp-logos' ), value: 'left' },
-							{ label: __( 'Center', 'wp-logos' ), value: 'center' },
-							{ label: __( 'Right',  'wp-logos' ), value: 'right' },
+							{ label: __( 'Left',   'yolo-logos' ), value: 'left' },
+							{ label: __( 'Center', 'yolo-logos' ), value: 'center' },
+							{ label: __( 'Right',  'yolo-logos' ), value: 'right' },
 						] }
 						onChange={ ( val ) => setAttributes( { flexboxAlign: val } ) }
 					/>
 					<RangeControl
-						label={ __( 'Logo Width (px)', 'wp-logos' ) }
+						label={ __( 'Logo Width (px)', 'yolo-logos' ) }
 						value={ flexboxLogoWidth }
 						onChange={ ( val ) => setAttributes( { flexboxLogoWidth: val } ) }
 						min={ 60 }
@@ -298,16 +298,16 @@ export default function Edit( { attributes, setAttributes } ) {
 
 			{/* ---- Carousel ---- */}
 			{ showcaseType === 'carousel' && (
-				<PanelBody title={ __( 'Carousel Options', 'wp-logos' ) } initialOpen={ false }>
+				<PanelBody title={ __( 'Carousel Options', 'yolo-logos' ) } initialOpen={ false }>
 					<ToggleControl
-						label={ __( 'Ticker Mode', 'wp-logos' ) }
+						label={ __( 'Ticker Mode', 'yolo-logos' ) }
 						checked={ carouselTicker }
 						onChange={ ( val ) => setAttributes( { carouselTicker: val } ) }
-						help={ __( 'Continuous non-stop scrolling — great for sponsor strips.', 'wp-logos' ) }
+						help={ __( 'Continuous non-stop scrolling — great for sponsor strips.', 'yolo-logos' ) }
 					/>
 					{ carouselTicker ? (
 						<RangeControl
-							label={ __( 'Ticker Speed (1 = normal, 2 = double speed)', 'wp-logos' ) }
+							label={ __( 'Ticker Speed (1 = normal, 2 = double speed)', 'yolo-logos' ) }
 							value={ carouselTickerSpeed }
 							onChange={ ( val ) => setAttributes( { carouselTickerSpeed: val } ) }
 							min={ 0.1 }
@@ -317,13 +317,13 @@ export default function Edit( { attributes, setAttributes } ) {
 					) : (
 						<>
 							<ToggleControl
-								label={ __( 'Autoplay', 'wp-logos' ) }
+								label={ __( 'Autoplay', 'yolo-logos' ) }
 								checked={ carouselAutoplay }
 								onChange={ ( val ) => setAttributes( { carouselAutoplay: val } ) }
 							/>
 							{ carouselAutoplay && (
 								<RangeControl
-									label={ __( 'Autoplay Speed (ms)', 'wp-logos' ) }
+									label={ __( 'Autoplay Speed (ms)', 'yolo-logos' ) }
 									value={ carouselSpeed }
 									onChange={ ( val ) => setAttributes( { carouselSpeed: val } ) }
 									min={ 500 }
@@ -332,17 +332,17 @@ export default function Edit( { attributes, setAttributes } ) {
 								/>
 							) }
 							<ToggleControl
-								label={ __( 'Infinite Loop', 'wp-logos' ) }
+								label={ __( 'Infinite Loop', 'yolo-logos' ) }
 								checked={ carouselInfinite }
 								onChange={ ( val ) => setAttributes( { carouselInfinite: val } ) }
 							/>
 							<ToggleControl
-								label={ __( 'Show Arrows', 'wp-logos' ) }
+								label={ __( 'Show Arrows', 'yolo-logos' ) }
 								checked={ carouselArrows }
 								onChange={ ( val ) => setAttributes( { carouselArrows: val } ) }
 							/>
 							<ToggleControl
-								label={ __( 'Show Dots', 'wp-logos' ) }
+								label={ __( 'Show Dots', 'yolo-logos' ) }
 								checked={ carouselDots }
 								onChange={ ( val ) => setAttributes( { carouselDots: val } ) }
 							/>
@@ -352,16 +352,16 @@ export default function Edit( { attributes, setAttributes } ) {
 			) }
 
 			{/* ---- Logo Dimensions ---- */}
-			<PanelBody title={ __( 'Logo Dimensions', 'wp-logos' ) } initialOpen={ false }>
+			<PanelBody title={ __( 'Logo Dimensions', 'yolo-logos' ) } initialOpen={ false }>
 				<RangeControl
-					label={ __( 'Max Height (px)', 'wp-logos' ) }
+					label={ __( 'Max Height (px)', 'yolo-logos' ) }
 					value={ logoMaxHeight }
 					onChange={ ( val ) => setAttributes( { logoMaxHeight: val } ) }
 					min={ 20 }
 					max={ 300 }
 				/>
 				<RangeControl
-					label={ __( 'Max Width (px)', 'wp-logos' ) }
+					label={ __( 'Max Width (px)', 'yolo-logos' ) }
 					value={ logoMaxWidth }
 					onChange={ ( val ) => setAttributes( { logoMaxWidth: val } ) }
 					min={ 40 }
@@ -370,41 +370,41 @@ export default function Edit( { attributes, setAttributes } ) {
 			</PanelBody>
 
 			{/* ---- Visual Style ---- */}
-			<PanelBody title={ __( 'Visual Style', 'wp-logos' ) } initialOpen={ false }>
+			<PanelBody title={ __( 'Visual Style', 'yolo-logos' ) } initialOpen={ false }>
 				<RangeControl
-					label={ __( 'Gap (px)', 'wp-logos' ) }
+					label={ __( 'Gap (px)', 'yolo-logos' ) }
 					value={ gap }
 					onChange={ ( val ) => setAttributes( { gap: val } ) }
 					min={ 0 }
 					max={ 80 }
 				/>
 				<RangeControl
-					label={ __( 'Item Padding (px)', 'wp-logos' ) }
+					label={ __( 'Item Padding (px)', 'yolo-logos' ) }
 					value={ padding }
 					onChange={ ( val ) => setAttributes( { padding: val } ) }
 					min={ 0 }
 					max={ 60 }
 				/>
 				<ToggleControl
-					label={ __( 'Show Logo Titles', 'wp-logos' ) }
+					label={ __( 'Show Logo Titles', 'yolo-logos' ) }
 					checked={ showTitle }
 					onChange={ ( val ) => setAttributes( { showTitle: val } ) }
 				/>
 				<ToggleControl
-					label={ __( 'Grayscale Logos', 'wp-logos' ) }
+					label={ __( 'Grayscale Logos', 'yolo-logos' ) }
 					checked={ grayscale }
 					onChange={ ( val ) => setAttributes( { grayscale: val } ) }
-					help={ __( 'Logos turn to color on hover.', 'wp-logos' ) }
+					help={ __( 'Logos turn to color on hover.', 'yolo-logos' ) }
 				/>
 				<hr />
-				<p><strong>{ __( 'Item Background Color', 'wp-logos' ) }</strong></p>
+				<p><strong>{ __( 'Item Background Color', 'yolo-logos' ) }</strong></p>
 				<ColorPicker
 					color={ backgroundColor || '#ffffff' }
 					onChange={ ( val ) => setAttributes( { backgroundColor: val } ) }
 					enableAlpha
 				/>
 				<RangeControl
-					label={ __( 'Border Width (px)', 'wp-logos' ) }
+					label={ __( 'Border Width (px)', 'yolo-logos' ) }
 					value={ borderWidth }
 					onChange={ ( val ) => setAttributes( { borderWidth: val } ) }
 					min={ 0 }
@@ -412,7 +412,7 @@ export default function Edit( { attributes, setAttributes } ) {
 				/>
 				{ borderWidth > 0 && (
 					<>
-						<p><strong>{ __( 'Border Colour', 'wp-logos' ) }</strong></p>
+						<p><strong>{ __( 'Border Colour', 'yolo-logos' ) }</strong></p>
 						<ColorPicker
 							color={ borderColor || '#e0e0e0' }
 							onChange={ ( val ) => setAttributes( { borderColor: val } ) }
@@ -420,7 +420,7 @@ export default function Edit( { attributes, setAttributes } ) {
 					</>
 				) }
 				<RangeControl
-					label={ __( 'Border Radius (px)', 'wp-logos' ) }
+					label={ __( 'Border Radius (px)', 'yolo-logos' ) }
 					value={ borderRadius }
 					onChange={ ( val ) => setAttributes( { borderRadius: val } ) }
 					min={ 0 }
@@ -429,13 +429,13 @@ export default function Edit( { attributes, setAttributes } ) {
 			</PanelBody>
 
 			{/* ---- Custom CSS ---- */}
-			<PanelBody title={ __( 'Custom CSS', 'wp-logos' ) } initialOpen={ false }>
+			<PanelBody title={ __( 'Custom CSS', 'yolo-logos' ) } initialOpen={ false }>
 				<TextareaControl
-					label={ __( 'Custom CSS (applied to this block only)', 'wp-logos' ) }
+					label={ __( 'Custom CSS (applied to this block only)', 'yolo-logos' ) }
 					value={ customCSS }
 					onChange={ ( val ) => setAttributes( { customCSS: val } ) }
 					rows={ 6 }
-					help={ __( 'CSS rules scoped to this specific showcase block via its unique ID.', 'wp-logos' ) }
+					help={ __( 'CSS rules scoped to this specific showcase block via its unique ID.', 'yolo-logos' ) }
 				/>
 			</PanelBody>
 		</InspectorControls>
@@ -450,15 +450,15 @@ export default function Edit( { attributes, setAttributes } ) {
 		previewContent = (
 			<div className="wp-logos-editor-loading">
 				<Spinner />
-				<span>{ __( 'Loading logos…', 'wp-logos' ) }</span>
+				<span>{ __( 'Loading logos…', 'yolo-logos' ) }</span>
 			</div>
 		);
 	} else if ( logos.length === 0 ) {
 		previewContent = (
 			<Notice status="info" isDismissible={ false }>
 				{ categoryId
-					? __( 'No logos found in this category. Add some logos under Logos → All Logos.', 'wp-logos' )
-					: __( 'No logos found. Add some logos under Logos → Add New.', 'wp-logos' ) }
+					? __( 'No logos found in this category. Add some logos under Logos → All Logos.', 'yolo-logos' )
+					: __( 'No logos found. Add some logos under Logos → Add New.', 'yolo-logos' ) }
 			</Notice>
 		);
 	} else {
@@ -481,7 +481,7 @@ export default function Edit( { attributes, setAttributes } ) {
 
 			<div className="wp-logos-editor-header">
 				<span className="wp-logos-editor-label">
-					{ __( 'WP Logos', 'wp-logos' ) }
+					{ __( 'YOLO Logos', 'yolo-logos' ) }
 					{ ' · ' }
 					{ showcaseType.charAt( 0 ).toUpperCase() + showcaseType.slice( 1 ) }
 					{ categoryId && categories.find( ( c ) => c.id === categoryId )

@@ -90,7 +90,7 @@ class Blocks {
 		if ( empty( $logos ) ) {
 			return sprintf(
 				'<div class="wp-logos-empty">%s</div>',
-				esc_html__( 'No logos found. Add logos in the WP Logos admin panel.', 'wp-logos' )
+				esc_html__( 'No logos found. Add logos in the YOLO Logos admin panel.', 'yolo-logos' )
 			);
 		}
 
@@ -153,15 +153,15 @@ class Blocks {
 						<?php endforeach; ?>
 					</div>
 					<?php if ( ! empty( $attributes['carouselArrows'] ) && ! ( $attributes['carouselTicker'] ?? false ) ) : ?>
-						<button class="wp-logos-arrow wp-logos-arrow-prev" aria-label="<?php esc_attr_e( 'Previous', 'wp-logos' ); ?>">
+						<button class="wp-logos-arrow wp-logos-arrow-prev" aria-label="<?php esc_attr_e( 'Previous', 'yolo-logos' ); ?>">
 							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
 						</button>
-						<button class="wp-logos-arrow wp-logos-arrow-next" aria-label="<?php esc_attr_e( 'Next', 'wp-logos' ); ?>">
+						<button class="wp-logos-arrow wp-logos-arrow-next" aria-label="<?php esc_attr_e( 'Next', 'yolo-logos' ); ?>">
 							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
 						</button>
 					<?php endif; ?>
 					<?php if ( ! empty( $attributes['carouselDots'] ) && ! ( $attributes['carouselTicker'] ?? false ) ) : ?>
-						<div class="wp-logos-dots" role="tablist" aria-label="<?php esc_attr_e( 'Carousel navigation', 'wp-logos' ); ?>"></div>
+						<div class="wp-logos-dots" role="tablist" aria-label="<?php esc_attr_e( 'Carousel navigation', 'yolo-logos' ); ?>"></div>
 					<?php endif; ?>
 				</div>
 			<?php elseif ( 'flexbox' === $showcase_type ) : ?>

@@ -32,7 +32,7 @@ class WP_Logos_Admin {
 	public function add_meta_boxes(): void {
 		add_meta_box(
 			'wp-logos-images',
-			__( 'Logo Images', 'wp-logos' ),
+			__( 'Logo Images', 'yolo-logos' ),
 			array( $this, 'render_images_meta_box' ),
 			'wp_logo',
 			'normal',
@@ -41,7 +41,7 @@ class WP_Logos_Admin {
 
 		add_meta_box(
 			'wp-logos-details',
-			__( 'Logo Details', 'wp-logos' ),
+			__( 'Logo Details', 'yolo-logos' ),
 			array( $this, 'render_details_meta_box' ),
 			'wp_logo',
 			'normal',
@@ -64,9 +64,9 @@ class WP_Logos_Admin {
 		<table class="wp-logos-meta-table form-table">
 			<tbody>
 				<?php
-				$this->render_image_field( $main_id, '_logo_main_id', __( 'Main Logo', 'wp-logos' ), __( 'The primary logo image.', 'wp-logos' ) );
-				$this->render_image_field( $light_id, '_logo_light_id', __( 'Light Version', 'wp-logos' ), __( 'Optional: light/white logo for dark backgrounds.', 'wp-logos' ) );
-				$this->render_image_field( $dark_id, '_logo_dark_id', __( 'Dark Version', 'wp-logos' ), __( 'Optional: dark logo for light backgrounds.', 'wp-logos' ) );
+				$this->render_image_field( $main_id, '_logo_main_id', __( 'Main Logo', 'yolo-logos' ), __( 'The primary logo image.', 'yolo-logos' ) );
+				$this->render_image_field( $light_id, '_logo_light_id', __( 'Light Version', 'yolo-logos' ), __( 'Optional: light/white logo for dark backgrounds.', 'yolo-logos' ) );
+				$this->render_image_field( $dark_id, '_logo_dark_id', __( 'Dark Version', 'yolo-logos' ), __( 'Optional: dark logo for light backgrounds.', 'yolo-logos' ) );
 				?>
 			</tbody>
 		</table>
@@ -99,15 +99,15 @@ class WP_Logos_Admin {
 						name="<?php echo esc_attr( $meta_key ); ?>"
 						value="<?php echo esc_attr( $attachment_id ?: '' ); ?>" />
 					<button type="button" class="button wp-logos-upload-btn">
-						<?php echo $img_src ? esc_html__( 'Change Image', 'wp-logos' ) : esc_html__( 'Upload / Select Image', 'wp-logos' ); ?>
+						<?php echo $img_src ? esc_html__( 'Change Image', 'yolo-logos' ) : esc_html__( 'Upload / Select Image', 'yolo-logos' ); ?>
 					</button>
 					<?php if ( $img_src ) : ?>
 						<button type="button" class="button wp-logos-remove-btn">
-							<?php esc_html_e( 'Remove', 'wp-logos' ); ?>
+							<?php esc_html_e( 'Remove', 'yolo-logos' ); ?>
 						</button>
 					<?php else : ?>
 						<button type="button" class="button wp-logos-remove-btn" style="display:none;">
-							<?php esc_html_e( 'Remove', 'wp-logos' ); ?>
+							<?php esc_html_e( 'Remove', 'yolo-logos' ); ?>
 						</button>
 					<?php endif; ?>
 				</div>
@@ -130,7 +130,7 @@ class WP_Logos_Admin {
 			<tbody>
 				<tr>
 					<th scope="row">
-						<label for="_logo_url"><?php esc_html_e( 'Website URL', 'wp-logos' ); ?></label>
+						<label for="_logo_url"><?php esc_html_e( 'Website URL', 'yolo-logos' ); ?></label>
 					</th>
 					<td>
 						<input type="url"
@@ -139,12 +139,12 @@ class WP_Logos_Admin {
 							value="<?php echo esc_attr( $url ); ?>"
 							class="regular-text"
 							placeholder="https://example.com" />
-						<p class="description"><?php esc_html_e( 'Optional: link to the brand\'s website.', 'wp-logos' ); ?></p>
+						<p class="description"><?php esc_html_e( 'Optional: link to the brand\'s website.', 'yolo-logos' ); ?></p>
 					</td>
 				</tr>
 				<tr>
 					<th scope="row">
-						<label for="_logo_alt"><?php esc_html_e( 'Alt Text', 'wp-logos' ); ?></label>
+						<label for="_logo_alt"><?php esc_html_e( 'Alt Text', 'yolo-logos' ); ?></label>
 					</th>
 					<td>
 						<input type="text"
@@ -152,12 +152,12 @@ class WP_Logos_Admin {
 							name="_logo_alt"
 							value="<?php echo esc_attr( $alt ); ?>"
 							class="regular-text" />
-						<p class="description"><?php esc_html_e( 'Accessible alt text for the logo image. Falls back to the logo title if empty.', 'wp-logos' ); ?></p>
+						<p class="description"><?php esc_html_e( 'Accessible alt text for the logo image. Falls back to the logo title if empty.', 'yolo-logos' ); ?></p>
 					</td>
 				</tr>
 				<tr>
 					<th scope="row">
-						<label for="_logo_order"><?php esc_html_e( 'Sort Order', 'wp-logos' ); ?></label>
+						<label for="_logo_order"><?php esc_html_e( 'Sort Order', 'yolo-logos' ); ?></label>
 					</th>
 					<td>
 						<input type="number"
@@ -166,7 +166,7 @@ class WP_Logos_Admin {
 							value="<?php echo esc_attr( $order ); ?>"
 							class="small-text"
 							min="0" />
-						<p class="description"><?php esc_html_e( 'Lower numbers appear first. Logos with the same sort order are ordered by title.', 'wp-logos' ); ?></p>
+						<p class="description"><?php esc_html_e( 'Lower numbers appear first. Logos with the same sort order are ordered by title.', 'yolo-logos' ); ?></p>
 					</td>
 				</tr>
 			</tbody>
@@ -253,8 +253,8 @@ class WP_Logos_Admin {
 			'wp-logos-admin',
 			'wpLogosAdmin',
 			array(
-				'uploadTitle'  => __( 'Select Logo Image', 'wp-logos' ),
-				'uploadButton' => __( 'Use This Image', 'wp-logos' ),
+				'uploadTitle'  => __( 'Select Logo Image', 'yolo-logos' ),
+				'uploadButton' => __( 'Use This Image', 'yolo-logos' ),
 			)
 		);
 	}
@@ -271,7 +271,7 @@ class WP_Logos_Admin {
 		foreach ( $columns as $key => $label ) {
 			$new[ $key ] = $label;
 			if ( 'title' === $key ) {
-				$new['wp_logos_thumbnail'] = __( 'Logo', 'wp-logos' );
+				$new['wp_logos_thumbnail'] = __( 'Logo', 'yolo-logos' );
 			}
 		}
 		return $new;
@@ -309,8 +309,8 @@ class WP_Logos_Admin {
 	 */
 	public function plugin_action_links( array $links ): array {
 		$plugin_links = array(
-			'<a href="' . admin_url( 'options-general.php?page=wp-logos-settings' ) . '">' . __( 'Settings', 'wp-logos' ) . '</a>',
-			'<a href="' . admin_url( 'edit.php?post_type=wp_logo' ) . '">' . __( 'Logos', 'wp-logos' ) . '</a>',
+			'<a href="' . admin_url( 'options-general.php?page=wp-logos-settings' ) . '">' . __( 'Settings', 'yolo-logos' ) . '</a>',
+			'<a href="' . admin_url( 'edit.php?post_type=wp_logo' ) . '">' . __( 'Logos', 'yolo-logos' ) . '</a>',
 		);
 
 		return array_merge( $plugin_links, $links );

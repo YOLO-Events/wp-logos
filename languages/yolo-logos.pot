@@ -1,8 +1,8 @@
-# Copyright (C) 2024 WP Logos
-# This file is distributed under the same license as the WP Logos plugin.
+# Copyright (C) 2024 YOLO Logos
+# This file is distributed under the same license as the YOLO Logos plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: WP Logos 1.0.0\n"
+"Project-Id-Version: YOLO Logos 1.0.0\n"
 "Report-Msgid-Bugs-To: https://github.com/YOLO-Events/wp-logos/issues\n"
 "POT-Creation-Date: 2024-01-01T00:00:00+00:00\n"
 "MIME-Version: 1.0\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Language-Team: \n"
 "Language: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Domain: wp-logos\n"
+"X-Domain: yolo-logos\n"
 
 msgctxt "Post type general name"
 msgid "Logos"
@@ -117,10 +117,10 @@ msgstr ""
 msgid "Lower numbers appear first. Logos with the same sort order are ordered by title."
 msgstr ""
 
-msgid "WP Logos Settings"
+msgid "YOLO Logos Settings"
 msgstr ""
 
-msgid "WP Logos"
+msgid "YOLO Logos"
 msgstr ""
 
 msgid "Default Showcase Type"
@@ -168,7 +168,7 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-msgid "No logos found. Add logos in the WP Logos admin panel."
+msgid "No logos found. Add logos in the YOLO Logos admin panel."
 msgstr ""
 
 msgid "Previous"

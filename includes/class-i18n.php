@@ -21,7 +21,7 @@ class I18n {
 	 */
 	public function load_plugin_textdomain(): void {
 		load_plugin_textdomain(
-			'wp-logos',
+			'yolo-logos',
 			false,
 			dirname( WP_LOGOS_PLUGIN_BASENAME ) . '/languages/'
 		);

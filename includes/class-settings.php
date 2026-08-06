@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Creates the plugin Settings page under Settings → WP Logos.
+ * Creates the plugin Settings page under Settings → YOLO Logos.
  */
 class Settings {
 
@@ -34,8 +34,8 @@ class Settings {
 	 */
 	public function add_settings_page(): void {
 		add_options_page(
-			__( 'WP Logos Settings', 'wp-logos' ),
-			__( 'WP Logos', 'wp-logos' ),
+			__( 'YOLO Logos Settings', 'yolo-logos' ),
+			__( 'YOLO Logos', 'yolo-logos' ),
 			'manage_options',
 			'wp-logos-settings',
 			array( $this, 'render_page' )
@@ -57,7 +57,7 @@ class Settings {
 
 		add_settings_section(
 			'wp_logos_defaults_section',
-			__( 'Global Defaults', 'wp-logos' ),
+			__( 'Global Defaults', 'yolo-logos' ),
 			null,
 			'wp-logos-settings'
 		);
@@ -65,52 +65,52 @@ class Settings {
 		$fields = array(
 			array(
 				'id'    => 'default_type',
-				'label' => __( 'Default Showcase Type', 'wp-logos' ),
+				'label' => __( 'Default Showcase Type', 'yolo-logos' ),
 				'type'  => 'select',
 				'opts'  => array(
-					'grid'     => __( 'Grid', 'wp-logos' ),
-					'carousel' => __( 'Carousel', 'wp-logos' ),
-					'flexbox'  => __( 'Flexbox', 'wp-logos' ),
+					'grid'     => __( 'Grid', 'yolo-logos' ),
+					'carousel' => __( 'Carousel', 'yolo-logos' ),
+					'flexbox'  => __( 'Flexbox', 'yolo-logos' ),
 				),
 			),
 			array(
 				'id'    => 'default_theme',
-				'label' => __( 'Default Logo Theme', 'wp-logos' ),
+				'label' => __( 'Default Logo Theme', 'yolo-logos' ),
 				'type'  => 'select',
 				'opts'  => array(
-					'standard' => __( 'Standard', 'wp-logos' ),
-					'light'    => __( 'Light', 'wp-logos' ),
-					'dark'     => __( 'Dark', 'wp-logos' ),
+					'standard' => __( 'Standard', 'yolo-logos' ),
+					'light'    => __( 'Light', 'yolo-logos' ),
+					'dark'     => __( 'Dark', 'yolo-logos' ),
 				),
 			),
 			array(
 				'id'    => 'default_gap',
-				'label' => __( 'Default Gap (px)', 'wp-logos' ),
+				'label' => __( 'Default Gap (px)', 'yolo-logos' ),
 				'type'  => 'number',
 			),
 			array(
 				'id'    => 'default_logo_max_height',
-				'label' => __( 'Default Logo Max Height (px)', 'wp-logos' ),
+				'label' => __( 'Default Logo Max Height (px)', 'yolo-logos' ),
 				'type'  => 'number',
 			),
 			array(
 				'id'    => 'default_logo_max_width',
-				'label' => __( 'Default Logo Max Width (px)', 'wp-logos' ),
+				'label' => __( 'Default Logo Max Width (px)', 'yolo-logos' ),
 				'type'  => 'number',
 			),
 			array(
 				'id'    => 'default_grayscale',
-				'label' => __( 'Grayscale Logos by Default', 'wp-logos' ),
+				'label' => __( 'Grayscale Logos by Default', 'yolo-logos' ),
 				'type'  => 'checkbox',
 			),
 			array(
 				'id'    => 'default_autoplay',
-				'label' => __( 'Enable Carousel Autoplay by Default', 'wp-logos' ),
+				'label' => __( 'Enable Carousel Autoplay by Default', 'yolo-logos' ),
 				'type'  => 'checkbox',
 			),
 			array(
 				'id'    => 'default_autoplay_speed',
-				'label' => __( 'Default Autoplay Speed (ms)', 'wp-logos' ),
+				'label' => __( 'Default Autoplay Speed (ms)', 'yolo-logos' ),
 				'type'  => 'number',
 			),
 		);
@@ -237,7 +237,7 @@ class Settings {
 		}
 		?>
 		<div class="wrap">
-			<h1><?php esc_html_e( 'WP Logos Settings', 'wp-logos' ); ?></h1>
+			<h1><?php esc_html_e( 'YOLO Logos Settings', 'yolo-logos' ); ?></h1>
 			<form method="post" action="options.php">
 				<?php
 				settings_fields( 'wp_logos_settings_group' );

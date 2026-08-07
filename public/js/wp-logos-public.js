@@ -13,7 +13,7 @@
 	 * Parse the data-wp-logos attribute from a showcase element.
 	 *
 	 * @param {HTMLElement} el Showcase root element.
-	 * @returns {Object} Parsed configuration.
+	 * @return {Object} Parsed configuration.
 	 */
 	function parseConfig( el ) {
 		try {
@@ -28,21 +28,43 @@
 	 * We read the CSS variable that was set by the PHP render callback.
 	 *
 	 * @param {HTMLElement} el Showcase element.
-	 * @returns {number} Number of visible slides.
+	 * @return {number} Number of visible slides.
 	 */
 	function getVisibleSlides( el ) {
-		var style = getComputedStyle( el );
-		var width = el.offsetWidth;
+		const style = window.getComputedStyle( el );
+		const width = el.offsetWidth;
 
 		// Match same breakpoints as CSS.
-		var colsMobile  = parseInt( style.getPropertyValue( '--wp-logos-cols-mobile' ).trim(), 10 )  || 2;
-		var colsTablet  = parseInt( style.getPropertyValue( '--wp-logos-cols-tablet' ).trim(), 10 )  || 3;
-		var colsLaptop  = parseInt( style.getPropertyValue( '--wp-logos-cols-laptop' ).trim(), 10 )  || 4;
-		var colsDesktop = parseInt( style.getPropertyValue( '--wp-logos-cols-desktop' ).trim(), 10 ) || 5;
+		const colsMobile =
+			parseInt(
+				style.getPropertyValue( '--wp-logos-cols-mobile' ).trim(),
+				10
+			) || 2;
+		const colsTablet =
+			parseInt(
+				style.getPropertyValue( '--wp-logos-cols-tablet' ).trim(),
+				10
+			) || 3;
+		const colsLaptop =
+			parseInt(
+				style.getPropertyValue( '--wp-logos-cols-laptop' ).trim(),
+				10
+			) || 4;
+		const colsDesktop =
+			parseInt(
+				style.getPropertyValue( '--wp-logos-cols-desktop' ).trim(),
+				10
+			) || 5;
 
-		if ( width >= 1200 ) { return colsDesktop; }
-		if ( width >= 900 )  { return colsLaptop; }
-		if ( width >= 600 )  { return colsTablet; }
+		if ( width >= 1200 ) {
+			return colsDesktop;
+		}
+		if ( width >= 900 ) {
+			return colsLaptop;
+		}
+		if ( width >= 600 ) {
+			return colsTablet;
+		}
 		return colsMobile;
 	}
 
@@ -53,39 +75,44 @@
 	/**
 	 * Initialise a single carousel showcase.
 	 *
-	 * @param {HTMLElement} el Root showcase element.
+	 * @param {HTMLElement} el  Root showcase element.
 	 * @param {Object}      cfg Configuration object.
 	 */
 	function initCarousel( el, cfg ) {
-
 		// Ticker mode – delegate to separate init.
 		if ( cfg.ticker ) {
 			initTicker( el, cfg );
 			return;
 		}
 
-		var wrapper  = el.querySelector( '.wp-logos-carousel-wrapper' );
-		var track    = el.querySelector( '.wp-logos-carousel-track' );
-		var items    = Array.from( track.querySelectorAll( '.wp-logos-item' ) );
-		var btnPrev  = el.querySelector( '.wp-logos-arrow-prev' );
-		var btnNext  = el.querySelector( '.wp-logos-arrow-next' );
-		var dotsEl   = el.querySelector( '.wp-logos-dots' );
+		const track = el.querySelector( '.wp-logos-carousel-track' );
+		if ( ! track ) {
+			return;
+		}
 
-		if ( ! track || items.length === 0 ) { return; }
+		const items = Array.from( track.querySelectorAll( '.wp-logos-item' ) );
+		if ( items.length === 0 ) {
+			return;
+		}
 
-		var totalItems  = items.length;
-		var currentIdx  = 0;
-		var autoplayTimer = null;
-		var isDragging   = false;
-		var dragStartX   = 0;
-		var dragCurrentX = 0;
-		var dragOffset   = 0;
-		var resizeTimer  = null;
+		const wrapper = el.querySelector( '.wp-logos-carousel-wrapper' );
+		const btnPrev = el.querySelector( '.wp-logos-arrow-prev' );
+		const btnNext = el.querySelector( '.wp-logos-arrow-next' );
+		const dotsEl = el.querySelector( '.wp-logos-dots' );
+
+		const totalItems = items.length;
+		let currentIdx = 0;
+		let autoplayTimer = null;
+		let isDragging = false;
+		let dragStartX = 0;
+		let dragCurrentX = 0;
+		let dragOffset = 0;
+		let resizeTimer = null;
 
 		/* --- Clone items for infinite loop --- */
 		if ( cfg.infinite ) {
 			items.forEach( function ( item ) {
-				var clone = item.cloneNode( true );
+				const clone = item.cloneNode( true );
 				clone.setAttribute( 'aria-hidden', 'true' );
 				clone.classList.add( 'wp-logos-clone' );
 				track.appendChild( clone );
@@ -93,15 +120,18 @@
 		}
 
 		/* --- Dot creation --- */
-		var dots = [];
+		const dots = [];
 		if ( dotsEl ) {
-			for ( var i = 0; i < totalItems; i++ ) {
-				var dot = document.createElement( 'button' );
-				dot.className = 'wp-logos-dot' + ( i === 0 ? ' wp-logos-dot-active' : '' );
+			for ( let i = 0; i < totalItems; i++ ) {
+				const dot = document.createElement( 'button' );
+				dot.className =
+					'wp-logos-dot' + ( i === 0 ? ' wp-logos-dot-active' : '' );
 				dot.setAttribute( 'role', 'tab' );
 				dot.setAttribute( 'aria-label', 'Slide ' + ( i + 1 ) );
 				( function ( idx ) {
-					dot.addEventListener( 'click', function () { goTo( idx, true ); } );
+					dot.addEventListener( 'click', function () {
+						goTo( idx, true );
+					} );
 				} )( i );
 				dotsEl.appendChild( dot );
 				dots.push( dot );
@@ -110,19 +140,29 @@
 
 		/* --- Core move logic --- */
 		function getSlideWidth() {
-			var visible = getVisibleSlides( el );
-			var gap = parseFloat( getComputedStyle( el ).getPropertyValue( '--wp-logos-gap' ) ) || 0;
+			const visible = getVisibleSlides( el );
+			const gap =
+				parseFloat(
+					window
+						.getComputedStyle( el )
+						.getPropertyValue( '--wp-logos-gap' )
+				) || 0;
 			return ( wrapper.offsetWidth - gap * ( visible - 1 ) ) / visible;
 		}
 
 		function setTransform( offset, animated ) {
 			track.style.transition = animated ? '' : 'none';
-			track.style.transform  = 'translateX(' + offset + 'px)';
+			track.style.transform = 'translateX(' + offset + 'px)';
 		}
 
 		function getOffset( idx ) {
-			var slideWidth = getSlideWidth();
-			var gap = parseFloat( getComputedStyle( el ).getPropertyValue( '--wp-logos-gap' ) ) || 0;
+			const slideWidth = getSlideWidth();
+			const gap =
+				parseFloat(
+					window
+						.getComputedStyle( el )
+						.getPropertyValue( '--wp-logos-gap' )
+				) || 0;
 			return -idx * ( slideWidth + gap );
 		}
 
@@ -134,15 +174,24 @@
 
 		function updateArrows() {
 			if ( ! cfg.infinite ) {
-				if ( btnPrev ) { btnPrev.disabled = currentIdx === 0; }
-				if ( btnNext ) { btnNext.disabled = currentIdx >= totalItems - getVisibleSlides( el ); }
+				if ( btnPrev ) {
+					btnPrev.disabled = currentIdx === 0;
+				}
+				if ( btnNext ) {
+					btnNext.disabled =
+						currentIdx >= totalItems - getVisibleSlides( el );
+				}
 			}
 		}
 
 		function goTo( idx, stopAutoplay ) {
-			if ( stopAutoplay ) { clearAutoplay(); }
+			if ( stopAutoplay ) {
+				clearAutoplay();
+			}
 
-			var maxIdx = cfg.infinite ? totalItems - 1 : Math.max( 0, totalItems - getVisibleSlides( el ) );
+			const maxIdx = cfg.infinite
+				? totalItems - 1
+				: Math.max( 0, totalItems - getVisibleSlides( el ) );
 			currentIdx = Math.max( 0, Math.min( idx, maxIdx ) );
 
 			setTransform( getOffset( currentIdx ), true );
@@ -160,12 +209,18 @@
 			}
 		}
 
-		function next() { goTo( currentIdx + 1, false ); }
-		function prev() { goTo( currentIdx - 1, false ); }
+		function next() {
+			goTo( currentIdx + 1, false );
+		}
+		function prev() {
+			goTo( currentIdx - 1, false );
+		}
 
 		/* --- Autoplay --- */
 		function startAutoplay() {
-			if ( ! cfg.autoplay ) { return; }
+			if ( ! cfg.autoplay ) {
+				return;
+			}
 			autoplayTimer = setInterval( next, cfg.autoplaySpeed || 3000 );
 		}
 
@@ -178,49 +233,70 @@
 
 		/* --- Arrow buttons --- */
 		if ( btnPrev ) {
-			btnPrev.addEventListener( 'click', function () { prev(); startAutoplay(); } );
+			btnPrev.addEventListener( 'click', function () {
+				prev();
+				startAutoplay();
+			} );
 		}
 		if ( btnNext ) {
-			btnNext.addEventListener( 'click', function () { next(); startAutoplay(); } );
+			btnNext.addEventListener( 'click', function () {
+				next();
+				startAutoplay();
+			} );
 		}
 
 		/* --- Touch / pointer drag --- */
 		wrapper.addEventListener( 'pointerdown', function ( e ) {
-			isDragging  = true;
-			dragStartX  = e.clientX;
-			dragOffset  = getOffset( currentIdx );
+			isDragging = true;
+			dragStartX = e.clientX;
+			dragOffset = getOffset( currentIdx );
 			clearAutoplay();
 			track.style.transition = 'none';
 			wrapper.setPointerCapture( e.pointerId );
 		} );
 
 		wrapper.addEventListener( 'pointermove', function ( e ) {
-			if ( ! isDragging ) { return; }
+			if ( ! isDragging ) {
+				return;
+			}
 			dragCurrentX = e.clientX;
-			var delta = dragCurrentX - dragStartX;
-			track.style.transform = 'translateX(' + ( dragOffset + delta ) + 'px)';
+			const delta = dragCurrentX - dragStartX;
+			track.style.transform =
+				'translateX(' + ( dragOffset + delta ) + 'px)';
 		} );
 
 		function endDrag() {
-			if ( ! isDragging ) { return; }
+			if ( ! isDragging ) {
+				return;
+			}
 			isDragging = false;
-			var delta = dragCurrentX - dragStartX;
-			var threshold = getSlideWidth() * 0.25;
+			const delta = dragCurrentX - dragStartX;
+			const threshold = getSlideWidth() * 0.25;
 			if ( Math.abs( delta ) > threshold ) {
-				delta < 0 ? next() : prev();
+				if ( delta < 0 ) {
+					next();
+				} else {
+					prev();
+				}
 			} else {
 				setTransform( getOffset( currentIdx ), true );
 			}
 			startAutoplay();
 		}
 
-		wrapper.addEventListener( 'pointerup',     endDrag );
+		wrapper.addEventListener( 'pointerup', endDrag );
 		wrapper.addEventListener( 'pointercancel', endDrag );
 
 		/* --- Keyboard accessibility --- */
 		el.addEventListener( 'keydown', function ( e ) {
-			if ( e.key === 'ArrowLeft' )  { prev(); startAutoplay(); }
-			if ( e.key === 'ArrowRight' ) { next(); startAutoplay(); }
+			if ( e.key === 'ArrowLeft' ) {
+				prev();
+				startAutoplay();
+			}
+			if ( e.key === 'ArrowRight' ) {
+				next();
+				startAutoplay();
+			}
 		} );
 		el.setAttribute( 'tabindex', '0' );
 
@@ -257,22 +333,24 @@
 	 * @param {Object}      cfg Configuration object.
 	 */
 	function initTicker( el, cfg ) {
-		var track = el.querySelector( '.wp-logos-carousel-track' );
-		if ( ! track ) { return; }
+		const track = el.querySelector( '.wp-logos-carousel-track' );
+		if ( ! track ) {
+			return;
+		}
 
 		// Duplicate items so the track is seamlessly looping.
-		var origItems = Array.from( track.children );
+		const origItems = Array.from( track.children );
 		origItems.forEach( function ( item ) {
-			var clone = item.cloneNode( true );
+			const clone = item.cloneNode( true );
 			clone.setAttribute( 'aria-hidden', 'true' );
 			track.appendChild( clone );
 		} );
 
 		// Calculate duration based on speed factor and number of items.
-		var speedFactor = parseFloat( cfg.tickerSpeed ) || 1;
-		var numItems    = origItems.length;
+		const speedFactor = parseFloat( cfg.tickerSpeed ) || 1;
+		const numItems = origItems.length;
 		// Base: each item takes ~4 s to scroll past at speed 1.
-		var duration    = ( numItems * 4 ) / speedFactor;
+		const duration = ( numItems * 4 ) / speedFactor;
 
 		el.style.setProperty( '--wp-logos-ticker-speed', duration + 's' );
 		el.classList.add( 'wp-logos-ticker-active' );
@@ -299,9 +377,11 @@
 	 * Initialise all showcase elements on the page.
 	 */
 	function initAll() {
-		var showcases = document.querySelectorAll( '.wp-logos-showcase[data-wp-logos]' );
+		const showcases = document.querySelectorAll(
+			'.wp-logos-showcase[data-wp-logos]'
+		);
 		showcases.forEach( function ( el ) {
-			var cfg = parseConfig( el );
+			const cfg = parseConfig( el );
 			if ( cfg.type === 'carousel' ) {
 				initCarousel( el, cfg );
 			}

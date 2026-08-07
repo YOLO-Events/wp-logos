@@ -1,4 +1,4 @@
-/* global jQuery, wpLogosAdmin, wp */
+/* global jQuery, wpLogosAdmin */
 ( function ( $ ) {
 	'use strict';
 
@@ -8,12 +8,12 @@
 	 * @param {jQuery} $wrapper The .wp-logos-image-uploader element.
 	 */
 	function initUploader( $wrapper ) {
-		var $input   = $wrapper.find( 'input[type="hidden"]' );
-		var $preview = $wrapper.find( '.wp-logos-preview' );
-		var $previewImg = $preview.find( 'img' );
-		var $uploadBtn  = $wrapper.find( '.wp-logos-upload-btn' );
-		var $removeBtn  = $wrapper.find( '.wp-logos-remove-btn' );
-		var mediaFrame;
+		const $input = $wrapper.find( 'input[type="hidden"]' );
+		const $preview = $wrapper.find( '.wp-logos-preview' );
+		const $previewImg = $preview.find( 'img' );
+		const $uploadBtn = $wrapper.find( '.wp-logos-upload-btn' );
+		const $removeBtn = $wrapper.find( '.wp-logos-remove-btn' );
+		let mediaFrame;
 
 		$uploadBtn.on( 'click', function ( e ) {
 			e.preventDefault();
@@ -24,25 +24,35 @@
 			}
 
 			mediaFrame = wp.media( {
-				title:    wpLogosAdmin.uploadTitle,
-				button:   { text: wpLogosAdmin.uploadButton },
+				title: wpLogosAdmin.uploadTitle,
+				button: { text: wpLogosAdmin.uploadButton },
 				multiple: false,
-				library:  { type: 'image' },
+				library: { type: 'image' },
 			} );
 
 			mediaFrame.on( 'select', function () {
-				var attachment = mediaFrame.state().get( 'selection' ).first().toJSON();
+				const attachment = mediaFrame
+					.state()
+					.get( 'selection' )
+					.first()
+					.toJSON();
 
 				$input.val( attachment.id );
 
-				var thumbUrl = attachment.sizes && attachment.sizes.thumbnail
-					? attachment.sizes.thumbnail.url
-					: attachment.url;
+				const thumbUrl =
+					attachment.sizes && attachment.sizes.thumbnail
+						? attachment.sizes.thumbnail.url
+						: attachment.url;
 
 				if ( $previewImg.length ) {
 					$previewImg.attr( 'src', thumbUrl );
 				} else {
-					$preview.append( $( '<img>', { src: thumbUrl, style: 'max-width:200px;max-height:120px;' } ) );
+					$preview.append(
+						$( '<img>', {
+							src: thumbUrl,
+							style: 'max-width:200px;max-height:120px;',
+						} )
+					);
 				}
 
 				$preview.show();
@@ -58,7 +68,9 @@
 			$input.val( '' );
 			$preview.hide();
 			$removeBtn.hide();
-			$uploadBtn.text( wpLogosAdmin.uploadImage || 'Upload / Select Image' );
+			$uploadBtn.text(
+				wpLogosAdmin.uploadImage || 'Upload / Select Image'
+			);
 		} );
 	}
 

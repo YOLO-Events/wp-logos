@@ -182,7 +182,8 @@ class Blocks {
 			<?php if ( ! empty( $custom_css ) ) : ?>
 				<style>
 					#<?php echo esc_html( $showcase_id ); ?> {
-						<?php echo esc_html( $custom_css ); ?>
+						<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Custom CSS is stripped of tags before output. ?>
+						<?php echo wp_strip_all_tags( $custom_css ); ?>
 					}
 				</style>
 			<?php endif; ?>
@@ -347,12 +348,24 @@ class Blocks {
 			'post_type'      => 'wp_logo',
 			'post_status'    => 'publish',
 			'posts_per_page' => -1,
-			'meta_key'       => '_logo_order',
-			'meta_type'      => 'NUMERIC',
 			'orderby'        => array(
 				'meta_value_num' => 'ASC',
 				'menu_order'     => 'ASC',
 				'title'          => 'ASC',
+			),
+			// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- Includes posts with and without explicit sort order.
+			'meta_query'     => array(
+				'relation' => 'OR',
+				array(
+					'key'     => '_logo_order',
+					'compare' => 'NOT EXISTS',
+				),
+				array(
+					'key'     => '_logo_order',
+					'value'   => 0,
+					'compare' => '>=',
+					'type'    => 'NUMERIC',
+				),
 			),
 		);
 

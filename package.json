@@ -1,8 +1,8 @@
 {
-  "name": "wp-logos",
+  "name": "yolo-logos",
   "version": "1.0.0",
   "description": "WordPress plugin for managing and showcasing logos",
-  "author": "WP Logos",
+  "author": "YOLO Logos",
   "license": "GPL-2.0-or-later",
   "scripts": {
     "build": "wp-scripts build",
@@ -13,6 +13,7 @@
     "packages-update": "wp-scripts packages-update"
   },
   "devDependencies": {
-    "@wordpress/scripts": "^30.0.0"
+    "@wordpress/scripts": "^30.0.0",
+    "typescript": "^5.4.5"
   }
 }

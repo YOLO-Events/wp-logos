@@ -1,4 +1,4 @@
-=== WP Logos ===
+=== YOLO Logos ===
 Contributors: wployos
 Tags: logo, logo carousel, logo slider, logo grid, brands, sponsors, gutenberg, block
 Requires at least: 6.3
@@ -12,7 +12,7 @@ A modern WordPress plugin for managing and showcasing logos with Carousel, Grid,
 
 == Description ==
 
-**WP Logos** is a fully-featured logo management and showcase plugin for WordPress. Create logo records with multiple image variants, organise them into categories, and display them beautifully using a native Gutenberg block.
+**YOLO Logos** is a fully-featured logo management and showcase plugin for WordPress. Create logo records with multiple image variants, organise them into categories, and display them beautifully using a native Gutenberg block.
 
 = Features =
 
@@ -63,7 +63,7 @@ A modern WordPress plugin for managing and showcasing logos with Carousel, Grid,
 
 == Installation ==
 
-1. Upload the `wp-logos` folder to `/wp-content/plugins/`.
+1. Upload the `yolo-logos` folder to `/wp-content/plugins/`.
 2. Activate the plugin through the **Plugins** screen in WordPress.
 3. Navigate to **Logos** in the admin menu to add your first logo.
 

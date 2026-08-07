@@ -1,6 +1,6 @@
-# Deploying WP Logos to WordPress.org
+# Deploying YOLO Logos to WordPress.org
 
-This document describes the steps to publish and update the **WP Logos** plugin on [WordPress.org](https://wordpress.org/plugins/) using the [10up/action-wordpress-plugin-deploy](https://github.com/10up/action-wordpress-plugin-deploy) GitHub Action.
+This document describes the steps to publish and update the **YOLO Logos** plugin on [WordPress.org](https://wordpress.org/plugins/) using the [10up/action-wordpress-plugin-deploy](https://github.com/10up/action-wordpress-plugin-deploy) GitHub Action.
 
 ---
 
@@ -21,14 +21,14 @@ It triggers automatically whenever a new **Git tag** is pushed to the repository
 
 ### 1. WordPress.org Account
 
-You need a [WordPress.org](https://wordpress.org) account that is listed as a **contributor** or **author** of the `wp-logos` plugin on the plugin directory.
+You need a [WordPress.org](https://wordpress.org) account that is listed as a **contributor** or **author** of the `yolo-logos` plugin on the plugin directory.
 
 ### 2. Plugin Listing on WordPress.org
 
-The plugin must already be approved and listed at `https://wordpress.org/plugins/wp-logos/`. The SVN repository for the plugin is at:
+The plugin must already be approved and listed at `https://wordpress.org/plugins/yolo-logos/`. The SVN repository for the plugin is at:
 
 ```
-https://plugins.svn.wordpress.org/wp-logos/
+https://plugins.svn.wordpress.org/yolo-logos/
 ```
 
 ### 3. GitHub Repository Secrets
@@ -82,8 +82,8 @@ git push origin X.Y.Z
 
 Once the workflow completes successfully:
 
-- Visit `https://wordpress.org/plugins/wp-logos/` to confirm the new version is listed.
-- The SVN repository will have a new tag at `https://plugins.svn.wordpress.org/wp-logos/tags/X.Y.Z/`.
+- Visit `https://wordpress.org/plugins/yolo-logos/` to confirm the new version is listed.
+- The SVN repository will have a new tag at `https://plugins.svn.wordpress.org/yolo-logos/tags/X.Y.Z/`.
 
 ---
 

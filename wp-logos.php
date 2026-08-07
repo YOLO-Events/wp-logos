@@ -1,22 +1,22 @@
 <?php
 /**
- * WP Logos
+ * YOLO Logos
  *
  * @package           WP_Logos
- * @author            WP Logos
- * @copyright         2024 WP Logos
+ * @author            YOLO Logos
+ * @copyright         2024 YOLO Logos
  * @license           GPL-2.0-or-later
  *
  * @wordpress-plugin
- * Plugin Name:       WP Logos
+ * Plugin Name:       YOLO Logos
  * Plugin URI:        https://github.com/YOLO-Events/wp-logos
  * Description:       A modern WordPress plugin for managing and showcasing logos with Carousel, Grid, and Flexbox layouts. Includes a native Gutenberg block, WPML/Polylang/Loco Translate support, and full visual control.
  * Version:           1.0.0
  * Requires at least: 6.3
  * Requires PHP:      8.0
- * Author:            WP Logos
+ * Author:            YOLO Logos
  * Author URI:        https://github.com/YOLO-Events/wp-logos
- * Text Domain:       wp-logos
+ * Text Domain:       yolo-logos
  * Domain Path:       /languages
  * License:           GPL v2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html

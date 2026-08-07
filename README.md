@@ -1,1 +1,1 @@
-# wp-logos
+# yolo-logos

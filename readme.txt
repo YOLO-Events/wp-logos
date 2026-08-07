@@ -1,6 +1,6 @@
 === YOLO Logos ===
 Contributors: wployos
-Tags: logo, logo carousel, logo slider, logo grid, brands, sponsors, gutenberg, block
+Tags: logo, logo carousel, logo slider, gutenberg, block
 Requires at least: 6.3
 Tested up to: 7.0
 Requires PHP: 8.0

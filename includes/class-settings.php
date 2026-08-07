@@ -193,11 +193,11 @@ class Settings {
 	public function render_field( array $field ): void {
 		$options = get_option( self::OPTION_KEY, $this->get_defaults() );
 		$value   = $options[ $field['id'] ] ?? '';
-		$name    = esc_attr( self::OPTION_KEY . '[' . $field['id'] . ']' );
+		$name    = self::OPTION_KEY . '[' . $field['id'] . ']';
 
 		switch ( $field['type'] ) {
 			case 'select':
-				echo '<select name="' . $name . '">';
+				echo '<select name="' . esc_attr( $name ) . '">';
 				foreach ( $field['opts'] as $k => $label ) {
 					printf(
 						'<option value="%s"%s>%s</option>',
@@ -212,7 +212,7 @@ class Settings {
 			case 'checkbox':
 				printf(
 					'<input type="checkbox" name="%s" value="1"%s>',
-					$name,
+					esc_attr( $name ),
 					checked( $value, true, false )
 				);
 				break;
@@ -221,7 +221,7 @@ class Settings {
 			default:
 				printf(
 					'<input type="number" name="%s" value="%s" class="small-text">',
-					$name,
+					esc_attr( $name ),
 					esc_attr( $value )
 				);
 				break;

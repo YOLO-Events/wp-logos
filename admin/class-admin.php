@@ -196,15 +196,12 @@ class WP_Logos_Admin {
 			return;
 		}
 
-		$fields = array(
-			'_logo_url'      => 'esc_url_raw',
-			'_logo_alt'      => 'sanitize_text_field',
-		);
+		if ( isset( $_POST['_logo_url'] ) ) {
+			update_post_meta( $post_id, '_logo_url', esc_url_raw( wp_unslash( $_POST['_logo_url'] ) ) );
+		}
 
-		foreach ( $fields as $key => $sanitizer ) {
-			if ( isset( $_POST[ $key ] ) ) {
-				update_post_meta( $post_id, $key, $sanitizer( wp_unslash( $_POST[ $key ] ) ) );
-			}
+		if ( isset( $_POST['_logo_alt'] ) ) {
+			update_post_meta( $post_id, '_logo_alt', sanitize_text_field( wp_unslash( $_POST['_logo_alt'] ) ) );
 		}
 
 		$int_fields = array( '_logo_main_id', '_logo_light_id', '_logo_dark_id', '_logo_order' );

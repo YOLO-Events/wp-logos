@@ -98,37 +98,35 @@ class Blocks {
 		$showcase_id = 'wp-logos-' . wp_unique_id();
 
 		// Encode attributes for the data attribute (used by frontend JS).
-		$data_attrs = esc_attr(
-			wp_json_encode(
-				array(
-					'type'               => $showcase_type,
-					'theme'              => $theme,
-					'autoplay'           => (bool) ( $attributes['carouselAutoplay'] ?? true ),
-					'autoplaySpeed'      => absint( $attributes['carouselSpeed'] ?? 3000 ),
-					'infinite'           => (bool) ( $attributes['carouselInfinite'] ?? true ),
-					'arrows'             => (bool) ( $attributes['carouselArrows'] ?? true ),
-					'dots'               => (bool) ( $attributes['carouselDots'] ?? true ),
-					'ticker'             => (bool) ( $attributes['carouselTicker'] ?? false ),
-					'tickerSpeed'        => (float) ( $attributes['carouselTickerSpeed'] ?? 1 ),
-					'columns'            => $attributes['columns'] ?? array(
-						'mobile'  => 2,
-						'tablet'  => 3,
-						'laptop'  => 4,
-						'desktop' => 5,
-					),
-					'gap'                => absint( $attributes['gap'] ?? 20 ),
-					'logoMaxHeight'      => absint( $attributes['logoMaxHeight'] ?? 80 ),
-					'logoMaxWidth'       => absint( $attributes['logoMaxWidth'] ?? 160 ),
-					'padding'            => absint( $attributes['padding'] ?? 15 ),
-					'borderWidth'        => absint( $attributes['borderWidth'] ?? 0 ),
-					'borderRadius'       => absint( $attributes['borderRadius'] ?? 0 ),
-					'borderColor'        => sanitize_hex_color( $attributes['borderColor'] ?? '#e0e0e0' ),
-					'backgroundColor'    => sanitize_hex_color( $attributes['backgroundColor'] ?? '' ),
-					'grayscale'          => (bool) ( $attributes['grayscale'] ?? false ),
-					'showTitle'          => (bool) ( $attributes['showTitle'] ?? false ),
-					'flexboxAlign'       => sanitize_key( $attributes['flexboxAlign'] ?? 'center' ),
-					'flexboxLogoWidth'   => absint( $attributes['flexboxLogoWidth'] ?? 160 ),
-				)
+		$data_attrs = wp_json_encode(
+			array(
+				'type'               => $showcase_type,
+				'theme'              => $theme,
+				'autoplay'           => (bool) ( $attributes['carouselAutoplay'] ?? true ),
+				'autoplaySpeed'      => absint( $attributes['carouselSpeed'] ?? 3000 ),
+				'infinite'           => (bool) ( $attributes['carouselInfinite'] ?? true ),
+				'arrows'             => (bool) ( $attributes['carouselArrows'] ?? true ),
+				'dots'               => (bool) ( $attributes['carouselDots'] ?? true ),
+				'ticker'             => (bool) ( $attributes['carouselTicker'] ?? false ),
+				'tickerSpeed'        => (float) ( $attributes['carouselTickerSpeed'] ?? 1 ),
+				'columns'            => $attributes['columns'] ?? array(
+					'mobile'  => 2,
+					'tablet'  => 3,
+					'laptop'  => 4,
+					'desktop' => 5,
+				),
+				'gap'                => absint( $attributes['gap'] ?? 20 ),
+				'logoMaxHeight'      => absint( $attributes['logoMaxHeight'] ?? 80 ),
+				'logoMaxWidth'       => absint( $attributes['logoMaxWidth'] ?? 160 ),
+				'padding'            => absint( $attributes['padding'] ?? 15 ),
+				'borderWidth'        => absint( $attributes['borderWidth'] ?? 0 ),
+				'borderRadius'       => absint( $attributes['borderRadius'] ?? 0 ),
+				'borderColor'        => sanitize_hex_color( $attributes['borderColor'] ?? '#e0e0e0' ),
+				'backgroundColor'    => sanitize_hex_color( $attributes['backgroundColor'] ?? '' ),
+				'grayscale'          => (bool) ( $attributes['grayscale'] ?? false ),
+				'showTitle'          => (bool) ( $attributes['showTitle'] ?? false ),
+				'flexboxAlign'       => sanitize_key( $attributes['flexboxAlign'] ?? 'center' ),
+				'flexboxLogoWidth'   => absint( $attributes['flexboxLogoWidth'] ?? 160 ),
 			)
 		);
 
@@ -142,13 +140,14 @@ class Blocks {
 		<div
 			id="<?php echo esc_attr( $showcase_id ); ?>"
 			class="wp-logos-showcase wp-logos-<?php echo esc_attr( $showcase_type ); ?> wp-logos-theme-<?php echo esc_attr( $theme ); ?>"
-			data-wp-logos="<?php echo $data_attrs; ?>"
+			data-wp-logos="<?php echo esc_attr( $data_attrs ); ?>"
 			style="<?php echo esc_attr( $inline_style ); ?>"
 		>
 			<?php if ( 'carousel' === $showcase_type ) : ?>
 				<div class="wp-logos-carousel-wrapper">
 					<div class="wp-logos-carousel-track">
 						<?php foreach ( $logos as $logo ) : ?>
+							<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- render_logo_item escapes all dynamic output. ?>
 							<?php echo $this->render_logo_item( $logo, $attributes ); ?>
 						<?php endforeach; ?>
 					</div>
@@ -167,12 +166,14 @@ class Blocks {
 			<?php elseif ( 'flexbox' === $showcase_type ) : ?>
 				<div class="wp-logos-flexbox-wrapper">
 					<?php foreach ( $logos as $logo ) : ?>
+						<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- render_logo_item escapes all dynamic output. ?>
 						<?php echo $this->render_logo_item( $logo, $attributes ); ?>
 					<?php endforeach; ?>
 				</div>
 			<?php else : // grid ?>
 				<div class="wp-logos-grid-wrapper">
 					<?php foreach ( $logos as $logo ) : ?>
+						<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- render_logo_item escapes all dynamic output. ?>
 						<?php echo $this->render_logo_item( $logo, $attributes ); ?>
 					<?php endforeach; ?>
 				</div>
@@ -181,7 +182,7 @@ class Blocks {
 			<?php if ( ! empty( $custom_css ) ) : ?>
 				<style>
 					#<?php echo esc_html( $showcase_id ); ?> {
-						<?php echo wp_strip_all_tags( $custom_css ); ?>
+						<?php echo esc_html( $custom_css ); ?>
 					}
 				</style>
 			<?php endif; ?>
@@ -346,27 +347,17 @@ class Blocks {
 			'post_type'      => 'wp_logo',
 			'post_status'    => 'publish',
 			'posts_per_page' => -1,
+			'meta_key'       => '_logo_order',
+			'meta_type'      => 'NUMERIC',
 			'orderby'        => array(
 				'meta_value_num' => 'ASC',
 				'menu_order'     => 'ASC',
 				'title'          => 'ASC',
 			),
-			'meta_query'     => array(
-				'relation' => 'OR',
-				array(
-					'key'     => '_logo_order',
-					'compare' => 'NOT EXISTS',
-				),
-				array(
-					'key'     => '_logo_order',
-					'value'   => 0,
-					'compare' => '>=',
-					'type'    => 'NUMERIC',
-				),
-			),
 		);
 
 		if ( $category_id > 0 ) {
+			// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query -- Taxonomy filtering is required for category-specific showcases.
 			$query_args['tax_query'] = array(
 				array(
 					'taxonomy' => 'wp_logo_category',

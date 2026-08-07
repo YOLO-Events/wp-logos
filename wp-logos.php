@@ -15,7 +15,7 @@
  * Requires at least: 6.3
  * Requires PHP:      8.0
  * Author:            YOLO Logos
- * Author URI:        https://github.com/YOLO-Events/wp-logos
+ * Author URI:        https://github.com/YOLO-Events
  * Text Domain:       yolo-logos
  * Domain Path:       /languages
  * License:           GPL v2 or later

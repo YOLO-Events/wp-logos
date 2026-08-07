@@ -1,0 +1,9 @@
+.git
+.gitignore
+.github
+node_modules
+src
+package.json
+package-lock.json
+deploy-wordpress.md
+*.map

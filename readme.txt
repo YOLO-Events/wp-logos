@@ -69,6 +69,7 @@ A modern WordPress plugin for managing and showcasing logos with Carousel, Grid,
 == License ==
 
 This plugin is licensed under the GNU General Public License v2 or later.
+See https://www.gnu.org/licenses/gpl-2.0.html for the full license text.
 
 == Frequently Asked Questions ==
 

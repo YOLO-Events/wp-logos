@@ -43,7 +43,6 @@ A modern WordPress plugin for managing and showcasing logos with Carousel, Grid,
 * Item background colour, border width, border colour, and border radius.
 * Greyscale logos that reveal in colour on hover.
 * Show or hide logo titles.
-* **Custom CSS** – scoped per showcase block.
 
 **Compatibility**
 * Fully compatible with WPML, Polylang, Loco Translate, and any other translation plugin.

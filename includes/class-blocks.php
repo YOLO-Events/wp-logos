@@ -67,19 +67,8 @@ class Blocks {
 	 */
 	public function render_logo_showcase( array $attributes, string $content, \WP_Block $block ): string {
 		// Enqueue public assets on first render (works with FSE / template parts).
-		wp_enqueue_style(
-			'wp-logos-public',
-			WP_LOGOS_PLUGIN_URL . 'public/css/wp-logos-public.css',
-			array(),
-			WP_LOGOS_VERSION
-		);
-		wp_enqueue_script(
-			'wp-logos-public',
-			WP_LOGOS_PLUGIN_URL . 'public/js/wp-logos-public.js',
-			array(),
-			WP_LOGOS_VERSION,
-			true
-		);
+		wp_enqueue_style( 'wp-logos-public' );
+		wp_enqueue_script( 'wp-logos-public' );
 
 		$category_id   = absint( $attributes['categoryId'] ?? 0 );
 		$showcase_type = sanitize_key( $attributes['showcaseType'] ?? 'grid' );
@@ -130,8 +119,6 @@ class Blocks {
 			)
 		);
 
-		$custom_css = wp_strip_all_tags( $attributes['customCSS'] ?? '' );
-
 		// Build CSS custom properties.
 		$inline_style = $this->build_inline_style( $attributes );
 
@@ -177,15 +164,6 @@ class Blocks {
 						<?php echo $this->render_logo_item( $logo, $attributes ); ?>
 					<?php endforeach; ?>
 				</div>
-			<?php endif; ?>
-
-			<?php if ( ! empty( $custom_css ) ) : ?>
-				<style>
-					#<?php echo esc_html( $showcase_id ); ?> {
-						<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Custom CSS is stripped of tags before output. ?>
-						<?php echo wp_strip_all_tags( $custom_css ); ?>
-					}
-				</style>
 			<?php endif; ?>
 		</div>
 		<?php

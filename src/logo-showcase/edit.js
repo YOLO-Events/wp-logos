@@ -9,7 +9,6 @@ import {
 	SelectControl,
 	RangeControl,
 	ToggleControl,
-	TextareaControl,
 	ColorPicker,
 	Spinner,
 	Notice,
@@ -150,7 +149,6 @@ export default function Edit( { attributes, setAttributes } ) {
 		borderWidth,
 		borderColor,
 		borderRadius,
-		customCSS,
 	} = attributes;
 
 	/* --- Fetch categories --- */
@@ -555,26 +553,6 @@ export default function Edit( { attributes, setAttributes } ) {
 					}
 					min={ 0 }
 					max={ 50 }
-				/>
-			</PanelBody>
-
-			{ /* ---- Custom CSS ---- */ }
-			<PanelBody
-				title={ __( 'Custom CSS', 'yolo-logos' ) }
-				initialOpen={ false }
-			>
-				<TextareaControl
-					label={ __(
-						'Custom CSS (applied to this block only)',
-						'yolo-logos'
-					) }
-					value={ customCSS }
-					onChange={ ( val ) => setAttributes( { customCSS: val } ) }
-					rows={ 6 }
-					help={ __(
-						'CSS rules scoped to this specific showcase block via its unique ID.',
-						'yolo-logos'
-					) }
 				/>
 			</PanelBody>
 		</InspectorControls>

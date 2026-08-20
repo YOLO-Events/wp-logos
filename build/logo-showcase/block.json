@@ -140,10 +140,6 @@
     "borderRadius": {
       "type": "number",
       "default": 0
-    },
-    "customCSS": {
-      "type": "string",
-      "default": ""
     }
   },
   "supports": {

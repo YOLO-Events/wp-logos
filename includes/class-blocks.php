@@ -67,6 +67,25 @@ class Blocks {
 	 */
 	public function render_logo_showcase( array $attributes, string $content, \WP_Block $block ): string {
 		// Enqueue public assets on first render (works with FSE / template parts).
+		if ( ! wp_style_is( 'wp-logos-public', 'registered' ) ) {
+			wp_register_style(
+				'wp-logos-public',
+				WP_LOGOS_PLUGIN_URL . 'public/css/wp-logos-public.css',
+				array(),
+				WP_LOGOS_VERSION
+			);
+		}
+
+		if ( ! wp_script_is( 'wp-logos-public', 'registered' ) ) {
+			wp_register_script(
+				'wp-logos-public',
+				WP_LOGOS_PLUGIN_URL . 'public/js/wp-logos-public.js',
+				array(),
+				WP_LOGOS_VERSION,
+				true
+			);
+		}
+
 		wp_enqueue_style( 'wp-logos-public' );
 		wp_enqueue_script( 'wp-logos-public' );
 

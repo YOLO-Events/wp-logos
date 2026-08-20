@@ -66,6 +66,10 @@ A modern WordPress plugin for managing and showcasing logos with Carousel, Grid,
 2. Activate the plugin through the **Plugins** screen in WordPress.
 3. Navigate to **Logos** in the admin menu to add your first logo.
 
+== License ==
+
+This plugin is licensed under the GNU General Public License v2 or later.
+
 == Frequently Asked Questions ==
 
 = Can I display logos from multiple categories in one block? =

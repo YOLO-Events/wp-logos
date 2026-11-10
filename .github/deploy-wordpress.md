@@ -6,7 +6,7 @@ This document describes the steps to publish and update the **YOLO Logos** plugi
 
 ## Overview
 
-The deployment workflow is defined in [`.github/workflows/deploy-wordpress.yml`](.github/workflows/deploy-wordpress.yml).
+The deployment workflow is defined in [`workflows/deploy-wordpress.yml`](workflows/deploy-wordpress.yml).
 
 It triggers automatically whenever a new **Git tag** is pushed to the repository. The workflow:
 

@@ -5,9 +5,9 @@ import {
 	PanelBody,
 	RangeControl,
 	SelectControl,
-	ServerSideRender,
 	ToggleControl,
 } from '@wordpress/components';
+import ServerSideRender from '@wordpress/server-side-render';
 import { useSelect } from '@wordpress/data';
 import { store as coreStore } from '@wordpress/core-data';
 

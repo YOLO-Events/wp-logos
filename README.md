@@ -1,1 +1,88 @@
-# yolo-logos
+# YOLO Logos
+
+Manage logos and display them with the native Logo Showcase block.
+
+## Importing from other logo plugins
+
+Version 1.1.0 supports Logooos v1.9 and its legacy My Clients format. The source
+plugin need not be active or installed: its WordPress database records and Media
+Library attachments must still exist.
+
+1. Back up the database, then open **Logos → Import** (also linked from the Plugins screen).
+2. Select a detected source, choose skip/update and category collision handling,
+   and click **Preview (dry run)**. Preview does not write posts, terms or options.
+3. Review the warnings and click **Import logos**. Batches default to 50 logos.
+   A failed request can be retried at the same offset; if you reload the page,
+   preview and start again (already imported logos are skipped).
+4. Review missing images, errors and the category ID mapping. Replace each
+   `[logooos]` shortcode or preset manually with a **Logo Showcase** block, setting
+   `categoryId` to the new `wp_logo_category` term ID (0 means all).
+
+**No media files are copied, downloaded, sideloaded or regenerated.** Attachment
+IDs are checked and reused; a missing image is reported but does not prevent
+importing the logo. Source records, attachments, presets and page content are
+never changed. Imported links always open in a new tab; original link targets
+and image-size settings are preserved as private metadata.
+
+Matching category slugs reuse existing target categories, keeping their hierarchy
+and metadata. Choose “Create a separate category” to preserve a distinct imported
+hierarchy when slugs collide. Persisted category mappings are reused on later
+runs, regardless of the collision setting. Skip is the default for existing
+logos; Update refreshes mapped fields, image variants and category assignments.
+Do not edit source records while a batched import is running.
+
+### WP-CLI
+
+```sh
+wp yolo-logos import list
+wp yolo-logos import run logooos --dry-run
+# Dry-run is also the default when no execution flag is supplied.
+wp yolo-logos import run logooos --execute --batch=50
+wp yolo-logos import run logooos --execute --update-existing
+wp yolo-logos import run logooos --execute --offset=100 --copy-categories
+wp yolo-logos import map logooos
+```
+
+Batch sizes are 1–500. Maps live in `wp_logos_import_map_<source>` options.
+Dry-run IDs marked “new on import” are placeholders, not usable block IDs.
+Errors return a nonzero CLI exit status. Resume with the same options and
+reported offset, or rerun from zero after correcting errors.
+
+Imports of a source are serialised per batch. If a PHP process is forcibly
+terminated, first confirm no import is running, then remove its stale lock with
+`wp option delete wp_logos_import_lock_logooos` (substitute the source ID).
+
+See [Import adapters](docs/import-adapters.md) for registering another source
+without changing the engine, admin page or CLI.
+
+## PHP integration tests
+
+Prerequisites: PHP 8.0+, Composer, Node.js and Docker.
+
+```sh
+composer install
+npm ci
+npx wp-env start
+npm run test:php
+npx wp-env stop
+```
+
+Tests seed **unregistered** source post types/taxonomies and run against the real
+WordPress database APIs and block renderer. Test tooling is excluded from the
+WordPress.org distribution.
+
+For an existing standard WordPress test suite (for example one installed with
+`install-wp-tests.sh`), no Docker/wp-env is required:
+
+```sh
+composer install
+WP_TESTS_DIR=/tmp/wordpress-tests-lib vendor/bin/phpunit
+```
+
+Configure that suite's `wp-tests-config.php` to use an **isolated disposable test
+database** and point `ABSPATH` to its WordPress installation. WordPress tests
+drop/recreate tables; never point them at production data. The bootstrap finds
+the PHPUnit polyfills in this repository's `vendor/` directory. When WordPress.org
+network discovery is unavailable, the standard suite can also be sourced from
+the matching `WordPress/wordpress-develop` GitHub tag (`tests/phpunit/`) with core
+from the same `WordPress/WordPress` tag.

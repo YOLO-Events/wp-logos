@@ -4,7 +4,7 @@ Tags: logo, logo carousel, logo slider, gutenberg, block
 Requires at least: 6.3
 Tested up to: 7.1
 Requires PHP: 8.0
-Stable tag: 1.0.0
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -73,6 +73,12 @@ See https://www.gnu.org/licenses/gpl-2.0.html for the full license text.
 
 == Frequently Asked Questions ==
 
+= How do I import logos from another plugin? =
+
+Open **Logos → Import**, select a detected source and run **Preview (dry run)** first. Review warnings, then click **Import logos**. Logooos v1.9 and its legacy My Clients data are supported, even when the source plugin is inactive or deleted. Existing Media Library attachments are reused by ID: images are never downloaded, duplicated or regenerated. Source data is not changed.
+
+Re-running skips previously imported logos by default; choose Update to refresh them. Categories with matching slugs are reused unless you choose a separate copy. Use the final old-to-new category ID report to replace Logooos shortcodes and presets manually with Logo Showcase blocks (categoryId = new term ID). Original link targets are retained as metadata, but YOLO Logos always opens links in a new tab.
+
 = Can I display logos from multiple categories in one block? =
 
 Not directly — each block instance shows logos from one category (or all logos). Use multiple blocks on the same page to mix categories.
@@ -100,6 +106,11 @@ Yes. The block can be used in any block context, including site templates, patte
 7. Plugin settings page.
 
 == Changelog ==
+
+= 1.1.0 =
+* Add an extensible, adapter-based logo importer with safe dry-run previews, resumable AJAX batches and WP-CLI commands.
+* Import Logooos and legacy My Clients logos and hierarchical categories without copying images or changing source data.
+* Report missing images, category collisions and legacy shortcode/preset category mappings.
 
 = 1.0.0 =
 * Initial release.

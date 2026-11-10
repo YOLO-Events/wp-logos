@@ -6,3 +6,11 @@ src
 package.json
 package-lock.json
 *.map
+tests
+composer.json
+composer.lock
+phpunit.xml.dist
+vendor
+.wp-env.json
+docs
+.phpunit.result.cache

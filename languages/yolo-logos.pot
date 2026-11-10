@@ -1,181 +1,1045 @@
-# Copyright (C) 2024 YOLO Logos
-# This file is distributed under the same license as the YOLO Logos plugin.
+# Copyright (C) 2026 YOLO Logos
+# This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: YOLO Logos 1.0.0\n"
+"Project-Id-Version: YOLO Logos 1.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/YOLO-Events/wp-logos/issues\n"
-"POT-Creation-Date: 2024-01-01T00:00:00+00:00\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2024-01-01T00:00:00+00:00\n"
-"Last-Translator: \n"
-"Language-Team: \n"
-"Language: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"POT-Creation-Date: 2026-11-10T19:47:37+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.9.0\n"
 "X-Domain: yolo-logos\n"
 
+#: includes/class-post-types.php:24
 msgctxt "Post type general name"
 msgid "Logos"
 msgstr ""
 
+#: includes/class-post-types.php:25
 msgctxt "Post type singular name"
 msgid "Logo"
 msgstr ""
 
+#: includes/class-post-types.php:26
 msgctxt "Admin menu text"
 msgid "Logos"
 msgstr ""
 
+#: includes/class-post-types.php:27
 msgctxt "Add new on toolbar"
 msgid "Logo"
 msgstr ""
 
+#: includes/class-post-types.php:28
 msgid "Add New"
 msgstr ""
 
+#: includes/class-post-types.php:29
 msgid "Add New Logo"
 msgstr ""
 
+#: includes/class-post-types.php:30
 msgid "New Logo"
 msgstr ""
 
+#: includes/class-post-types.php:31
 msgid "Edit Logo"
 msgstr ""
 
+#: includes/class-post-types.php:32
 msgid "View Logo"
 msgstr ""
 
+#: includes/class-post-types.php:33
 msgid "All Logos"
 msgstr ""
 
+#: includes/class-post-types.php:34
 msgid "Search Logos"
 msgstr ""
 
+#: includes/class-post-types.php:36
 msgid "No logos found."
 msgstr ""
 
+#: includes/class-post-types.php:37
 msgid "No logos found in Trash."
 msgstr ""
 
+#: includes/class-taxonomies.php:24
 msgctxt "Taxonomy general name"
 msgid "Logo Categories"
 msgstr ""
 
+#: includes/class-taxonomies.php:25
 msgctxt "Taxonomy singular name"
 msgid "Logo Category"
 msgstr ""
 
+#: admin/class-admin.php:35
 msgid "Logo Images"
 msgstr ""
 
+#: admin/class-admin.php:44
 msgid "Logo Details"
 msgstr ""
 
+#: admin/class-admin.php:67
 msgid "Main Logo"
 msgstr ""
 
+#: admin/class-admin.php:67
 msgid "The primary logo image."
 msgstr ""
 
+#: admin/class-admin.php:68
 msgid "Light Version"
 msgstr ""
 
+#: admin/class-admin.php:68
 msgid "Optional: light/white logo for dark backgrounds."
 msgstr ""
 
+#: admin/class-admin.php:69
 msgid "Dark Version"
 msgstr ""
 
+#: admin/class-admin.php:69
 msgid "Optional: dark logo for light backgrounds."
 msgstr ""
 
+#: admin/class-admin.php:102
 msgid "Upload / Select Image"
 msgstr ""
 
+#: admin/class-admin.php:102
 msgid "Change Image"
 msgstr ""
 
+#: admin/class-admin.php:106
+#: admin/class-admin.php:110
 msgid "Remove"
 msgstr ""
 
+#: admin/class-admin.php:133
 msgid "Website URL"
 msgstr ""
 
+#: admin/class-admin.php:142
 msgid "Optional: link to the brand's website."
 msgstr ""
 
+#: admin/class-admin.php:147
 msgid "Alt Text"
 msgstr ""
 
+#: admin/class-admin.php:155
 msgid "Accessible alt text for the logo image. Falls back to the logo title if empty."
 msgstr ""
 
+#: admin/class-admin.php:160
 msgid "Sort Order"
 msgstr ""
 
+#: admin/class-admin.php:169
 msgid "Lower numbers appear first. Logos with the same sort order are ordered by title."
 msgstr ""
 
+#: includes/class-settings.php:37
+#: includes/class-settings.php:240
 msgid "YOLO Logos Settings"
 msgstr ""
 
+#. Plugin Name of the plugin
+#. Author of the plugin
+#: includes/class-settings.php:38
+#: src/logo-showcase/edit.js:607
 msgid "YOLO Logos"
 msgstr ""
 
+#: includes/class-settings.php:68
 msgid "Default Showcase Type"
 msgstr ""
 
+#: includes/class-settings.php:78
 msgid "Default Logo Theme"
 msgstr ""
 
+#: includes/class-settings.php:88
 msgid "Default Gap (px)"
 msgstr ""
 
+#: includes/class-settings.php:93
 msgid "Default Logo Max Height (px)"
 msgstr ""
 
+#: includes/class-settings.php:98
 msgid "Default Logo Max Width (px)"
 msgstr ""
 
+#: includes/class-settings.php:103
 msgid "Grayscale Logos by Default"
 msgstr ""
 
+#: includes/class-settings.php:108
 msgid "Enable Carousel Autoplay by Default"
 msgstr ""
 
+#: includes/class-settings.php:113
 msgid "Default Autoplay Speed (ms)"
 msgstr ""
 
+#: includes/class-settings.php:71
+#: src/logo-showcase/edit.js:267
 msgid "Grid"
 msgstr ""
 
+#: includes/class-settings.php:72
+#: src/logo-showcase/edit.js:269
 msgid "Carousel"
 msgstr ""
 
+#: includes/class-settings.php:73
+#: src/logo-showcase/edit.js:273
 msgid "Flexbox"
 msgstr ""
 
+#: includes/class-settings.php:81
+#: src/logo-showcase/edit.js:286
 msgid "Standard"
 msgstr ""
 
+#: includes/class-settings.php:82
+#: src/logo-showcase/edit.js:289
 msgid "Light"
 msgstr ""
 
+#: includes/class-settings.php:83
+#: src/logo-showcase/edit.js:290
 msgid "Dark"
 msgstr ""
 
+#: admin/class-admin.php:309
 msgid "Settings"
 msgstr ""
 
+#: includes/class-blocks.php:101
 msgid "No logos found. Add logos in the YOLO Logos admin panel."
 msgstr ""
 
+#: includes/class-blocks.php:161
 msgid "Previous"
 msgstr ""
 
+#: includes/class-blocks.php:164
 msgid "Next"
 msgstr ""
 
+#: includes/class-blocks.php:169
 msgid "Carousel navigation"
+msgstr ""
+
+#. Plugin URI of the plugin
+msgid "https://github.com/YOLO-Events/wp-logos"
+msgstr ""
+
+#. Description of the plugin
+msgid "A modern WordPress plugin for managing and showcasing logos with Carousel, Grid, and Flexbox layouts. Includes a native Gutenberg block, WPML/Polylang/Loco Translate support, and full visual control."
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://github.com/YOLO-Events"
+msgstr ""
+
+#: admin/class-admin.php:253
+msgid "Select Logo Image"
+msgstr ""
+
+#: admin/class-admin.php:254
+msgid "Use This Image"
+msgstr ""
+
+#: admin/class-admin.php:271
+msgid "Logo"
+msgstr ""
+
+#: admin/class-admin.php:310
+msgid "Logos"
+msgstr ""
+
+#: admin/class-admin.php:311
+#: includes/import/class-admin-page.php:37
+#: includes/import/class-admin-page.php:38
+#: includes/import/class-admin-page.php:41
+#: includes/import/class-admin-page.php:42
+msgid "Import"
+msgstr ""
+
+#: includes/class-post-types.php:35
+msgid "Parent Logos:"
+msgstr ""
+
+#: includes/class-post-types.php:38
+msgid "Logo Image"
+msgstr ""
+
+#: includes/class-post-types.php:39
+msgid "Set logo image"
+msgstr ""
+
+#: includes/class-post-types.php:40
+msgid "Remove logo image"
+msgstr ""
+
+#: includes/class-post-types.php:41
+msgid "Use as logo image"
+msgstr ""
+
+#: includes/class-post-types.php:42
+msgid "Logo archives"
+msgstr ""
+
+#: includes/class-post-types.php:43
+msgid "Insert into logo"
+msgstr ""
+
+#: includes/class-post-types.php:44
+msgid "Uploaded to this logo"
+msgstr ""
+
+#: includes/class-post-types.php:45
+msgid "Logos list"
+msgstr ""
+
+#: includes/class-post-types.php:46
+msgid "Logos list navigation"
+msgstr ""
+
+#: includes/class-post-types.php:47
+msgid "Filter logos list"
+msgstr ""
+
+#: includes/class-settings.php:60
+msgid "Global Defaults"
+msgstr ""
+
+#: includes/class-taxonomies.php:26
+msgid "Search Logo Categories"
+msgstr ""
+
+#: includes/class-taxonomies.php:27
+msgid "Popular Logo Categories"
+msgstr ""
+
+#: includes/class-taxonomies.php:28
+msgid "All Logo Categories"
+msgstr ""
+
+#: includes/class-taxonomies.php:29
+msgid "Parent Logo Category"
+msgstr ""
+
+#: includes/class-taxonomies.php:30
+msgid "Parent Logo Category:"
+msgstr ""
+
+#: includes/class-taxonomies.php:31
+msgid "Edit Logo Category"
+msgstr ""
+
+#: includes/class-taxonomies.php:32
+msgid "Update Logo Category"
+msgstr ""
+
+#: includes/class-taxonomies.php:33
+msgid "Add New Logo Category"
+msgstr ""
+
+#: includes/class-taxonomies.php:34
+msgid "New Logo Category Name"
+msgstr ""
+
+#: includes/class-taxonomies.php:35
+msgid "Separate categories with commas"
+msgstr ""
+
+#: includes/class-taxonomies.php:36
+msgid "Add or remove logo categories"
+msgstr ""
+
+#: includes/class-taxonomies.php:37
+msgid "Choose from the most used logo categories"
+msgstr ""
+
+#: includes/class-taxonomies.php:38
+msgid "No logo categories found."
+msgstr ""
+
+#: includes/class-taxonomies.php:39
+msgid "Categories"
+msgstr ""
+
+#: includes/class-taxonomies.php:40
+msgid "← Back to Logo Categories"
+msgstr ""
+
+#: includes/import/class-abstract-source.php:23
+#: includes/import/class-abstract-source.php:26
+msgid "Could not read the import source database tables."
+msgstr ""
+
+#: includes/import/class-admin-page.php:64
+#: includes/import/class-admin-page.php:68
+msgid "Processing…"
+msgstr ""
+
+#: includes/import/class-admin-page.php:65
+#: includes/import/class-admin-page.php:69
+msgid "Preview complete. Review the report before importing."
+msgstr ""
+
+#: includes/import/class-admin-page.php:66
+#: includes/import/class-cli-command.php:183
+#: includes/import/class-cli-command.php:186
+#: includes/import/class-admin-page.php:70
+#: includes/import/class-cli-command.php:188
+msgid "Import complete."
+msgstr ""
+
+#: includes/import/class-admin-page.php:67
+#: includes/import/class-admin-page.php:71
+msgid "Completed with errors. Review the report; some logos may not have been imported."
+msgstr ""
+
+#: includes/import/class-admin-page.php:68
+#: includes/import/class-admin-page.php:72
+msgid "Request failed. Retry to resume at the same offset. If the response was lost after a write, already imported logos will follow the selected skip/update policy."
+msgstr ""
+
+#: includes/import/class-admin-page.php:69
+#: includes/import/class-admin-page.php:162
+#: includes/import/class-admin-page.php:73
+#: includes/import/class-admin-page.php:166
+msgid "Retry / resume"
+msgstr ""
+
+#: includes/import/class-admin-page.php:70
+#: includes/import/class-cli-command.php:303
+#: includes/import/class-cli-command.php:308
+#: includes/import/class-admin-page.php:74
+#: includes/import/class-cli-command.php:311
+#: includes/import/class-cli-command.php:310
+msgid "new on import"
+msgstr ""
+
+#: includes/import/class-admin-page.php:71
+#: includes/import/class-cli-command.php:301
+#: includes/import/class-cli-command.php:306
+#: includes/import/class-admin-page.php:75
+#: includes/import/class-cli-command.php:309
+#: includes/import/class-cli-command.php:308
+msgid "not mapped"
+msgstr ""
+
+#: includes/import/class-admin-page.php:72
+#: includes/import/class-admin-page.php:76
+msgid "Created"
+msgstr ""
+
+#: includes/import/class-admin-page.php:73
+#: includes/import/class-admin-page.php:77
+msgid "Updated"
+msgstr ""
+
+#: includes/import/class-admin-page.php:74
+#: includes/import/class-admin-page.php:78
+msgid "Skipped"
+msgstr ""
+
+#: includes/import/class-admin-page.php:75
+#: includes/import/class-cli-command.php:167
+#: includes/import/class-cli-command.php:170
+#: includes/import/class-admin-page.php:79
+#: includes/import/class-cli-command.php:172
+msgid "Missing images"
+msgstr ""
+
+#: includes/import/class-admin-page.php:76
+#: includes/import/class-cli-command.php:168
+#: includes/import/class-cli-command.php:171
+#: includes/import/class-admin-page.php:80
+#: includes/import/class-cli-command.php:173
+msgid "Errors"
+msgstr ""
+
+#: includes/import/class-admin-page.php:77
+#: includes/import/class-cli-command.php:169
+#: includes/import/class-cli-command.php:172
+#: includes/import/class-admin-page.php:81
+#: includes/import/class-cli-command.php:174
+msgid "Slug collisions"
+msgstr ""
+
+#: includes/import/class-admin-page.php:78
+#: includes/import/class-admin-page.php:82
+msgid "Source category → target term ID"
+msgstr ""
+
+#: includes/import/class-admin-page.php:79
+#: includes/import/class-admin-page.php:83
+msgid "Legacy references (source category → target term ID)"
+msgstr ""
+
+#: includes/import/class-admin-page.php:80
+#: includes/import/class-admin-page.php:84
+msgid "The importer made no progress. Retry or check the source."
+msgstr ""
+
+#: includes/import/class-admin-page.php:81
+#: includes/import/class-admin-page.php:85
+msgid "The server returned an invalid batch response."
+msgstr ""
+
+#: includes/import/class-admin-page.php:92
+#: includes/import/class-admin-page.php:183
+#: includes/import/class-admin-page.php:96
+#: includes/import/class-admin-page.php:187
+msgid "You are not allowed to import logos."
+msgstr ""
+
+#: includes/import/class-admin-page.php:110
+#: includes/import/class-admin-page.php:161
+#: includes/import/class-admin-page.php:114
+#: includes/import/class-admin-page.php:165
+msgid "Import logos"
+msgstr ""
+
+#: includes/import/class-admin-page.php:111
+#: includes/import/class-admin-page.php:115
+msgid "Imported logo links always open in a new tab. Existing presets and content are not replaced. Legacy shortcodes and blocks must be updated manually using the mapping report. Preview category placeholders are “new on import”, not real term IDs for blocks."
+msgstr ""
+
+#: includes/import/class-admin-page.php:116
+#: includes/import/class-cli-command.php:53
+#: includes/import/class-cli-command.php:56
+#: includes/import/class-admin-page.php:120
+msgid "No supported logo sources were detected."
+msgstr ""
+
+#: includes/import/class-admin-page.php:118
+#: includes/import/class-admin-page.php:122
+msgid "Detected sources"
+msgstr ""
+
+#. translators: 1: logo count, 2: category count.
+#: includes/import/class-admin-page.php:126
+#: includes/import/class-admin-page.php:130
+msgid "Logos: %1$d · Categories: %2$d"
+msgstr ""
+
+#: includes/import/class-admin-page.php:139
+#: src/logo-showcase/edit.js:241
+#: includes/import/class-admin-page.php:143
+msgid "Source"
+msgstr ""
+
+#: includes/import/class-admin-page.php:146
+#: includes/import/class-admin-page.php:150
+msgid "Existing logos"
+msgstr ""
+
+#: includes/import/class-admin-page.php:148
+#: includes/import/class-admin-page.php:152
+msgid "Skip"
+msgstr ""
+
+#: includes/import/class-admin-page.php:149
+#: includes/import/class-admin-page.php:153
+msgid "Update"
+msgstr ""
+
+#: includes/import/class-admin-page.php:152
+#: includes/import/class-admin-page.php:156
+msgid "Category slug collisions"
+msgstr ""
+
+#: includes/import/class-admin-page.php:154
+#: includes/import/class-admin-page.php:158
+msgid "Reuse existing category"
+msgstr ""
+
+#: includes/import/class-admin-page.php:155
+#: includes/import/class-admin-page.php:159
+msgid "Create a separate category"
+msgstr ""
+
+#: includes/import/class-admin-page.php:160
+#: includes/import/class-admin-page.php:164
+msgid "Preview (dry run)"
+msgstr ""
+
+#: includes/import/class-admin-page.php:165
+#: includes/import/class-admin-page.php:169
+msgid "Import progress"
+msgstr ""
+
+#: includes/import/class-admin-page.php:178
+#: includes/import/class-admin-page.php:182
+msgid "Invalid security token."
+msgstr ""
+
+#: includes/import/class-admin-page.php:187
+#: includes/import/class-admin-page.php:191
+msgid "The security token expired. Reload this page and preview again."
+msgstr ""
+
+#: includes/import/class-admin-page.php:194
+#: includes/import/class-admin-page.php:198
+msgid "Import options must be scalar values."
+msgstr ""
+
+#: includes/import/class-admin-page.php:212
+#: includes/import/class-engine.php:32
+#: includes/import/class-admin-page.php:213
+#: includes/import/class-engine.php:36
+#: includes/import/class-admin-page.php:217
+msgid "Invalid import options."
+msgstr ""
+
+#: includes/import/class-admin-page.php:227
+#: includes/import/class-cli-command.php:239
+#: includes/import/class-admin-page.php:228
+#: includes/import/class-cli-command.php:243
+#: includes/import/class-admin-page.php:232
+#: includes/import/class-cli-command.php:246
+#: includes/import/class-cli-command.php:245
+msgid "This source is not currently detected."
+msgstr ""
+
+#: includes/import/class-cli-command.php:103
+#: includes/import/class-cli-command.php:106
+#: includes/import/class-cli-command.php:108
+msgid "Use either --execute or --dry-run, not both."
+msgstr ""
+
+#: includes/import/class-cli-command.php:120
+#: includes/import/class-cli-command.php:123
+#: includes/import/class-cli-command.php:125
+msgid "Dry run: no changes will be written."
+msgstr ""
+
+#: includes/import/class-cli-command.php:120
+#: includes/import/class-cli-command.php:123
+#: includes/import/class-cli-command.php:125
+msgid "Executing import."
+msgstr ""
+
+#: includes/import/class-cli-command.php:121
+#: includes/import/class-cli-command.php:124
+#: includes/import/class-cli-command.php:126
+msgid "Links open in a new tab. Presets and content are not replaced; update legacy references manually."
+msgstr ""
+
+#. translators: 1: processed offset, 2: total logos.
+#: includes/import/class-cli-command.php:145
+#: includes/import/class-cli-command.php:148
+#: includes/import/class-cli-command.php:150
+msgid "Progress: %1$d / %2$d"
+msgstr ""
+
+#: includes/import/class-cli-command.php:151
+#: includes/import/class-cli-command.php:154
+#: includes/import/class-cli-command.php:156
+msgid "The importer made no progress."
+msgstr ""
+
+#. translators: 1: created count, 2: updated count, 3: skipped count.
+#: includes/import/class-cli-command.php:159
+#: includes/import/class-cli-command.php:162
+#: includes/import/class-cli-command.php:164
+msgid "Created: %1$d; Updated: %2$d; Skipped: %3$d"
+msgstr ""
+
+#: includes/import/class-cli-command.php:179
+#: includes/import/class-cli-command.php:182
+#: includes/import/class-cli-command.php:184
+msgid "Completed with errors; some logos may not have been imported."
+msgstr ""
+
+#: includes/import/class-cli-command.php:183
+#: includes/import/class-cli-command.php:186
+#: includes/import/class-cli-command.php:188
+msgid "Preview complete. No changes were written."
+msgstr ""
+
+#. translators: %d: resume offset.
+#: includes/import/class-cli-command.php:188
+#: includes/import/class-cli-command.php:191
+#: includes/import/class-cli-command.php:193
+msgid "Resume with --offset=%d using the same options."
+msgstr ""
+
+#: includes/import/class-cli-command.php:229
+#: includes/import/class-cli-command.php:233
+#: includes/import/class-cli-command.php:236
+#: includes/import/class-cli-command.php:235
+msgid "Provide exactly one source ID."
+msgstr ""
+
+#: includes/import/class-cli-command.php:257
+#: includes/import/class-cli-command.php:262
+#: includes/import/class-cli-command.php:265
+#: includes/import/class-cli-command.php:264
+msgid "Expected a numeric option value."
+msgstr ""
+
+#. translators: 1: option name, 2: minimum, 3: maximum.
+#: includes/import/class-cli-command.php:273
+#: includes/import/class-cli-command.php:278
+#: includes/import/class-cli-command.php:281
+#: includes/import/class-cli-command.php:280
+msgid "--%1$s must be an integer between %2$d and %3$d."
+msgstr ""
+
+#: includes/import/class-cli-command.php:312
+#: includes/import/class-cli-command.php:317
+#: includes/import/class-cli-command.php:320
+#: includes/import/class-cli-command.php:319
+msgid "Source category → target term ID (preview placeholders are not block IDs):"
+msgstr ""
+
+#: includes/import/class-cli-command.php:329
+#: includes/import/class-cli-command.php:334
+#: includes/import/class-cli-command.php:337
+#: includes/import/class-cli-command.php:336
+msgid "Legacy references (source category → target term ID):"
+msgstr ""
+
+#: includes/import/class-engine.php:35
+#: includes/import/class-engine.php:39
+msgid "Invalid import source identifier."
+msgstr ""
+
+#: includes/import/class-engine.php:38
+#: includes/import/class-engine.php:42
+msgid "YOLO Logos must finish initialising before importing."
+msgstr ""
+
+#: includes/import/class-engine.php:46
+#: includes/import/class-engine.php:50
+msgid "Another import for this source is running. If it was interrupted, remove its wp_logos_import_lock option before retrying."
+msgstr ""
+
+#: includes/import/class-engine.php:70
+#: includes/import/class-engine.php:74
+msgid "The source returned no logos before the expected end of the import."
+msgstr ""
+
+#: includes/import/class-engine.php:97
+#: includes/import/class-engine.php:102
+msgid "Source category IDs must be unique and nonempty."
+msgstr ""
+
+#: includes/import/class-engine.php:108
+#: includes/import/class-engine.php:113
+msgid "The source category hierarchy contains a cycle or a missing parent."
+msgstr ""
+
+#: includes/import/class-engine.php:134
+#: includes/import/class-engine.php:142
+msgid "The persisted import category map is invalid."
+msgstr ""
+
+#: includes/import/class-engine.php:189
+#: includes/import/class-engine.php:197
+#: includes/import/class-target-mapper.php:157
+msgid "Could not save imported category provenance."
+msgstr ""
+
+#: includes/import/class-engine.php:200
+#: includes/import/class-engine.php:208
+#: includes/import/class-engine.php:195
+msgid "Could not persist the import category map."
+msgstr ""
+
+#: includes/import/class-engine.php:216
+#: includes/import/class-engine.php:227
+#: includes/import/class-engine.php:215
+msgid "A source logo is missing its identifier."
+msgstr ""
+
+#: includes/import/class-engine.php:240
+#: includes/import/class-engine.php:251
+#: includes/import/class-engine.php:239
+msgid "Multiple target logos have the same import identity. Resolve the duplicate before retrying."
+msgstr ""
+
+#: includes/import/class-engine.php:269
+#: includes/import/class-engine.php:280
+#: includes/import/class-engine.php:268
+msgid "A logo references an unmapped source category."
+msgstr ""
+
+#: includes/import/class-generic-cpt-source.php:60
+#: includes/import/class-generic-cpt-source.php:71
+#: includes/import/class-generic-cpt-source.php:79
+msgid "Only existing Media Library attachments are reused. Missing images will be reported."
+msgstr ""
+
+#: includes/import/class-generic-cpt-source.php:61
+#: includes/import/class-generic-cpt-source.php:72
+#: includes/import/class-generic-cpt-source.php:80
+msgid "Imported links open in a new tab. Original link targets are preserved as metadata only."
+msgstr ""
+
+#: includes/import/class-generic-cpt-source.php:86
+#: includes/import/class-generic-cpt-source.php:100
+#: includes/import/class-generic-cpt-source.php:108
+msgid "A mapped source field contains a non-scalar value."
+msgstr ""
+
+#: includes/import/class-logooos-source.php:18
+#: includes/import/class-logooos-source.php:19
+msgid "Logooos"
+msgstr ""
+
+#: includes/import/class-logooos-source.php:34
+#: includes/import/class-logooos-source.php:36
+msgid "Logooos presets and shortcodes are not replaced. Use the term mapping report to add Logo Showcase blocks."
+msgstr ""
+
+#: includes/import/class-registry.php:20
+#: includes/import/class-registry.php:23
+#: includes/import/class-registry.php:27
+msgid "Logooos (legacy My Clients)"
+msgstr ""
+
+#: includes/import/class-registry.php:57
+#: includes/import/class-registry.php:64
+#: includes/import/class-registry.php:68
+msgid "Unknown logo import source."
+msgstr ""
+
+#: includes/import/class-target-mapper.php:24
+#: includes/import/class-target-mapper.php:27
+msgid "The source logo has an unsupported post status."
+msgstr ""
+
+#: includes/import/class-target-mapper.php:61
+#: includes/import/class-target-mapper.php:64
+msgid "A filtered image ID is not a Media Library attachment."
+msgstr ""
+
+#: includes/import/class-target-mapper.php:91
+#: includes/import/class-target-mapper.php:95
+msgid "Could not remove obsolete imported logo metadata."
+msgstr ""
+
+#: includes/import/class-target-mapper.php:96
+#: includes/import/class-target-mapper.php:102
+msgid "Could not save imported logo metadata."
+msgstr ""
+
+#: src/logo-showcase/edit.js:95
+msgid "Mobile (< 600px)"
+msgstr ""
+
+#: src/logo-showcase/edit.js:96
+msgid "Tablet (600–900px)"
+msgstr ""
+
+#: src/logo-showcase/edit.js:97
+msgid "Laptop (900–1200px)"
+msgstr ""
+
+#: src/logo-showcase/edit.js:98
+msgid "Desktop (≥ 1200px)"
+msgstr ""
+
+#: src/logo-showcase/edit.js:194
+msgid "— All Logos —"
+msgstr ""
+
+#: src/logo-showcase/edit.js:248
+msgid "Logo Category"
+msgstr ""
+
+#: src/logo-showcase/edit.js:260
+msgid "Showcase Type"
+msgstr ""
+
+#: src/logo-showcase/edit.js:264
+msgid "Type"
+msgstr ""
+
+#: src/logo-showcase/edit.js:282
+msgid "Logo Theme"
+msgstr ""
+
+#: src/logo-showcase/edit.js:293
+msgid "Selects the logo image variant to display."
+msgstr ""
+
+#: src/logo-showcase/edit.js:299
+msgid "Logo Ratio"
+msgstr ""
+
+#: src/logo-showcase/edit.js:303
+msgid "Original (max-width / max-height)"
+msgstr ""
+
+#: src/logo-showcase/edit.js:310
+msgid "Fixed (exact width × height)"
+msgstr ""
+
+#: src/logo-showcase/edit.js:324
+msgid "Columns"
+msgstr ""
+
+#: src/logo-showcase/edit.js:339
+msgid "Flexbox Options"
+msgstr ""
+
+#: src/logo-showcase/edit.js:343
+msgid "Alignment"
+msgstr ""
+
+#: src/logo-showcase/edit.js:347
+msgid "Left"
+msgstr ""
+
+#: src/logo-showcase/edit.js:351
+msgid "Center"
+msgstr ""
+
+#: src/logo-showcase/edit.js:355
+msgid "Right"
+msgstr ""
+
+#: src/logo-showcase/edit.js:364
+msgid "Logo Width (px)"
+msgstr ""
+
+#: src/logo-showcase/edit.js:378
+msgid "Carousel Options"
+msgstr ""
+
+#: src/logo-showcase/edit.js:382
+msgid "Ticker Mode"
+msgstr ""
+
+#: src/logo-showcase/edit.js:387
+msgid "Continuous non-stop scrolling — great for sponsor strips."
+msgstr ""
+
+#: src/logo-showcase/edit.js:394
+msgid "Ticker Speed (1 = normal, 2 = double speed)"
+msgstr ""
+
+#: src/logo-showcase/edit.js:409
+msgid "Autoplay"
+msgstr ""
+
+#: src/logo-showcase/edit.js:417
+msgid "Autoplay Speed (ms)"
+msgstr ""
+
+#: src/logo-showcase/edit.js:431
+msgid "Infinite Loop"
+msgstr ""
+
+#: src/logo-showcase/edit.js:438
+msgid "Show Arrows"
+msgstr ""
+
+#: src/logo-showcase/edit.js:445
+msgid "Show Dots"
+msgstr ""
+
+#: src/logo-showcase/edit.js:458
+msgid "Logo Dimensions"
+msgstr ""
+
+#: src/logo-showcase/edit.js:462
+msgid "Max Height (px)"
+msgstr ""
+
+#: src/logo-showcase/edit.js:471
+msgid "Max Width (px)"
+msgstr ""
+
+#: src/logo-showcase/edit.js:483
+msgid "Visual Style"
+msgstr ""
+
+#: src/logo-showcase/edit.js:487
+msgid "Gap (px)"
+msgstr ""
+
+#: src/logo-showcase/edit.js:494
+msgid "Item Padding (px)"
+msgstr ""
+
+#: src/logo-showcase/edit.js:501
+msgid "Show Logo Titles"
+msgstr ""
+
+#: src/logo-showcase/edit.js:506
+msgid "Grayscale Logos"
+msgstr ""
+
+#: src/logo-showcase/edit.js:509
+msgid "Logos turn to color on hover."
+msgstr ""
+
+#: src/logo-showcase/edit.js:514
+msgid "Item Background Color"
+msgstr ""
+
+#: src/logo-showcase/edit.js:525
+msgid "Border Width (px)"
+msgstr ""
+
+#: src/logo-showcase/edit.js:537
+msgid "Border Colour"
+msgstr ""
+
+#: src/logo-showcase/edit.js:549
+msgid "Border Radius (px)"
+msgstr ""
+
+#: src/logo-showcase/edit.js:570
+msgid "Loading logos…"
+msgstr ""
+
+#: src/logo-showcase/edit.js:577
+msgid "No logos found in this category. Add some logos under Logos → All Logos."
+msgstr ""
+
+#: src/logo-showcase/edit.js:581
+msgid "No logos found. Add some logos under Logos → Add New."
+msgstr ""
+
+#: includes/import/class-generic-cpt-source.php:30
+#: includes/import/class-generic-cpt-source.php:38
+msgid "Import source requires a post_type."
+msgstr ""
+
+#: includes/import/class-generic-cpt-source.php:46
+#: includes/import/class-generic-cpt-source.php:54
+msgid "Unsupported import image mapping."
+msgstr ""
+
+#: includes/import/class-registry.php:39
+#: includes/import/class-registry.php:43
+msgid "Import source IDs must be nonempty sanitised keys."
+msgstr ""
+
+#: includes/import/class-registry.php:43
+#: includes/import/class-registry.php:47
+msgid "Import adapters must implement Source_Interface and match their registry key."
 msgstr ""

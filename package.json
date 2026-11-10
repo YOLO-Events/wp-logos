@@ -1,6 +1,6 @@
 {
   "name": "yolo-logos",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "WordPress plugin for managing and showcasing logos",
   "author": "YOLO Logos",
   "license": "GPL-2.0-or-later",
@@ -10,10 +10,12 @@
     "format": "wp-scripts format",
     "lint:js": "wp-scripts lint-js",
     "lint:style": "wp-scripts lint-style",
-    "packages-update": "wp-scripts packages-update"
+    "packages-update": "wp-scripts packages-update",
+    "test:php": "wp-env run tests-cli --env-cwd=wp-content/plugins/wp-logos vendor/bin/phpunit"
   },
   "devDependencies": {
     "@wordpress/scripts": "^30.0.0",
+    "@wordpress/env": "^10.0.0",
     "typescript": "^5.4.5"
   }
 }

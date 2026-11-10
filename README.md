@@ -2,6 +2,25 @@
 
 Manage logos and display them with the native Logo Showcase block.
 
+## Logo Categories block
+
+Insert **Logo Categories** to display several category groups. Select categories
+in **Categories and order**, then use the up/down arrows to sort them. Selection
+and order are saved per block; newly created categories must be selected manually.
+Only selected categories with published logos and a usable image are displayed.
+Each group includes directly assigned logos, not logos assigned only to its child
+categories. Logos retain their existing logo sort order.
+
+Choose category headings on the **left** or **top**, their heading level and
+column width, and category spacing. Below 782px headings always move above the
+logos, which wrap to fit the screen. **Dividers** supports none, solid, dashed,
+and dotted separators with configurable width and color.
+
+**Logo appearance** controls image variant (standard/light/dark), original or
+fixed sizing, dimensions, alignment, spacing, padding, grayscale, titles,
+background, borders, and rounded corners. The editor uses the same server
+renderer as the frontend, including image variants, links, and ordering.
+
 ## Importing from other logo plugins
 
 Version 1.1.0 supports Logooos v1.9 and its legacy My Clients format. The source

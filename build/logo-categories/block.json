@@ -1,0 +1,142 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "yolo-logos/logo-categories",
+  "version": "1.0.0",
+  "title": "Logo Categories",
+  "category": "media",
+  "icon": "images-alt",
+  "description": "Display selected logo categories in a custom order with responsive headings.",
+  "textdomain": "yolo-logos",
+  "editorScript": "file:./index.js",
+  "style": "file:./style-index.css",
+  "attributes": {
+    "categoryOrder": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      },
+      "default": []
+    },
+    "headingPosition": {
+      "type": "string",
+      "enum": [
+        "left",
+        "top"
+      ],
+      "default": "left"
+    },
+    "headingLevel": {
+      "type": "number",
+      "default": 3
+    },
+    "headingWidth": {
+      "type": "number",
+      "default": 200
+    },
+    "categoryGap": {
+      "type": "number",
+      "default": 32
+    },
+    "dividerStyle": {
+      "type": "string",
+      "enum": [
+        "none",
+        "solid",
+        "dashed",
+        "dotted"
+      ],
+      "default": "solid"
+    },
+    "dividerWidth": {
+      "type": "number",
+      "default": 1
+    },
+    "dividerColor": {
+      "type": "string",
+      "default": "#e0e0e0"
+    },
+    "theme": {
+      "type": "string",
+      "enum": [
+        "standard",
+        "light",
+        "dark"
+      ],
+      "default": "standard"
+    },
+    "logoRatio": {
+      "type": "string",
+      "enum": [
+        "original",
+        "fixed"
+      ],
+      "default": "original"
+    },
+    "logoMaxHeight": {
+      "type": "number",
+      "default": 80
+    },
+    "logoMaxWidth": {
+      "type": "number",
+      "default": 160
+    },
+    "flexboxAlign": {
+      "type": "string",
+      "enum": [
+        "left",
+        "center",
+        "right"
+      ],
+      "default": "center"
+    },
+    "flexboxLogoWidth": {
+      "type": "number",
+      "default": 190
+    },
+    "gap": {
+      "type": "number",
+      "default": 20
+    },
+    "padding": {
+      "type": "number",
+      "default": 15
+    },
+    "showTitle": {
+      "type": "boolean",
+      "default": false
+    },
+    "grayscale": {
+      "type": "boolean",
+      "default": false
+    },
+    "backgroundColor": {
+      "type": "string",
+      "default": ""
+    },
+    "borderWidth": {
+      "type": "number",
+      "default": 0
+    },
+    "borderColor": {
+      "type": "string",
+      "default": "#e0e0e0"
+    },
+    "borderRadius": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "supports": {
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "html": false,
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  }
+}

@@ -77,6 +77,11 @@ terminated, first confirm no import is running, then remove its stale lock with
 See [Import adapters](docs/import-adapters.md) for registering another source
 without changing the engine, admin page or CLI.
 
+## Block editor regression tests
+
+Run `npm run build && npm run test:js` to check the compiled Full Cards editor
+and its server-rendered preview dependency.
+
 ## PHP integration tests
 
 Prerequisites: PHP 8.0+, Composer, Node.js and Docker.

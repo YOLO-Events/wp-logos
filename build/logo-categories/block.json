@@ -106,6 +106,10 @@
       "type": "boolean",
       "default": false
     },
+    "showLabel": {
+      "type": "boolean",
+      "default": false
+    },
     "grayscale": {
       "type": "boolean",
       "default": false

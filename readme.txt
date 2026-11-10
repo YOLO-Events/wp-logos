@@ -44,7 +44,7 @@ A modern WordPress plugin for managing logos and displaying them with responsive
 * Item background colour, border width, border colour, and border radius.
 * Greyscale logos that reveal in colour on hover.
 * Show or hide logo titles.
-* Show or hide optional per-logo labels below titles.
+* Show or hide optional per-logo label badges anchored below the logo container without changing its proportions.
 
 **Compatibility**
 * Fully compatible with WPML, Polylang, Loco Translate, and any other translation plugin.

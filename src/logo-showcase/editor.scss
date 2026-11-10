@@ -32,7 +32,32 @@
 }
 
 .wp-logos-editor-item {
+	position: relative;
+	align-self: start;
 	transition: box-shadow 0.2s;
+
+	&:has(.wp-logos-label) {
+		margin-bottom: 2.5em;
+	}
+
+	.wp-logos-label {
+		position: absolute;
+		top: calc(100% + 4px);
+		left: 50%;
+		transform: translateX(-50%);
+		display: block;
+		width: max-content;
+		max-width: 100%;
+		box-sizing: border-box;
+		margin: 0;
+		padding: 4px 8px;
+		border-radius: 3px;
+		background: #f0f0f0;
+		font-size: 0.75em;
+		line-height: 1.5;
+		color: #333;
+		overflow-wrap: anywhere;
+	}
 
 	&:hover {
 		box-shadow: 0 0 0 2px #007cba;

@@ -27,6 +27,7 @@
    Common item styles
    -------------------------------------------------------------------------- */
 .wp-logos-item {
+	position: relative;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -80,11 +81,26 @@
 }
 
 .wp-logos-label {
+	position: absolute;
+	top: calc(100% + 4px);
+	left: 50%;
+	transform: translateX(-50%);
 	display: block;
-	margin-top: 4px;
+	width: max-content;
+	max-width: 100%;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 4px 8px;
+	border-radius: 3px;
+	background: #f0f0f0;
 	font-size: 0.75em;
-	color: inherit;
-	opacity: 0.7;
+	line-height: 1.5;
+	color: #333;
+	overflow-wrap: anywhere;
+}
+
+.wp-logos-item:has(.wp-logos-label) {
+	margin-bottom: 2.5em;
 }
 
 /* --------------------------------------------------------------------------
@@ -92,6 +108,7 @@
    -------------------------------------------------------------------------- */
 .wp-logos-grid .wp-logos-grid-wrapper {
 	display: grid;
+	align-items: start;
 	grid-template-columns: repeat(var(--wp-logos-cols-mobile), minmax(0, 1fr));
 	gap: var(--wp-logos-gap);
 }
@@ -138,12 +155,14 @@
    -------------------------------------------------------------------------- */
 .wp-logos-carousel .wp-logos-carousel-wrapper {
 	position: relative;
-	overflow: hidden;
+	overflow-x: clip;
+	overflow-y: visible;
 	width: 100%;
 }
 
 .wp-logos-carousel .wp-logos-carousel-track {
 	display: flex;
+	align-items: flex-start;
 	transition: transform 0.4s ease;
 	will-change: transform;
 }
@@ -193,7 +212,8 @@
 }
 
 .wp-logos-carousel.wp-logos-ticker-active .wp-logos-carousel-wrapper {
-	overflow: hidden;
+	overflow-x: clip;
+	overflow-y: visible;
 }
 
 /* Arrows */
@@ -276,7 +296,7 @@
 }
 
 .wp-logos-full-cards .wp-logos-item {
-	height: 100%;
+	height: auto;
 	min-height: 220px;
 	aspect-ratio: auto;
 	justify-content: flex-start;
@@ -290,8 +310,13 @@
 	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
 }
 
+.wp-logos-full-cards:has(.wp-logos-label) .wp-logos-item {
+	margin-bottom: 2.5em;
+}
+
 .wp-logos-full-cards .wp-logos-link {
 	flex: 1;
+	height: auto;
 	justify-content: flex-start;
 }
 
@@ -307,7 +332,6 @@
 
 .wp-logos-full-cards .wp-logos-label {
 	font-size: 0.85em;
-	opacity: 0.75;
 }
 
 @media (min-width: 600px) {

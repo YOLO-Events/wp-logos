@@ -56,6 +56,7 @@ function LogoPreviewItem( { logo, attributes } ) {
 			: 0,
 		background: attributes.backgroundColor || 'transparent',
 		boxSizing: 'border-box',
+		aspectRatio: '16 / 9',
 	};
 
 	return (

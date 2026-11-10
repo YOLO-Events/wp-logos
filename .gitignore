@@ -21,3 +21,5 @@ npm-debug.log*
 # Environment files
 .env
 .env.local
+vendor/
+.phpunit.result.cache

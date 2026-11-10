@@ -67,6 +67,12 @@ final class Plugin {
 		if ( is_admin() ) {
 			$admin = new \WP_Logos_Admin();
 			$admin->init();
+			$import_page = new Import\Admin_Page();
+			$import_page->init();
+		}
+
+		if ( defined( 'WP_CLI' ) && WP_CLI ) {
+			Import\CLI_Command::register();
 		}
 
 		// Public.

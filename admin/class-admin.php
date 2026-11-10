@@ -308,6 +308,7 @@ class WP_Logos_Admin {
 		$plugin_links = array(
 			'<a href="' . admin_url( 'options-general.php?page=yolo-logos-settings' ) . '">' . __( 'Settings', 'yolo-logos' ) . '</a>',
 			'<a href="' . admin_url( 'edit.php?post_type=wp_logo' ) . '">' . __( 'Logos', 'yolo-logos' ) . '</a>',
+			'<a href="' . esc_url( admin_url( 'edit.php?post_type=wp_logo&page=yolo-logos-import' ) ) . '">' . esc_html__( 'Import', 'yolo-logos' ) . '</a>',
 		);
 
 		return array_merge( $plugin_links, $links );

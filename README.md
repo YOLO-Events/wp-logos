@@ -2,7 +2,8 @@
 
 Manage logos and display them with the Logo Showcase, Logo Categories, and Logo
 Full Cards blocks. Each logo can have an optional label, such as “Official
-Nutrition”; enable **Show logo labels** in a block to display it below the name.
+Nutrition”; enable **Show logo labels** in a block to display it in a padded
+badge anchored just below the logo container, without changing its proportions.
 **Logo Full Cards** displays logos in a responsive card grid.
 
 ## Logo Categories block

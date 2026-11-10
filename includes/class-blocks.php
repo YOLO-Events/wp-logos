@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Registers the logo-showcase Gutenberg block.
+ * Registers the logo Gutenberg blocks.
  */
 class Blocks {
 
@@ -20,6 +20,14 @@ class Blocks {
 	 * Register blocks.
 	 */
 	public function register(): void {
+		$categories_dir = WP_LOGOS_PLUGIN_DIR . 'build/logo-categories';
+		if ( file_exists( $categories_dir . '/block.json' ) ) {
+			register_block_type(
+				$categories_dir,
+				array( 'render_callback' => array( $this, 'render_logo_categories' ) )
+			);
+		}
+
 		$block_dir = WP_LOGOS_PLUGIN_DIR . 'build/logo-showcase';
 
 		if ( ! file_exists( $block_dir . '/block.json' ) ) {
@@ -35,6 +43,69 @@ class Blocks {
 
 		// Pass data to the block editor.
 		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_editor_assets' ) );
+	}
+
+	/**
+	 * Render selected categories in their saved order, omitting empty groups.
+	 *
+	 * @param array $attributes Block attributes.
+	 * @return string Rendered HTML.
+	 */
+	public function render_logo_categories( array $attributes ): string {
+		$ids      = array_unique( array_filter( array_map( 'absint', $attributes['categoryOrder'] ?? array() ) ) );
+		$sections = '';
+		$level    = max( 2, min( 6, absint( $attributes['headingLevel'] ?? 3 ) ) );
+
+		foreach ( $ids as $id ) {
+			$term = get_term( $id, 'wp_logo_category' );
+			if ( ! $term || is_wp_error( $term ) ) {
+				continue;
+			}
+
+			$items = '';
+			foreach ( $this->get_logos( $id, false ) as $logo ) {
+				$items .= $this->render_logo_item( $logo, $attributes );
+			}
+			if ( '' === $items ) {
+				continue;
+			}
+
+			$heading_id = wp_unique_id( 'wp-logos-category-' );
+			$sections .= sprintf(
+				'<section class="wp-logos-category" aria-labelledby="%1$s"><h%2$d id="%1$s" class="wp-logos-category-name">%3$s</h%2$d><div class="wp-logos-category-items">%4$s</div></section>',
+				esc_attr( $heading_id ),
+				$level,
+				esc_html( $term->name ),
+				$items
+			);
+		}
+
+		if ( '' === $sections ) {
+			return '<p class="wp-logos-empty">' . esc_html__( 'Select categories containing published logos with images.', 'yolo-logos' ) . '</p>';
+		}
+
+		$position = 'left' === ( $attributes['headingPosition'] ?? 'left' ) ? 'left' : 'top';
+		$divider  = $attributes['dividerStyle'] ?? 'solid';
+		if ( ! in_array( $divider, array( 'none', 'solid', 'dashed', 'dotted' ), true ) ) {
+			$divider = 'solid';
+		}
+		$style  = $this->build_inline_style( $attributes );
+		$style .= ';--wp-logos-category-gap:' . absint( $attributes['categoryGap'] ?? 32 ) . 'px';
+		$style .= ';--wp-logos-heading-width:' . absint( $attributes['headingWidth'] ?? 200 ) . 'px';
+		$style .= ';--wp-logos-divider-style:' . $divider;
+		$style .= ';--wp-logos-divider-width:' . absint( $attributes['dividerWidth'] ?? 1 ) . 'px';
+		$style .= ';--wp-logos-divider-color:' . ( sanitize_hex_color( $attributes['dividerColor'] ?? '#e0e0e0' ) ?: '#e0e0e0' );
+
+		return sprintf(
+			'<div %s>%s</div>',
+			get_block_wrapper_attributes(
+				array(
+					'class' => 'wp-logos-categories wp-logos-headings-' . $position,
+					'style' => $style,
+				)
+			),
+			$sections
+		);
 	}
 
 	/**
@@ -336,11 +407,12 @@ class Blocks {
 	/**
 	 * Fetch logos for a given category.
 	 *
-	 * @param int $category_id Taxonomy term ID, or 0 for all logos.
+	 * @param int  $category_id      Taxonomy term ID, or 0 for all logos.
+	 * @param bool $include_children Include logos from child categories.
 	 *
 	 * @return array Array of logo data arrays.
 	 */
-	private function get_logos( int $category_id ): array {
+	private function get_logos( int $category_id, bool $include_children = true ): array {
 		$query_args = array(
 			'post_type'      => 'wp_logo',
 			'post_status'    => 'publish',
@@ -370,9 +442,10 @@ class Blocks {
 			// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query -- Taxonomy filtering is required for category-specific showcases.
 			$query_args['tax_query'] = array(
 				array(
-					'taxonomy' => 'wp_logo_category',
-					'field'    => 'term_id',
-					'terms'    => $category_id,
+					'taxonomy'         => 'wp_logo_category',
+					'field'            => 'term_id',
+					'terms'            => $category_id,
+					'include_children' => $include_children,
 				),
 			);
 		}

@@ -1,0 +1,87 @@
+.wp-logos-categories {
+
+	.wp-logos-category {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr);
+		gap: var(--wp-logos-gap, 20px);
+		min-width: 0;
+	}
+
+	.wp-logos-category + .wp-logos-category {
+		margin-top: var(--wp-logos-category-gap, 32px);
+		padding-top: var(--wp-logos-category-gap, 32px);
+		border-top: var(--wp-logos-divider-width, 1px) var(--wp-logos-divider-style, solid) var(--wp-logos-divider-color, #e0e0e0);
+	}
+
+	.wp-logos-category-name {
+		margin: 0;
+		align-self: center;
+		overflow-wrap: anywhere;
+	}
+
+	.wp-logos-category-items {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: var(--wp-logos-flexbox-justify, center);
+		gap: var(--wp-logos-gap, 20px);
+		min-width: 0;
+	}
+
+	.wp-logos-item {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		box-sizing: border-box;
+		aspect-ratio: auto;
+		width: var(--wp-logos-flexbox-logo-width, 190px);
+		max-width: 100%;
+		min-width: 0;
+		text-align: center;
+		border: var(--wp-logos-border-width, 0) solid var(--wp-logos-border-color, #e0e0e0);
+		border-radius: var(--wp-logos-border-radius, 0);
+		background: var(--wp-logos-item-bg, transparent);
+	}
+
+	.wp-logos-link {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		min-width: 0;
+		text-decoration: none;
+	}
+
+	.wp-logos-img {
+		display: block;
+		width: auto;
+		height: auto;
+		object-fit: contain;
+		// Cap inline dimensions to the available space, including on narrow screens.
+		max-width: min(100%, var(--wp-logos-logo-max-width, 160px)) !important;
+	}
+
+	.wp-logos-grayscale {
+		filter: grayscale(1);
+	}
+
+	.wp-logos-item:hover .wp-logos-grayscale,
+	.wp-logos-item:focus-within .wp-logos-grayscale {
+		filter: none;
+	}
+
+	.wp-logos-title {
+		margin-top: 8px;
+		font-size: 0.85em;
+		overflow-wrap: anywhere;
+	}
+}
+
+@media (min-width: 782px) {
+
+	.wp-logos-categories.wp-logos-headings-left .wp-logos-category {
+		grid-template-columns: minmax(0, min(35%, var(--wp-logos-heading-width, 200px))) minmax(0, 1fr);
+	}
+}

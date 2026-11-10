@@ -52,6 +52,7 @@
 		"gap": { "type": "number", "default": 20 },
 		"padding": { "type": "number", "default": 15 },
 		"showTitle": { "type": "boolean", "default": false },
+		"showLabel": { "type": "boolean", "default": false },
 		"grayscale": { "type": "boolean", "default": false },
 		"backgroundColor": { "type": "string", "default": "" },
 		"borderWidth": { "type": "number", "default": 0 },

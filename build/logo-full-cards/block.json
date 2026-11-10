@@ -1,0 +1,102 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "yolo-logos/logo-full-cards",
+  "version": "1.0.0",
+  "title": "Logo Full Cards",
+  "category": "media",
+  "icon": "screenoptions",
+  "description": "Display logos as responsive cards with optional names and labels.",
+  "textdomain": "yolo-logos",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "attributes": {
+    "categoryId": {
+      "type": "number",
+      "default": 0
+    },
+    "theme": {
+      "type": "string",
+      "enum": [
+        "standard",
+        "light",
+        "dark"
+      ],
+      "default": "standard"
+    },
+    "logoRatio": {
+      "type": "string",
+      "enum": [
+        "original",
+        "fixed"
+      ],
+      "default": "original"
+    },
+    "columns": {
+      "type": "object",
+      "default": {
+        "mobile": 1,
+        "tablet": 2,
+        "laptop": 3,
+        "desktop": 3
+      }
+    },
+    "gap": {
+      "type": "number",
+      "default": 24
+    },
+    "showTitle": {
+      "type": "boolean",
+      "default": true
+    },
+    "showLabel": {
+      "type": "boolean",
+      "default": true
+    },
+    "grayscale": {
+      "type": "boolean",
+      "default": false
+    },
+    "logoMaxHeight": {
+      "type": "number",
+      "default": 100
+    },
+    "logoMaxWidth": {
+      "type": "number",
+      "default": 220
+    },
+    "padding": {
+      "type": "number",
+      "default": 24
+    },
+    "backgroundColor": {
+      "type": "string",
+      "default": "#ffffff"
+    },
+    "borderWidth": {
+      "type": "number",
+      "default": 1
+    },
+    "borderColor": {
+      "type": "string",
+      "default": "#e0e0e0"
+    },
+    "borderRadius": {
+      "type": "number",
+      "default": 8
+    }
+  },
+  "supports": {
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "html": false,
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  }
+}

@@ -8,22 +8,22 @@ Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-A modern WordPress plugin for managing and showcasing logos with Carousel, Grid, and Flexbox layouts. Native Gutenberg block included.
+A modern WordPress plugin for managing logos and displaying them with responsive showcases, category groups, and full cards.
 
 == Description ==
 
-**YOLO Logos** is a fully-featured logo management and showcase plugin for WordPress. Create logo records with multiple image variants, organise them into categories, and display them beautifully using a native Gutenberg block.
+**YOLO Logos** is a fully-featured logo management and showcase plugin for WordPress. Create logo records with multiple image variants and optional labels, organise them into categories, and display them using native Gutenberg blocks.
 
 = Features =
 
 **Logo Management**
-* Add logos with title, content/description, website URL, and up to three image variants (Main, Light, Dark).
+* Add logos with title, optional label, content/description, website URL, and up to three image variants (Main, Light, Dark).
 * Organise logos into categories.
 * Set custom sort order per logo.
 * Full WordPress Media Library integration.
 
 **Native Gutenberg Block**
-* Insert, preview, and switch your logo showcases directly within the Block Editor.
+* Use **Logo Showcase**, **Logo Categories**, or **Logo Full Cards** in the Block Editor.
 * Real-time live preview of your logos inside the editor.
 * Full InspectorControls panel for every setting.
 
@@ -31,6 +31,7 @@ A modern WordPress plugin for managing and showcasing logos with Carousel, Grid,
 * **Carousel** – touch-enabled slider with autoplay, infinite loop, swipe, arrows, and pagination dots. Enable **Ticker mode** for continuous non-stop scrolling — ideal for sponsor strips and press logo rows.
 * **Grid** – static responsive grid with independent column control across four breakpoints (Mobile, Tablet, Laptop, Desktop). Every logo is visible at once.
 * **Flexbox** – CSS flexbox layout where logos wrap naturally based on their configured width. No rigid columns — ideal for mixed-size brand marks.
+* **Logo Full Cards** – responsive cards with optional logo names and labels.
 
 **Logo Theme**
 * Standard – use the main logo image.
@@ -43,6 +44,7 @@ A modern WordPress plugin for managing and showcasing logos with Carousel, Grid,
 * Item background colour, border width, border colour, and border radius.
 * Greyscale logos that reveal in colour on hover.
 * Show or hide logo titles.
+* Show or hide optional per-logo labels below titles.
 
 **Compatibility**
 * Fully compatible with WPML, Polylang, Loco Translate, and any other translation plugin.
@@ -55,10 +57,10 @@ A modern WordPress plugin for managing and showcasing logos with Carousel, Grid,
 1. Install and activate the plugin.
 2. Go to **Logos → Add New** to create your first logo.
 3. Upload a Main Logo image, optionally upload Light and Dark variants.
-4. Set the website URL, alt text, and sort order.
+4. Set the website URL, alt text, optional label, and sort order.
 5. Assign the logo to a **Logo Category** (optional).
-6. In the Block Editor, add the **Logo Showcase** block.
-7. Choose a category (or show all logos), pick a showcase type, and customise the appearance.
+6. In the Block Editor, add a **Logo Showcase**, **Logo Categories**, or **Logo Full Cards** block.
+7. Choose categories and customise the appearance, including whether to show names and labels.
 
 == Installation ==
 
@@ -81,7 +83,7 @@ Re-running skips previously imported logos by default; choose Update to refresh 
 
 = Can I display logos from multiple categories in one block? =
 
-Not directly — each block instance shows logos from one category (or all logos). Use multiple blocks on the same page to mix categories.
+Yes. Use **Logo Categories** to choose and order multiple category groups. **Logo Showcase** and **Logo Full Cards** display one category or all logos.
 
 = Are the showcase types responsive? =
 
@@ -93,7 +95,7 @@ No. The frontend JavaScript is vanilla ES5-compatible JavaScript with zero exter
 
 = Is it compatible with Full Site Editing (FSE)? =
 
-Yes. The block can be used in any block context, including site templates, patterns, and widgets.
+Yes. The blocks can be used in any block context, including site templates, patterns, and widgets.
 
 == Screenshots ==
 

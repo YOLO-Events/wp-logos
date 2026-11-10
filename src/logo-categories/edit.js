@@ -412,6 +412,13 @@ export default function Edit( { attributes, setAttributes } ) {
 							setAttributes( { showTitle } )
 						}
 					/>
+					<ToggleControl
+						label={ __( 'Show logo labels', 'yolo-logos' ) }
+						checked={ attributes.showLabel }
+						onChange={ ( showLabel ) =>
+							setAttributes( { showLabel } )
+						}
+					/>
 					{ colors.map( ( [ key, label ] ) => (
 						<div key={ key }>
 							<p>{ label }</p>

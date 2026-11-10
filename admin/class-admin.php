@@ -124,6 +124,7 @@ class WP_Logos_Admin {
 	public function render_details_meta_box( \WP_Post $post ): void {
 		$url   = get_post_meta( $post->ID, '_logo_url', true );
 		$alt   = get_post_meta( $post->ID, '_logo_alt', true );
+		$label = get_post_meta( $post->ID, '_logo_label', true );
 		$order = get_post_meta( $post->ID, '_logo_order', true );
 		?>
 		<table class="form-table">
@@ -140,6 +141,19 @@ class WP_Logos_Admin {
 							class="regular-text"
 							placeholder="https://example.com" />
 						<p class="description"><?php esc_html_e( 'Optional: link to the brand\'s website.', 'yolo-logos' ); ?></p>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">
+						<label for="_logo_label"><?php esc_html_e( 'Label', 'yolo-logos' ); ?></label>
+					</th>
+					<td>
+						<input type="text"
+							id="_logo_label"
+							name="_logo_label"
+							value="<?php echo esc_attr( $label ); ?>"
+							class="regular-text" />
+						<p class="description"><?php esc_html_e( 'Optional label displayed below the logo in blocks with labels enabled.', 'yolo-logos' ); ?></p>
 					</td>
 				</tr>
 				<tr>
@@ -202,6 +216,10 @@ class WP_Logos_Admin {
 
 		if ( isset( $_POST['_logo_alt'] ) ) {
 			update_post_meta( $post_id, '_logo_alt', sanitize_text_field( wp_unslash( $_POST['_logo_alt'] ) ) );
+		}
+
+		if ( isset( $_POST['_logo_label'] ) ) {
+			update_post_meta( $post_id, '_logo_label', sanitize_text_field( wp_unslash( $_POST['_logo_label'] ) ) );
 		}
 
 		$int_fields = array( '_logo_main_id', '_logo_light_id', '_logo_dark_id', '_logo_order' );

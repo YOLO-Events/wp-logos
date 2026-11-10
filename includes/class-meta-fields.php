@@ -51,6 +51,12 @@ class Meta_Fields {
 			'sanitize'    => 'sanitize_text_field',
 		),
 		array(
+			'key'         => '_logo_label',
+			'type'        => 'string',
+			'description' => 'Optional label displayed below the logo.',
+			'sanitize'    => 'sanitize_text_field',
+		),
+		array(
 			'key'         => '_logo_order',
 			'type'        => 'integer',
 			'description' => 'Custom sort order for the logo.',

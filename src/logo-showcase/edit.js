@@ -80,6 +80,11 @@ function LogoPreviewItem( { logo, attributes } ) {
 					{ logo.title?.rendered }
 				</span>
 			) }
+			{ attributes.showLabel && logo.meta?._logo_label && (
+				<span className="wp-logos-label">
+					{ logo.meta._logo_label }
+				</span>
+			) }
 		</div>
 	);
 }
@@ -502,6 +507,11 @@ export default function Edit( { attributes, setAttributes } ) {
 					label={ __( 'Show Logo Titles', 'yolo-logos' ) }
 					checked={ showTitle }
 					onChange={ ( val ) => setAttributes( { showTitle: val } ) }
+				/>
+				<ToggleControl
+					label={ __( 'Show Logo Labels', 'yolo-logos' ) }
+					checked={ attributes.showLabel }
+					onChange={ ( val ) => setAttributes( { showLabel: val } ) }
 				/>
 				<ToggleControl
 					label={ __( 'Grayscale Logos', 'yolo-logos' ) }

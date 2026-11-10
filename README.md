@@ -1,6 +1,9 @@
 # YOLO Logos
 
-Manage logos and display them with the native Logo Showcase block.
+Manage logos and display them with the Logo Showcase, Logo Categories, and Logo
+Full Cards blocks. Each logo can have an optional label, such as “Official
+Nutrition”; enable **Show logo labels** in a block to display it below the name.
+**Logo Full Cards** displays logos in a responsive card grid.
 
 ## Logo Categories block
 

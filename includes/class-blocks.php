@@ -41,6 +41,14 @@ class Blocks {
 			)
 		);
 
+		$full_cards_dir = WP_LOGOS_PLUGIN_DIR . 'build/logo-full-cards';
+		if ( file_exists( $full_cards_dir . '/block.json' ) ) {
+			register_block_type(
+				$full_cards_dir,
+				array( 'render_callback' => array( $this, 'render_logo_full_cards' ) )
+			);
+		}
+
 		// Pass data to the block editor.
 		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_editor_assets' ) );
 	}
@@ -204,6 +212,7 @@ class Blocks {
 				'backgroundColor'    => sanitize_hex_color( $attributes['backgroundColor'] ?? '' ),
 				'grayscale'          => (bool) ( $attributes['grayscale'] ?? false ),
 				'showTitle'          => (bool) ( $attributes['showTitle'] ?? false ),
+				'showLabel'          => (bool) ( $attributes['showLabel'] ?? false ),
 				'flexboxAlign'       => sanitize_key( $attributes['flexboxAlign'] ?? 'center' ),
 				'flexboxLogoWidth'   => absint( $attributes['flexboxLogoWidth'] ?? 160 ),
 			)
@@ -261,6 +270,19 @@ class Blocks {
 	}
 
 	/**
+	 * Render the full-card logo block using the shared showcase renderer.
+	 *
+	 * @param array     $attributes Block attributes.
+	 * @param string    $content    Block inner content.
+	 * @param \WP_Block $block      Block instance.
+	 * @return string Rendered HTML.
+	 */
+	public function render_logo_full_cards( array $attributes, string $content, \WP_Block $block ): string {
+		$attributes['showcaseType'] = 'full-cards';
+		return $this->render_logo_showcase( $attributes, $content, $block );
+	}
+
+	/**
 	 * Render a single logo item.
 	 *
 	 * @param array $logo       Logo data array.
@@ -271,6 +293,7 @@ class Blocks {
 	private function render_logo_item( array $logo, array $attributes ): string {
 		$theme      = sanitize_key( $attributes['theme'] ?? 'standard' );
 		$show_title = (bool) ( $attributes['showTitle'] ?? false );
+		$show_label = (bool) ( $attributes['showLabel'] ?? false );
 		$grayscale  = (bool) ( $attributes['grayscale'] ?? false );
 		$max_height = absint( $attributes['logoMaxHeight'] ?? 80 );
 		$max_width  = absint( $attributes['logoMaxWidth'] ?? 160 );
@@ -310,6 +333,13 @@ class Blocks {
 			$inner_html .= sprintf(
 				'<span class="wp-logos-title">%s</span>',
 				esc_html( $logo['title'] )
+			);
+		}
+
+		if ( $show_label && ! empty( $logo['label'] ) ) {
+			$inner_html .= sprintf(
+				'<span class="wp-logos-label">%s</span>',
+				esc_html( $logo['label'] )
 			);
 		}
 
@@ -473,6 +503,7 @@ class Blocks {
 				'content'   => $post->post_content,
 				'url'       => get_post_meta( $post->ID, '_logo_url', true ),
 				'alt'       => get_post_meta( $post->ID, '_logo_alt', true ),
+				'label'     => get_post_meta( $post->ID, '_logo_label', true ),
 				'main_url'  => $main_id ? wp_get_attachment_image_url( $main_id, 'full' ) : '',
 				'light_url' => $light_id ? wp_get_attachment_image_url( $light_id, 'full' ) : '',
 				'dark_url'  => $dark_id ? wp_get_attachment_image_url( $dark_id, 'full' ) : '',

@@ -129,6 +129,45 @@ class LogoCategoriesTest extends WP_UnitTestCase {
 		$this->assertLessThan( strpos( $html, 'Later logo' ), strpos( $html, 'Earlier logo' ) );
 	}
 
+	public function test_logo_labels_are_optional_and_displayed_when_enabled(): void {
+		$category = $this->category( 'Nutrition partners' );
+		$this->logo( $category, 'Example nutrition', array( '_logo_label' => 'Official Nutrition' ) );
+
+		$html = $this->render( array( 'categoryOrder' => array( $category ), 'showTitle' => true ) );
+		$this->assertStringContainsString( 'Example nutrition', $html );
+		$this->assertStringNotContainsString( 'Official Nutrition', $html );
+
+		$html = $this->render( array( 'categoryOrder' => array( $category ), 'showLabel' => true ) );
+		$this->assertStringContainsString( '<span class="wp-logos-label">Official Nutrition</span>', $html );
+	}
+
+	public function test_full_cards_block_is_registered_and_renders_cards(): void {
+		$type = WP_Block_Type_Registry::get_instance()->get_registered( 'yolo-logos/logo-full-cards' );
+		$this->assertNotNull( $type );
+		$this->assertTrue( $type->is_dynamic() );
+		$this->assertTrue( $type->attributes['showTitle']['default'] );
+		$this->assertTrue( $type->attributes['showLabel']['default'] );
+
+		$category = $this->category( 'Full card sponsors' );
+		$this->logo( $category, 'Card partner', array( '_logo_label' => 'Official Nutrition' ) );
+		$html = render_block(
+			array(
+				'blockName' => 'yolo-logos/logo-full-cards',
+				'attrs' => array(
+					'categoryId' => $category,
+					'showTitle' => true,
+					'showLabel' => true,
+				),
+				'innerBlocks' => array(),
+				'innerHTML' => '',
+				'innerContent' => array(),
+			)
+		);
+		$this->assertStringContainsString( 'wp-logos-full-cards', $html );
+		$this->assertStringContainsString( 'Card partner', $html );
+		$this->assertStringContainsString( '<span class="wp-logos-label">Official Nutrition</span>', $html );
+	}
+
 	public function test_empty_selection_and_unusable_variant(): void {
 		$this->assertStringNotContainsString( '<section ', $this->render( array() ) );
 		$category = $this->category( 'Light only' );

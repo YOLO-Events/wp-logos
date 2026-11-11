@@ -289,6 +289,13 @@
 }
 
 /* Full-card grid */
+.wp-logos-full-cards {
+	width: 100%;
+	min-width: 0;
+	font-size: 1rem;
+	line-height: 1.6;
+}
+
 .wp-logos-full-cards .wp-logos-grid-wrapper {
 	display: grid;
 	grid-template-columns: repeat(var(--wp-logos-cols-mobile), minmax(0, 1fr));
@@ -296,38 +303,43 @@
 }
 
 .wp-logos-full-cards .wp-logos-item {
+	width: auto;
 	height: auto;
-	min-height: 220px;
+	min-width: 0;
 	aspect-ratio: auto;
 	justify-content: flex-start;
 	align-items: flex-start;
 	text-align: left;
 	margin-bottom: 0;
 	background-color: var(--wp-logos-item-bg, #fff);
-	box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-	transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.wp-logos-full-cards .wp-logos-item:hover {
-	transform: translateY(-3px);
-	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+.wp-logos-full-cards .wp-logos-card-logo {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	height: var(--wp-logos-logo-max-height);
+	margin-bottom: 16px;
+	flex-shrink: 0;
 }
 
 .wp-logos-full-cards .wp-logos-img {
-	max-width: min(100%, var(--wp-logos-logo-max-width));
+	max-width: min(100%, var(--wp-logos-logo-max-width)) !important;
 	object-fit: contain;
-	margin-bottom: 16px;
 }
 
 .wp-logos-full-cards .wp-logos-card-categories {
-	font-size: 0.85em;
-	opacity: 0.75;
+	font-size: 0.8125rem;
+	line-height: 1.5;
+	color: #ff5100;
+	text-transform: uppercase;
 	overflow-wrap: anywhere;
 }
 
 .wp-logos-full-cards .wp-logos-title {
-	margin: 12px 0 0;
-	font-size: 1.4em;
+	margin: 0;
+	font-size: 1rem;
+	line-height: 1.5;
 	font-weight: 600;
 	opacity: 1;
 	overflow-wrap: anywhere;
@@ -337,13 +349,20 @@
 	position: static;
 	transform: none;
 	width: auto;
-	margin-top: 8px;
-	font-size: 0.85em;
+	margin: 0;
+	padding: 0;
+	background: transparent;
+	font-size: 0.8125rem;
+	line-height: 1.5;
+	color: #ff5100;
+	text-transform: uppercase;
 	text-align: left;
 }
 
 .wp-logos-full-cards .wp-logos-card-description {
-	margin-top: 12px;
+	margin-top: 24px;
+	font-size: 1rem;
+	line-height: 1.6;
 	overflow-wrap: anywhere;
 }
 
@@ -356,9 +375,19 @@
 }
 
 .wp-logos-full-cards .wp-logos-card-website {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
 	margin-top: auto;
-	padding-top: 16px;
+	padding-top: 24px;
+	color: inherit;
+	font-size: 1rem;
+	text-decoration: underline;
 	overflow-wrap: anywhere;
+}
+
+.wp-logos-full-cards .wp-logos-card-website svg {
+	flex-shrink: 0;
 }
 
 @media (min-width: 600px) {

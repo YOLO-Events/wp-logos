@@ -47,6 +47,10 @@
 	width: 80px;
 }
 
+.column-wp_logos_order {
+	width: 80px;
+}
+
 /* Upload button states */
 .wp-logos-upload-btn.uploading {
 	opacity: 0.7;

@@ -35,11 +35,12 @@ class Builder_Attributes {
 
 		$converted = array();
 		foreach ( $block_type->attributes as $name => $definition ) {
-			if ( ! array_key_exists( $name, $values ) ) {
+			$key = array_key_exists( $name, $values ) ? $name : strtolower( $name );
+			if ( ! array_key_exists( $key, $values ) ) {
 				continue;
 			}
 
-			$value = $values[ $name ];
+			$value = $values[ $key ];
 			switch ( $name ) {
 				case 'categoryId':
 					$converted[ $name ] = absint( $value );
@@ -48,7 +49,7 @@ class Builder_Attributes {
 					$converted[ $name ] = self::category_order( $value );
 					break;
 				case 'columns':
-					$converted[ $name ] = self::columns( $value );
+					$converted[ $name ] = array_replace( $definition['default'] ?? array(), self::columns( $value ) );
 					break;
 				default:
 					$converted[ $name ] = self::typed_value( $value, $definition['type'] ?? '' );

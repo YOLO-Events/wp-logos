@@ -5,6 +5,25 @@ const path = require( 'node:path' );
 const { test } = require( 'node:test' );
 const vm = require( 'node:vm' );
 
+test( 'Full Cards declares its layout stylesheet for the editor canvas and frontend', () => {
+	const root = path.join( __dirname, '..' );
+	const source = JSON.parse(
+		readFileSync(
+			path.join( root, 'blocks/logo-full-cards/gutenberg/block.json' ),
+			'utf8'
+		)
+	);
+	const built = JSON.parse(
+		readFileSync(
+			path.join( root, 'build/logo-full-cards/gutenberg/block.json' ),
+			'utf8'
+		)
+	);
+
+	assert.ok( source.style.includes( 'wp-logos-public' ) );
+	assert.deepEqual( built.style, source.style );
+} );
+
 test( 'Full Cards renders with the dedicated WordPress preview component', () => {
 	const buildDir = path.join( __dirname, '../build/logo-full-cards/gutenberg' );
 	const metadata = JSON.parse(

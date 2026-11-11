@@ -10,6 +10,9 @@ categories, optional label and name, description, and a **Partner's page** link.
 Cards have aligned logo areas, accent-colored category text, and readable
 descriptions, with website links aligned along the bottom of each row.
 The name and label can be hidden using the block settings.
+The same card stylesheet loads inside Gutenberg's editor canvas and on the
+frontend: by default, cards use one column on mobile, two on tablet, and three
+on larger screens. Adjust these in **Card layout**.
 
 The admin logo listing includes an **Order** column; click its heading to sort
 numerically in either direction. Logos without an explicit order remain listed.

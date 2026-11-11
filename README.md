@@ -14,8 +14,12 @@ The same card stylesheet loads inside Gutenberg's editor canvas and on the
 frontend: by default, cards use one column on mobile, two on tablet, and three
 on larger screens. Adjust these in **Card layout**.
 
-The admin logo listing includes an **Order** column; click its heading to sort
-numerically in either direction. Logos without an explicit order remain listed.
+Logo ordering uses WordPress's native `menu_order` (0–99) everywhere, including
+imports and all blocks, ascending by default and then by title for ties.
+Set **Order** in Quick Edit or the editor's native page attributes.
+The admin **Order** column displays that same value; click its heading to reverse
+the sort direction. The default order is 0. Legacy `_logo_order` metadata is no
+longer used.
 
 ## Logo Categories block
 

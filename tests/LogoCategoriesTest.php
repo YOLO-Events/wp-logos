@@ -99,8 +99,10 @@ class LogoCategoriesTest extends WP_UnitTestCase {
 
 	public function test_logo_order_variants_and_appearance(): void {
 		$category = $this->category( 'Partners & friends' );
-		$first = $this->logo( $category, 'Earlier logo', array( '_logo_order' => 1, '_logo_url' => 'https://example.org/partner', '_logo_alt' => 'Custom alt' ) );
-		$this->logo( $category, 'Later logo', array( '_logo_order' => 10 ) );
+		$first = $this->logo( $category, 'Earlier logo', array( '_logo_order' => 99, '_logo_url' => 'https://example.org/partner', '_logo_alt' => 'Custom alt' ) );
+		$later = $this->logo( $category, 'Later logo', array( '_logo_order' => 0 ) );
+		wp_update_post( array( 'ID' => $first, 'menu_order' => 1 ) );
+		wp_update_post( array( 'ID' => $later, 'menu_order' => 10 ) );
 		$variant = get_post_meta( $first, '_logo_main_id', true );
 		update_post_meta( $first, '_logo_light_id', $variant );
 		delete_post_meta( $first, '_logo_main_id' );
@@ -128,6 +130,33 @@ class LogoCategoriesTest extends WP_UnitTestCase {
 		$this->assertStringContainsString( 'alt="Custom alt"', $html );
 		$this->assertStringContainsString( 'rel="noopener noreferrer"', $html );
 		$this->assertLessThan( strpos( $html, 'Later logo' ), strpos( $html, 'Earlier logo' ) );
+	}
+
+	public function test_all_blocks_use_native_order_then_title_and_ignore_legacy_meta(): void {
+		$category = $this->category( 'Ordered partners' );
+		$last = $this->logo( $category, 'Alpha last', array( '_logo_order' => 0 ) );
+		$first = $this->logo( $category, 'Zulu first', array( '_logo_order' => 99 ) );
+		$tied = $this->logo( $category, 'Beta tied', array( '_logo_order' => -5 ) );
+		$this->logo( $category, 'Default zero' );
+		wp_update_post( array( 'ID' => $last, 'menu_order' => 99 ) );
+		wp_update_post( array( 'ID' => $first, 'menu_order' => 2 ) );
+		wp_update_post( array( 'ID' => $tied, 'menu_order' => 2 ) );
+
+		foreach ( array( 'logo-showcase', 'logo-categories', 'logo-full-cards' ) as $name ) {
+			$html = render_block(
+				array(
+					'blockName' => 'yolo-logos/' . $name,
+					'attrs' => array( 'categoryId' => $category, 'categoryOrder' => array( $category ), 'showTitle' => true ),
+					'innerBlocks' => array(),
+					'innerHTML' => '',
+					'innerContent' => array(),
+				)
+			);
+			$this->assertSame( 4, substr_count( $html, '<img ' ), $name );
+			$this->assertLessThan( strpos( $html, 'Beta tied' ), strpos( $html, 'Default zero' ), $name );
+			$this->assertLessThan( strpos( $html, 'Zulu first' ), strpos( $html, 'Beta tied' ), $name );
+			$this->assertLessThan( strpos( $html, 'Alpha last' ), strpos( $html, 'Zulu first' ), $name );
+		}
 	}
 
 	public function test_logo_labels_are_optional_and_displayed_when_enabled(): void {

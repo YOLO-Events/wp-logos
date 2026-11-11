@@ -265,7 +265,8 @@ class EngineTest extends WP_UnitTestCase {
 		$result        = $engine->run_batch( $source, array( 'dry_run' => false ) );
 		$this->assertSame( 1, $result->created );
 		$post_id = $this->imported( 'one' )[0]->ID;
-		$this->assertSame( 8, (int) get_post_meta( $post_id, '_logo_order', true ) );
+		$this->assertSame( 8, (int) get_post( $post_id )->menu_order );
+		$this->assertFalse( metadata_exists( 'post', $post_id, '_logo_order' ) );
 		foreach ( array( '_logo_main_id', '_thumbnail_id', '_logo_light_id', '_logo_dark_id' ) as $key ) {
 			$this->assertSame( $attachment, (int) get_post_meta( $post_id, $key, true ) );
 		}
@@ -278,6 +279,7 @@ class EngineTest extends WP_UnitTestCase {
 			)
 		);
 		$this->assertSame( 1, $result->updated );
+		$this->assertSame( 0, (int) get_post( $post_id )->menu_order );
 		foreach ( array( '_logo_main_id', '_thumbnail_id', '_logo_light_id', '_logo_dark_id', '_logo_order' ) as $key ) {
 			$this->assertFalse( metadata_exists( 'post', $post_id, $key ) );
 		}

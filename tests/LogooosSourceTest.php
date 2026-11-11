@@ -140,7 +140,7 @@ class LogooosSourceTest extends WP_UnitTestCase {
 		$this->assertSame( 'https://example.org/legacy', get_post_meta( $logo->ID, '_logo_url', true ) );
 		$this->assertSame( '<p>Legacy description</p>', $logo->post_content );
 		$this->assertSame( 7, (int) $logo->menu_order );
-		$this->assertSame( 7, (int) get_post_meta( $logo->ID, '_logo_order', true ) );
+		$this->assertFalse( metadata_exists( 'post', $logo->ID, '_logo_order' ) );
 		$this->assertSame( '_self', get_post_meta( $logo->ID, '_wp_logos_import_link_target', true ) );
 		$this->assertSame( '70%', get_post_meta( $logo->ID, '_wp_logos_import_image_size', true ) );
 		$this->assertSame( '', get_post_meta( $logo->ID, '_logo_alt', true ) );

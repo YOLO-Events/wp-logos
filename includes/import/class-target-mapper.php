@@ -42,6 +42,7 @@ class Target_Mapper {
 		unset( $postarr['ID'], $postarr['meta_input'], $postarr['tax_input'] );
 		$postarr['post_type']    = 'wp_logo';
 		$postarr['post_content'] = wp_kses_post( $postarr['post_content'] ?? '' );
+		$postarr['menu_order']   = max( 0, min( 99, (int) $postarr['menu_order'] ) );
 		if ( $post_id ) {
 			$postarr['ID'] = $post_id;
 		}
@@ -52,7 +53,6 @@ class Target_Mapper {
 			'_logo_dark_id'  => $images['dark'],
 			'_logo_url'      => esc_url_raw( $logo->link ),
 			'_logo_alt'      => sanitize_text_field( $logo->alt ?? '' ),
-			'_logo_order'    => $logo->menu_order > 0 ? $logo->menu_order : null,
 		);
 		foreach ( $logo->extra as $key => $value ) {
 			$meta[ '_wp_logos_import_' . sanitize_key( (string) $key ) ] = $value;
@@ -65,9 +65,6 @@ class Target_Mapper {
 			}
 		}
 		$meta['_thumbnail_id'] = $meta['_logo_main_id'] ?? null;
-		if ( empty( $meta['_logo_order'] ) ) {
-			$meta['_logo_order'] = null;
-		}
 		$meta['_wp_logos_import_source']    = $source_id;
 		$meta['_wp_logos_import_source_id'] = $logo->source_id;
 		return array( $postarr, $meta );

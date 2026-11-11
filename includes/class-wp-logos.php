@@ -51,6 +51,7 @@ final class Plugin {
 		// Post types & taxonomies.
 		$post_types = new Post_Types();
 		add_action( 'init', array( $post_types, 'register' ) );
+		add_filter( 'wp_insert_post_data', array( $post_types, 'sanitize_order' ) );
 
 		$taxonomies = new Taxonomies();
 		// WPBakery maps its category controls before the default init priority.

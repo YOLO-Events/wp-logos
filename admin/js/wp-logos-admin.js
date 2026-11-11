@@ -75,6 +75,7 @@
 	}
 
 	$( function () {
+		$( 'input[name="menu_order"]' ).attr( { min: 0, max: 99 } );
 		$( '.wp-logos-image-uploader' ).each( function () {
 			initUploader( $( this ) );
 		} );

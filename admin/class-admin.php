@@ -127,7 +127,6 @@ class WP_Logos_Admin {
 		$url   = get_post_meta( $post->ID, '_logo_url', true );
 		$alt   = get_post_meta( $post->ID, '_logo_alt', true );
 		$label = get_post_meta( $post->ID, '_logo_label', true );
-		$order = get_post_meta( $post->ID, '_logo_order', true );
 		?>
 		<table class="form-table">
 			<tbody>
@@ -171,20 +170,6 @@ class WP_Logos_Admin {
 						<p class="description"><?php esc_html_e( 'Accessible alt text for the logo image. Falls back to the logo title if empty.', 'yolo-logos' ); ?></p>
 					</td>
 				</tr>
-				<tr>
-					<th scope="row">
-						<label for="_logo_order"><?php esc_html_e( 'Sort Order', 'yolo-logos' ); ?></label>
-					</th>
-					<td>
-						<input type="number"
-							id="_logo_order"
-							name="_logo_order"
-							value="<?php echo esc_attr( $order ); ?>"
-							class="small-text"
-							min="0" />
-						<p class="description"><?php esc_html_e( 'Lower numbers appear first. Logos with the same sort order are ordered by title.', 'yolo-logos' ); ?></p>
-					</td>
-				</tr>
 			</tbody>
 		</table>
 		<?php
@@ -224,7 +209,7 @@ class WP_Logos_Admin {
 			update_post_meta( $post_id, '_logo_label', sanitize_text_field( wp_unslash( $_POST['_logo_label'] ) ) );
 		}
 
-		$int_fields = array( '_logo_main_id', '_logo_light_id', '_logo_dark_id', '_logo_order' );
+		$int_fields = array( '_logo_main_id', '_logo_light_id', '_logo_dark_id' );
 		foreach ( $int_fields as $key ) {
 			if ( isset( $_POST[ $key ] ) ) {
 				$val = absint( wp_unslash( $_POST[ $key ] ) );
@@ -303,7 +288,7 @@ class WP_Logos_Admin {
 	 */
 	public function render_column( string $column, int $post_id ): void {
 		if ( 'wp_logos_order' === $column ) {
-			echo esc_html( (string) absint( get_post_meta( $post_id, '_logo_order', true ) ) );
+			echo esc_html( (string) get_post_field( 'menu_order', $post_id ) );
 			return;
 		}
 
@@ -330,36 +315,30 @@ class WP_Logos_Admin {
 	 * @return array
 	 */
 	public function sortable_columns( array $columns ): array {
-		$columns['wp_logos_order'] = 'wp_logos_order';
+		$columns['wp_logos_order'] = 'menu_order';
 		return $columns;
 	}
 
 	/**
-	 * Sort the admin logo list numerically, retaining logos without an order.
+	 * Default the admin logo list to native menu order.
 	 *
 	 * @param \WP_Query $query Current query.
 	 */
 	public function sort_by_order( \WP_Query $query ): void {
-		if ( ! is_admin() || ! $query->is_main_query() || 'wp_logo' !== $query->get( 'post_type' ) || 'wp_logos_order' !== $query->get( 'orderby' ) ) {
+		if ( ! is_admin() || ! $query->is_main_query() || 'wp_logo' !== $query->get( 'post_type' ) ) {
 			return;
 		}
 
-		$meta_query = array(
-			'relation' => 'OR',
-			array( 'key' => '_logo_order', 'compare' => 'NOT EXISTS' ),
-			array( 'key' => '_logo_order', 'compare' => 'EXISTS' ),
-		);
-		$existing = $query->get( 'meta_query' );
-		if ( is_array( $existing ) && $existing ) {
-			$meta_query = array( 'relation' => 'AND', $meta_query, $existing );
+		$orderby = $query->get( 'orderby' );
+		if ( $orderby && ! in_array( $orderby, array( 'menu_order', 'wp_logos_order' ), true ) ) {
+			return;
 		}
-		$query->set( 'meta_query', $meta_query );
 		$query->set(
 			'orderby',
 			array(
-				'meta_value_num' => 'DESC' === strtoupper( (string) $query->get( 'order' ) ) ? 'DESC' : 'ASC',
-				'title'          => 'ASC',
-				'ID'             => 'ASC',
+				'menu_order' => $orderby && 'DESC' === strtoupper( (string) $query->get( 'order' ) ) ? 'DESC' : 'ASC',
+				'title'      => 'ASC',
+				'ID'         => 'ASC',
 			)
 		);
 	}

@@ -24,6 +24,9 @@ class WPBakery {
 			return;
 		}
 
+		add_filter( 'vc_autocomplete_yolo_logo_categories_categoryOrder_callback', array( self::class, 'suggest_categories' ) );
+		add_filter( 'vc_autocomplete_yolo_logo_categories_categoryOrder_render', array( self::class, 'render_category' ) );
+
 		foreach ( self::elements() as $element ) {
 			vc_map( $element );
 		}
@@ -126,6 +129,52 @@ class WPBakery {
 	}
 
 	/**
+	 * Find logo categories for WPBakery's autocomplete control.
+	 *
+	 * @param string $query Search text.
+	 * @return array
+	 */
+	public static function suggest_categories( string $query ): array {
+		$terms = get_terms(
+			array(
+				'taxonomy'   => 'wp_logo_category',
+				'hide_empty' => false,
+				'search'     => $query,
+			)
+		);
+		if ( is_wp_error( $terms ) ) {
+			return array();
+		}
+
+		$results = array();
+		foreach ( $terms as $term ) {
+			$results[] = array(
+				'value' => (string) $term->term_id,
+				'label' => $term->name,
+			);
+		}
+		return $results;
+	}
+
+	/**
+	 * Resolve a saved category ID for WPBakery's autocomplete control.
+	 *
+	 * @param array $value Saved autocomplete value.
+	 * @return array|false
+	 */
+	public static function render_category( array $value ) {
+		$term = get_term( absint( $value['value'] ?? 0 ), 'wp_logo_category' );
+		if ( ! $term || is_wp_error( $term ) ) {
+			return false;
+		}
+
+		return array(
+			'value' => (string) $term->term_id,
+			'label' => $term->name,
+		);
+	}
+
+	/**
 	 * Base setting definitions for showcase and full cards.
 	 *
 	 * @param bool $full_cards Whether the settings target full cards.
@@ -172,16 +221,18 @@ class WPBakery {
 	}
 
 	private static function categories_params(): array {
-		$options = self::category_options();
-		unset( $options[ __( 'All categories', 'yolo-logos' ) ] );
 		$params = array(
 			array(
-				'type'        => 'dropdown',
+				'type'        => 'autocomplete',
 				'heading'     => __( 'Categories (selection order)', 'yolo-logos' ),
 				'param_name'  => 'categoryOrder',
-				'value'       => $options,
-				'multiple'    => true,
-				'description' => __( 'Select categories in the order they should appear.', 'yolo-logos' ),
+				'settings'    => array(
+					'multiple'      => true,
+					'sortable'      => true,
+					'unique_values' => true,
+					'min_length'    => 1,
+				),
+				'description' => __( 'Search for categories and drag them into the order they should appear.', 'yolo-logos' ),
 			),
 			self::select_param( 'headingPosition', 'Heading position', array( 'Left' => 'left', 'Top' => 'top' ) ),
 			self::select_param( 'headingLevel', 'Heading level', array( 'H2' => 2, 'H3' => 3, 'H4' => 4, 'H5' => 5, 'H6' => 6 ) ),

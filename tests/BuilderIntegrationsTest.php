@@ -8,7 +8,11 @@ class BuilderIntegrationsTest extends WP_UnitTestCase {
 			array( 'yolo_logo_showcase', 'yolo_logo_categories', 'yolo_logo_full_cards' ),
 			array_column( $elements, 'base' )
 		);
-		$this->assertStringContainsString( 'categoryOrder', wp_json_encode( $elements[1]['params'] ) );
+		$category_param = array_column( $elements[1]['params'], null, 'param_name' )['categoryOrder'];
+		$this->assertSame( 'autocomplete', $category_param['type'] );
+		$this->assertTrue( $category_param['settings']['multiple'] );
+		$this->assertTrue( $category_param['settings']['sortable'] );
+		$this->assertTrue( $category_param['settings']['unique_values'] );
 		$this->assertStringContainsString( 'columns_desktop', wp_json_encode( $elements[0]['params'] ) );
 	}
 
@@ -47,6 +51,18 @@ class BuilderIntegrationsTest extends WP_UnitTestCase {
 		);
 		$category_param = array_column( $elements[0]['params'], null, 'param_name' )['categoryId'];
 		$this->assertSame( (string) $category, $category_param['value']['Builder sponsors'] );
+
+		$this->assertSame(
+			array( array( 'value' => (string) $category, 'label' => 'Builder sponsors' ) ),
+			apply_filters( 'vc_autocomplete_yolo_logo_categories_categoryOrder_callback', 'Builder sponsors' )
+		);
+		$this->assertSame(
+			array( 'value' => (string) $category, 'label' => 'Builder sponsors' ),
+			apply_filters( 'vc_autocomplete_yolo_logo_categories_categoryOrder_render', array( 'value' => (string) $category ) )
+		);
+		$this->assertFalse(
+			apply_filters( 'vc_autocomplete_yolo_logo_categories_categoryOrder_render', array( 'value' => '999999' ) )
+		);
 
 		foreach ( $elements as $element ) {
 			$this->assertArrayNotHasKey( 'html_template', $element );

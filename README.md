@@ -129,7 +129,8 @@ neither page builder is installed.
 
 In WPBakery, find the three elements under **Add Element → YOLO Logos**.
 Elements are mapped on `vc_before_init` and rendered through their registered
-shortcodes, without a separate WPBakery PHP template.
+shortcodes, without a separate WPBakery PHP template. For Logo Categories,
+search for categories, select multiple results, and drag them to reorder.
 
 Builder integration files are organized per display under `blocks/`, alongside
 the `wpbakery.php` and `elementor.php` integration definitions. Gutenberg source

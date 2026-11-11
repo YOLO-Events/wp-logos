@@ -17,6 +17,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Post_Types {
 
 	/**
+	 * Keep logo order within the supported range for every WordPress write path.
+	 *
+	 * @param array $data Sanitized post data.
+	 * @return array
+	 */
+	public function sanitize_order( array $data ): array {
+		if ( 'wp_logo' === $data['post_type'] ) {
+			$data['menu_order'] = max( 0, min( 99, (int) $data['menu_order'] ) );
+		}
+		return $data;
+	}
+
+	/**
 	 * Register post types.
 	 */
 	public function register(): void {

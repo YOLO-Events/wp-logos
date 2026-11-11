@@ -56,12 +56,6 @@ class Meta_Fields {
 			'description' => 'Optional label displayed below the logo.',
 			'sanitize'    => 'sanitize_text_field',
 		),
-		array(
-			'key'         => '_logo_order',
-			'type'        => 'integer',
-			'description' => 'Custom sort order for the logo.',
-			'sanitize'    => 'absint',
-		),
 	);
 
 	/**

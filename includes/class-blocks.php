@@ -518,23 +518,9 @@ class Blocks {
 			'post_status'    => 'publish',
 			'posts_per_page' => -1,
 			'orderby'        => array(
-				'meta_value_num' => 'ASC',
-				'menu_order'     => 'ASC',
-				'title'          => 'ASC',
-			),
-			// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- Includes posts with and without explicit sort order.
-			'meta_query'     => array(
-				'relation' => 'OR',
-				array(
-					'key'     => '_logo_order',
-					'compare' => 'NOT EXISTS',
-				),
-				array(
-					'key'     => '_logo_order',
-					'value'   => 0,
-					'compare' => '>=',
-					'type'    => 'NUMERIC',
-				),
+				'menu_order' => 'ASC',
+				'title'      => 'ASC',
+				'ID'         => 'ASC',
 			),
 		);
 

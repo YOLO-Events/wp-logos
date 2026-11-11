@@ -29,7 +29,7 @@ class Builder_Configs {
 
 		$configs = array();
 		foreach ( array( 'logo-showcase', 'logo-categories', 'logo-full-cards' ) as $directory ) {
-			$path = WP_LOGOS_PLUGIN_DIR . 'blocks/' . $directory . '/' . $editor . '/config.php';
+			$path = WP_LOGOS_PLUGIN_DIR . 'blocks/' . $directory . '/' . $editor . '.php';
 			if ( is_file( $path ) ) {
 				$config = include $path;
 				if ( is_array( $config ) ) {

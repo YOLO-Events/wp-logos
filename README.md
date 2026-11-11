@@ -127,7 +127,11 @@ preview and the frontend use the same registered WordPress block renderers.
 The integrations are optional; the plugin continues to work normally when
 neither page builder is installed.
 
+In WPBakery, find the three elements under **Add Element → YOLO Logos**.
+Elements are mapped on `vc_before_init` and rendered through their registered
+shortcodes, without a separate WPBakery PHP template.
+
 Builder integration files are organized per display under `blocks/`, alongside
-the editor-specific integration definitions. Gutenberg source files live in
-each display's `gutenberg/` directory; production block assets are built under
-`build/<display>/gutenberg/`.
+the `wpbakery.php` and `elementor.php` integration definitions. Gutenberg source
+files live in each display's `gutenberg/` directory; production block assets are
+built under `build/<display>/gutenberg/`.

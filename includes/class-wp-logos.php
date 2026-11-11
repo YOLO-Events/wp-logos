@@ -53,7 +53,8 @@ final class Plugin {
 		add_action( 'init', array( $post_types, 'register' ) );
 
 		$taxonomies = new Taxonomies();
-		add_action( 'init', array( $taxonomies, 'register' ) );
+		// WPBakery maps its category controls before the default init priority.
+		add_action( 'init', array( $taxonomies, 'register' ), 0 );
 
 		// Meta fields.
 		$meta_fields = new Meta_Fields();
@@ -68,7 +69,7 @@ final class Plugin {
 		add_action( 'init', array( $elementor, 'register' ) );
 
 		$wpbakery = new WPBakery();
-		add_action( 'init', array( $wpbakery, 'register' ) );
+		add_action( 'vc_before_init', array( $wpbakery, 'register' ) );
 
 		// Admin.
 		if ( is_admin() ) {

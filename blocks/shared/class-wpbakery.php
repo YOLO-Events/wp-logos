@@ -51,7 +51,7 @@ class WPBakery {
 				'categories' => self::categories_params(),
 				'full-cards' => self::full_cards_params(),
 			)[ $config['display'] ] ?? array();
-			$elements[] = self::element( $config['shortcode'], $config['title'], $config['block'], $params );
+			$elements[] = self::element( $config['shortcode'], $config['title'], $params );
 		}
 		return $elements;
 	}
@@ -91,29 +91,17 @@ class WPBakery {
 	 *
 	 * @param string $base       Shortcode name.
 	 * @param string $name       Element name.
-	 * @param string $block_name Block name.
 	 * @param array  $params     Element parameters.
 	 * @return array
 	 */
-	private static function element( string $base, string $name, string $block_name, array $params ): array {
+	private static function element( string $base, string $name, array $params ): array {
 		return array(
 			'name'        => __( $name, 'yolo-logos' ),
 			'base'        => $base,
 			'category'    => __( 'YOLO Logos', 'yolo-logos' ),
 			'description' => __( 'Display logos using the YOLO Logos block renderer.', 'yolo-logos' ),
 			'params'      => $params,
-			'html_template' => self::template( $base ),
 		);
-	}
-
-	/**
-	 * Provide preview output for WPBakery's editor.
-	 *
-	 * @param string $block_name Block name.
-	 * @return string Shortcode template.
-	 */
-	private static function template( string $shortcode ): string {
-		return '[' . $shortcode . ']';
 	}
 
 	/**

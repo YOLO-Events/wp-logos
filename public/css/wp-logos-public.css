@@ -300,6 +300,9 @@
 	min-height: 220px;
 	aspect-ratio: auto;
 	justify-content: flex-start;
+	align-items: flex-start;
+	text-align: left;
+	margin-bottom: 0;
 	background-color: var(--wp-logos-item-bg, #fff);
 	box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
 	transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -310,28 +313,52 @@
 	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
 }
 
-.wp-logos-full-cards:has(.wp-logos-label) .wp-logos-item {
-	margin-bottom: 2.5em;
-}
-
-.wp-logos-full-cards .wp-logos-link {
-	flex: 1;
-	height: auto;
-	justify-content: flex-start;
-}
-
 .wp-logos-full-cards .wp-logos-img {
-	margin-bottom: 12px;
+	max-width: min(100%, var(--wp-logos-logo-max-width));
+	object-fit: contain;
+	margin-bottom: 16px;
+}
+
+.wp-logos-full-cards .wp-logos-card-categories {
+	font-size: 0.85em;
+	opacity: 0.75;
+	overflow-wrap: anywhere;
 }
 
 .wp-logos-full-cards .wp-logos-title {
-	font-size: 1em;
+	margin: 12px 0 0;
+	font-size: 1.4em;
 	font-weight: 600;
 	opacity: 1;
+	overflow-wrap: anywhere;
 }
 
 .wp-logos-full-cards .wp-logos-label {
+	position: static;
+	transform: none;
+	width: auto;
+	margin-top: 8px;
 	font-size: 0.85em;
+	text-align: left;
+}
+
+.wp-logos-full-cards .wp-logos-card-description {
+	margin-top: 12px;
+	overflow-wrap: anywhere;
+}
+
+.wp-logos-full-cards .wp-logos-card-description > :first-child {
+	margin-top: 0;
+}
+
+.wp-logos-full-cards .wp-logos-card-description > :last-child {
+	margin-bottom: 0;
+}
+
+.wp-logos-full-cards .wp-logos-card-website {
+	margin-top: auto;
+	padding-top: 16px;
+	overflow-wrap: anywhere;
 }
 
 @media (min-width: 600px) {

@@ -3,8 +3,10 @@
 Manage logos and display them with the Logo Showcase, Logo Categories, and Logo
 Full Cards blocks. Each logo can have an optional label, such as “Official
 Nutrition”; enable **Show logo labels** in a block to display it in a padded
-badge anchored just below the logo container, without changing its proportions.
-**Logo Full Cards** displays logos in a responsive card grid.
+badge. Showcase and Categories position the badge below the logo container.
+**Logo Full Cards** displays a responsive card grid with the logo, assigned
+categories, optional label and name, description, and a website link showing
+the domain. The name and label can be hidden using the block settings.
 
 ## Logo Categories block
 
@@ -114,3 +116,18 @@ the PHPUnit polyfills in this repository's `vendor/` directory. When WordPress.o
 network discovery is unavailable, the standard suite can also be sourced from
 the matching `WordPress/wordpress-develop` GitHub tag (`tests/phpunit/`) with core
 from the same `WordPress/WordPress` tag.
+
+## Page builder integrations
+
+When Elementor or WPBakery is active, YOLO Logos registers **Logo Showcase**,
+**Logo Categories**, and **Logo Full Cards** widgets/elements in that builder.
+Their controls expose the corresponding block display settings, including
+category selection (and selection order for Logo Categories). Both the builder
+preview and the frontend use the same registered WordPress block renderers.
+The integrations are optional; the plugin continues to work normally when
+neither page builder is installed.
+
+Builder integration files are organized per display under `blocks/`, alongside
+the editor-specific integration definitions. Gutenberg source files live in
+each display's `gutenberg/` directory; production block assets are built under
+`build/<display>/gutenberg/`.

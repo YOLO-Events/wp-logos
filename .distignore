@@ -2,7 +2,7 @@
 .gitignore
 .github
 node_modules
-src
+blocks/*/gutenberg
 package.json
 package-lock.json
 *.map

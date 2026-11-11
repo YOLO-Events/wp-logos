@@ -21,19 +21,19 @@ class WP_Logos_Public {
 	 * Register hooks.
 	 */
 	public function init(): void {
-		add_action( 'wp_enqueue_scripts', array( $this, 'register_assets' ) );
+		add_action( 'init', array( $this, 'register_assets' ), 5 );
 	}
 
 	/**
 	 * Register (but don't enqueue) public assets so they can be enqueued
-	 * on-demand by the block render callback.
+	 * on-demand by block metadata, including in the iframe-based editor.
 	 */
 	public function register_assets(): void {
 		wp_register_style(
 			'wp-logos-public',
 			WP_LOGOS_PLUGIN_URL . 'public/css/wp-logos-public.css',
 			array(),
-			WP_LOGOS_VERSION
+			(string) filemtime( WP_LOGOS_PLUGIN_DIR . 'public/css/wp-logos-public.css' )
 		);
 
 		wp_register_script(

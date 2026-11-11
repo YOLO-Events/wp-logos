@@ -148,6 +148,12 @@ class LogoCategoriesTest extends WP_UnitTestCase {
 		$this->assertTrue( $type->is_dynamic() );
 		$this->assertTrue( $type->attributes['showTitle']['default'] );
 		$this->assertTrue( $type->attributes['showLabel']['default'] );
+		$this->assertContains( 'wp-logos-public', $type->style_handles );
+		$this->assertTrue( wp_style_is( 'wp-logos-public', 'registered' ) );
+		$this->assertSame(
+			(string) filemtime( WP_LOGOS_PLUGIN_DIR . 'public/css/wp-logos-public.css' ),
+			wp_styles()->registered['wp-logos-public']->ver
+		);
 
 		$category = $this->category( 'Full card sponsors' );
 		$this->logo( $category, 'Card partner', array( '_logo_label' => 'Official Nutrition' ) );

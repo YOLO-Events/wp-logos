@@ -31,7 +31,7 @@ A modern WordPress plugin for managing logos and displaying them with responsive
 * **Carousel** – touch-enabled slider with autoplay, infinite loop, swipe, arrows, and pagination dots. Enable **Ticker mode** for continuous non-stop scrolling — ideal for sponsor strips and press logo rows.
 * **Grid** – static responsive grid with independent column control across four breakpoints (Mobile, Tablet, Laptop, Desktop). Every logo is visible at once.
 * **Flexbox** – CSS flexbox layout where logos wrap naturally based on their configured width. No rigid columns — ideal for mixed-size brand marks.
-* **Logo Full Cards** – responsive cards with optional logo names and labels.
+* **Logo Full Cards** – responsive cards with logos, categories, optional labels and names, descriptions, and website links.
 
 **Logo Theme**
 * Standard – use the main logo image.
@@ -44,7 +44,7 @@ A modern WordPress plugin for managing logos and displaying them with responsive
 * Item background colour, border width, border colour, and border radius.
 * Greyscale logos that reveal in colour on hover.
 * Show or hide logo titles.
-* Show or hide optional per-logo label badges anchored below the logo container without changing its proportions.
+* Show or hide optional per-logo label badges. In Showcase and Categories they appear below the logo container.
 
 **Compatibility**
 * Fully compatible with WPML, Polylang, Loco Translate, and any other translation plugin.

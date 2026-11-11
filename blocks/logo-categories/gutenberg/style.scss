@@ -45,6 +45,10 @@
 		background: var(--wp-logos-item-bg, transparent);
 	}
 
+	.wp-logos-category-items:has(.wp-logos-label) .wp-logos-item {
+		margin-bottom: 2.5em;
+	}
+
 	.wp-logos-link {
 		display: flex;
 		flex-direction: column;
@@ -96,10 +100,6 @@
 		line-height: 1.5;
 		color: #333;
 		overflow-wrap: anywhere;
-	}
-
-	.wp-logos-item:has(.wp-logos-label) {
-		margin-bottom: 2.5em;
 	}
 }
 

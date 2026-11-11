@@ -168,6 +168,73 @@ class LogoCategoriesTest extends WP_UnitTestCase {
 		$this->assertStringContainsString( '<span class="wp-logos-label">Official Nutrition</span>', $html );
 	}
 
+	public function test_full_cards_show_details_in_order_and_respect_visibility_settings(): void {
+		$category = $this->category( 'Partners & friends' );
+		$second_category = $this->category( 'Nutrition' );
+		$id = $this->logo(
+			$category,
+			'Card & partner',
+			array(
+				'_logo_label' => 'Official <partner>',
+				'_logo_url' => 'https://www.example.org/path?source=logos',
+			)
+		);
+		wp_set_object_terms( $id, array( $category, $second_category ), 'wp_logo_category' );
+		wp_update_post(
+			array(
+				'ID' => $id,
+				'post_content' => '<p>Our <strong>description</strong> with <a href="https://example.net">a link</a>.</p><script>alert("bad")</script>',
+			)
+		);
+		$block = array(
+			'blockName' => 'yolo-logos/logo-full-cards',
+			'attrs' => array( 'categoryId' => $category ),
+			'innerBlocks' => array(),
+			'innerHTML' => '',
+			'innerContent' => array(),
+		);
+		$html = render_block( $block );
+		$this->assertStringContainsString( 'Partners &amp; friends', $html );
+		$this->assertStringContainsString( 'Nutrition', $html );
+		$this->assertStringContainsString( 'Official &lt;partner&gt;', $html );
+		$this->assertStringContainsString( '<h3 class="wp-logos-title">Card &amp; partner</h3>', $html );
+		$this->assertStringContainsString( '<strong>description</strong>', $html );
+		$this->assertStringContainsString( '<a href="https://example.net">a link</a>', $html );
+		$this->assertStringNotContainsString( '<script>', $html );
+		$this->assertStringContainsString( '<a href="https://www.example.org/path?source=logos" class="wp-logos-card-website" target="_blank" rel="noopener noreferrer">www.example.org</a>', $html );
+		$this->assertLessThan( strpos( $html, 'wp-logos-card-categories' ), strpos( $html, '<img ' ) );
+		$this->assertLessThan( strpos( $html, 'wp-logos-label' ), strpos( $html, 'wp-logos-card-categories' ) );
+		$this->assertLessThan( strpos( $html, 'wp-logos-title' ), strpos( $html, 'wp-logos-label' ) );
+		$this->assertLessThan( strpos( $html, 'wp-logos-card-description' ), strpos( $html, 'wp-logos-title' ) );
+		$this->assertLessThan( strpos( $html, 'wp-logos-card-website' ), strpos( $html, 'wp-logos-card-description' ) );
+
+		$block['attrs']['showTitle'] = false;
+		$block['attrs']['showLabel'] = false;
+		$html = render_block( $block );
+		$this->assertStringNotContainsString( 'wp-logos-title', $html );
+		$this->assertStringNotContainsString( 'wp-logos-label', $html );
+		$this->assertStringContainsString( 'wp-logos-card-description', $html );
+	}
+
+	public function test_full_card_omits_missing_details_and_invalid_website(): void {
+		$category = $this->category( 'No website' );
+		$id = $this->logo( $category, 'No details', array( '_logo_url' => 'mailto:test@example.org' ) );
+		wp_set_object_terms( $id, array(), 'wp_logo_category' );
+		$html = render_block(
+			array(
+				'blockName' => 'yolo-logos/logo-full-cards',
+				'attrs' => array(),
+				'innerBlocks' => array(),
+				'innerHTML' => '',
+				'innerContent' => array(),
+			)
+		);
+		$this->assertStringNotContainsString( 'wp-logos-card-categories', $html );
+		$this->assertStringNotContainsString( 'wp-logos-label', $html );
+		$this->assertStringNotContainsString( 'wp-logos-card-description', $html );
+		$this->assertStringNotContainsString( 'wp-logos-card-website', $html );
+	}
+
 	public function test_empty_selection_and_unusable_variant(): void {
 		$this->assertStringNotContainsString( '<section ', $this->render( array() ) );
 		$category = $this->category( 'Light only' );

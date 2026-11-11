@@ -20,7 +20,7 @@ class Blocks {
 	 * Register blocks.
 	 */
 	public function register(): void {
-		$categories_dir = WP_LOGOS_PLUGIN_DIR . 'build/logo-categories';
+		$categories_dir = WP_LOGOS_PLUGIN_DIR . 'build/logo-categories/gutenberg';
 		if ( file_exists( $categories_dir . '/block.json' ) ) {
 			register_block_type(
 				$categories_dir,
@@ -28,7 +28,7 @@ class Blocks {
 			);
 		}
 
-		$block_dir = WP_LOGOS_PLUGIN_DIR . 'build/logo-showcase';
+		$block_dir = WP_LOGOS_PLUGIN_DIR . 'build/logo-showcase/gutenberg';
 
 		if ( ! file_exists( $block_dir . '/block.json' ) ) {
 			return;
@@ -41,7 +41,7 @@ class Blocks {
 			)
 		);
 
-		$full_cards_dir = WP_LOGOS_PLUGIN_DIR . 'build/logo-full-cards';
+		$full_cards_dir = WP_LOGOS_PLUGIN_DIR . 'build/logo-full-cards/gutenberg';
 		if ( file_exists( $full_cards_dir . '/block.json' ) ) {
 			register_block_type(
 				$full_cards_dir,
@@ -120,6 +120,16 @@ class Blocks {
 	 * Enqueue additional data for the block editor.
 	 */
 	public function enqueue_editor_assets(): void {
+		if ( ! wp_style_is( 'wp-logos-public', 'registered' ) ) {
+			wp_register_style(
+				'wp-logos-public',
+				WP_LOGOS_PLUGIN_URL . 'public/css/wp-logos-public.css',
+				array(),
+				WP_LOGOS_VERSION
+			);
+		}
+		wp_enqueue_style( 'wp-logos-public' );
+
 		// Provide REST URL and nonce to any block scripts that need them.
 		$handle = 'wp-logos-logo-showcase-editor-script';
 		if ( wp_script_is( $handle, 'registered' ) ) {
@@ -329,6 +339,10 @@ class Blocks {
 			esc_attr( $img_style )
 		);
 
+		if ( 'full-cards' === ( $attributes['showcaseType'] ?? '' ) ) {
+			return $this->render_full_card( $logo, $inner_html, $attributes );
+		}
+
 		if ( $show_title ) {
 			$inner_html .= sprintf(
 				'<span class="wp-logos-title">%s</span>',
@@ -359,6 +373,62 @@ class Blocks {
 			'<div class="wp-logos-item" style="%s">%s</div>',
 			esc_attr( $item_style ),
 			$item_content
+		);
+	}
+
+	/**
+	 * Render the details of a full logo card.
+	 *
+	 * @param array  $logo       Logo data.
+	 * @param string $image_html Escaped image markup.
+	 * @param array  $attributes Block attributes.
+	 * @return string Card markup.
+	 */
+	private function render_full_card( array $logo, string $image_html, array $attributes ): string {
+		$details = '';
+		$terms   = get_the_terms( $logo['id'], 'wp_logo_category' );
+		if ( is_wp_error( $terms ) ) {
+			error_log( 'WP Logos: could not retrieve logo categories: ' . $terms->get_error_message() ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
+		} elseif ( $terms ) {
+			$names = array_map(
+				static function ( $term ) {
+					return esc_html( $term->name );
+				},
+				$terms
+			);
+			$details .= '<div class="wp-logos-card-categories">' . implode( ', ', $names ) . '</div>';
+		}
+
+		if ( ! empty( $attributes['showLabel'] ) && '' !== (string) $logo['label'] ) {
+			$details .= '<span class="wp-logos-label">' . esc_html( $logo['label'] ) . '</span>';
+		}
+
+		if ( ! empty( $attributes['showTitle'] ) ) {
+			$details .= '<h3 class="wp-logos-title">' . esc_html( $logo['title'] ) . '</h3>';
+		}
+
+		if ( '' !== trim( $logo['content'] ) ) {
+			$description = wp_kses_post( wpautop( $logo['content'] ) );
+			if ( '' !== trim( $description ) ) {
+				$details .= '<div class="wp-logos-card-description">' . $description . '</div>';
+			}
+		}
+
+		$url  = esc_url( $logo['url'], array( 'http', 'https' ) );
+		$host = $url ? wp_parse_url( $url, PHP_URL_HOST ) : false;
+		if ( $host ) {
+			$details .= sprintf(
+				'<a href="%s" class="wp-logos-card-website" target="_blank" rel="noopener noreferrer">%s</a>',
+				$url,
+				esc_html( $host )
+			);
+		}
+
+		return sprintf(
+			'<div class="wp-logos-item" style="padding:%dpx;">%s%s</div>',
+			absint( $attributes['padding'] ?? 15 ),
+			$image_html,
+			$details
 		);
 	}
 

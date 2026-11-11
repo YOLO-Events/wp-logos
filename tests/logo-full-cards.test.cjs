@@ -6,7 +6,7 @@ const { test } = require( 'node:test' );
 const vm = require( 'node:vm' );
 
 test( 'Full Cards renders with the dedicated WordPress preview component', () => {
-	const buildDir = path.join( __dirname, '../build/logo-full-cards' );
+	const buildDir = path.join( __dirname, '../build/logo-full-cards/gutenberg' );
 	const metadata = JSON.parse(
 		readFileSync( path.join( buildDir, 'block.json' ), 'utf8' )
 	);

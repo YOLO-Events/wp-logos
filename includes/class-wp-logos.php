@@ -63,6 +63,13 @@ final class Plugin {
 		$blocks = new Blocks();
 		add_action( 'init', array( $blocks, 'register' ) );
 
+		// Optional page builders. Their integrations guard registration until the builder is active.
+		$elementor = new Elementor();
+		add_action( 'init', array( $elementor, 'register' ) );
+
+		$wpbakery = new WPBakery();
+		add_action( 'init', array( $wpbakery, 'register' ) );
+
 		// Admin.
 		if ( is_admin() ) {
 			$admin = new \WP_Logos_Admin();

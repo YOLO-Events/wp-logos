@@ -45,8 +45,8 @@
 		background: var(--wp-logos-item-bg, transparent);
 	}
 
-	.wp-logos-category-items:has(.wp-logos-label) .wp-logos-item {
-		margin-bottom: 2.5em;
+	.wp-logos-category-items .wp-logos-item {
+		margin-bottom: 0;
 	}
 
 	.wp-logos-link {
@@ -85,9 +85,9 @@
 
 	.wp-logos-label {
 		position: absolute;
-		top: calc(100% + 4px);
+		top: 100%;
 		left: 50%;
-		transform: translateX(-50%);
+		transform: translate(-50%, -50%);
 		display: block;
 		width: max-content;
 		max-width: 100%;

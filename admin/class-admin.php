@@ -23,6 +23,8 @@ class WP_Logos_Admin {
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_assets' ) );
 		add_filter( 'manage_wp_logo_posts_columns', array( $this, 'add_columns' ) );
 		add_action( 'manage_wp_logo_posts_custom_column', array( $this, 'render_column' ), 10, 2 );
+		add_filter( 'manage_edit-wp_logo_sortable_columns', array( $this, 'sortable_columns' ) );
+		add_action( 'pre_get_posts', array( $this, 'sort_by_order' ) );
 		add_filter( 'plugin_action_links_' . WP_LOGOS_PLUGIN_BASENAME, array( $this, 'plugin_action_links' ) );
 	}
 
@@ -287,6 +289,7 @@ class WP_Logos_Admin {
 			$new[ $key ] = $label;
 			if ( 'title' === $key ) {
 				$new['wp_logos_thumbnail'] = __( 'Logo', 'yolo-logos' );
+				$new['wp_logos_order']     = __( 'Order', 'yolo-logos' );
 			}
 		}
 		return $new;
@@ -299,6 +302,11 @@ class WP_Logos_Admin {
 	 * @param int    $post_id Post ID.
 	 */
 	public function render_column( string $column, int $post_id ): void {
+		if ( 'wp_logos_order' === $column ) {
+			echo esc_html( (string) absint( get_post_meta( $post_id, '_logo_order', true ) ) );
+			return;
+		}
+
 		if ( 'wp_logos_thumbnail' !== $column ) {
 			return;
 		}
@@ -313,6 +321,47 @@ class WP_Logos_Admin {
 		} else {
 			echo '<span class="dashicons dashicons-images-alt" style="font-size:30px;color:#ccc;"></span>';
 		}
+	}
+
+	/**
+	 * Make the logo order column sortable.
+	 *
+	 * @param array $columns Sortable columns.
+	 * @return array
+	 */
+	public function sortable_columns( array $columns ): array {
+		$columns['wp_logos_order'] = 'wp_logos_order';
+		return $columns;
+	}
+
+	/**
+	 * Sort the admin logo list numerically, retaining logos without an order.
+	 *
+	 * @param \WP_Query $query Current query.
+	 */
+	public function sort_by_order( \WP_Query $query ): void {
+		if ( ! is_admin() || ! $query->is_main_query() || 'wp_logo' !== $query->get( 'post_type' ) || 'wp_logos_order' !== $query->get( 'orderby' ) ) {
+			return;
+		}
+
+		$meta_query = array(
+			'relation' => 'OR',
+			array( 'key' => '_logo_order', 'compare' => 'NOT EXISTS' ),
+			array( 'key' => '_logo_order', 'compare' => 'EXISTS' ),
+		);
+		$existing = $query->get( 'meta_query' );
+		if ( is_array( $existing ) && $existing ) {
+			$meta_query = array( 'relation' => 'AND', $meta_query, $existing );
+		}
+		$query->set( 'meta_query', $meta_query );
+		$query->set(
+			'orderby',
+			array(
+				'meta_value_num' => 'DESC' === strtoupper( (string) $query->get( 'order' ) ) ? 'DESC' : 'ASC',
+				'title'          => 'ASC',
+				'ID'             => 'ASC',
+			)
+		);
 	}
 
 	/**

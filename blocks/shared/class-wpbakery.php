@@ -24,8 +24,8 @@ class WPBakery {
 			return;
 		}
 
-		add_filter( 'vc_autocomplete_yolo_logo_categories_categoryOrder_callback', array( self::class, 'suggest_categories' ) );
-		add_filter( 'vc_autocomplete_yolo_logo_categories_categoryOrder_render', array( self::class, 'render_category' ) );
+		add_filter( 'vc_autocomplete_yolo_logo_categories_categoryorder_callback', array( self::class, 'suggest_categories' ) );
+		add_filter( 'vc_autocomplete_yolo_logo_categories_categoryorder_render', array( self::class, 'render_category' ) );
 
 		foreach ( self::elements() as $element ) {
 			vc_map( $element );
@@ -68,14 +68,15 @@ class WPBakery {
 	 * @return string
 	 */
 	public static function render( array $attributes, string $content, string $block_name ): string {
-		if ( isset( $attributes['columns'] ) && is_array( $attributes['columns'] ) ) {
-			$attributes['columns'] = $attributes['columns'];
-		} else {
-			$attributes['columns'] = array();
+		if ( ! isset( $attributes['columns'] ) || ! is_array( $attributes['columns'] ) ) {
+			$columns = array();
 			foreach ( array( 'mobile', 'tablet', 'laptop', 'desktop' ) as $size ) {
 				if ( isset( $attributes[ 'columns_' . $size ] ) ) {
-					$attributes['columns'][ $size ] = $attributes[ 'columns_' . $size ];
+					$columns[ $size ] = $attributes[ 'columns_' . $size ];
 				}
+			}
+			if ( $columns ) {
+				$attributes['columns'] = $columns;
 			}
 		}
 		return render_block(
@@ -98,6 +99,12 @@ class WPBakery {
 	 * @return array
 	 */
 	private static function element( string $base, string $name, array $params ): array {
+		// WordPress lowercases attribute names when parsing saved shortcodes.
+		foreach ( $params as &$param ) {
+			$param['param_name'] = strtolower( $param['param_name'] );
+		}
+		unset( $param );
+
 		return array(
 			'name'        => __( $name, 'yolo-logos' ),
 			'base'        => $base,

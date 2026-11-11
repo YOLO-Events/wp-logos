@@ -28,6 +28,7 @@ class LogoCategoriesTest extends WP_UnitTestCase {
 				'post_type' => 'wp_logo',
 				'post_status' => $status,
 				'post_title' => $title,
+				'post_content' => '',
 				'meta_input' => array_merge( array( '_logo_main_id' => $image ), $meta ),
 			)
 		);
@@ -175,7 +176,7 @@ class LogoCategoriesTest extends WP_UnitTestCase {
 			$category,
 			'Card & partner',
 			array(
-				'_logo_label' => 'Official <partner>',
+				'_logo_label' => 'Official & partner',
 				'_logo_url' => 'https://www.example.org/path?source=logos',
 			)
 		);
@@ -196,12 +197,14 @@ class LogoCategoriesTest extends WP_UnitTestCase {
 		$html = render_block( $block );
 		$this->assertStringContainsString( 'Partners &amp; friends', $html );
 		$this->assertStringContainsString( 'Nutrition', $html );
-		$this->assertStringContainsString( 'Official &lt;partner&gt;', $html );
+		$this->assertStringContainsString( 'Official &amp; partner', $html );
+		$this->assertStringContainsString( '<div class="wp-logos-card-logo"><img ', $html );
 		$this->assertStringContainsString( '<h3 class="wp-logos-title">Card &amp; partner</h3>', $html );
 		$this->assertStringContainsString( '<strong>description</strong>', $html );
 		$this->assertStringContainsString( '<a href="https://example.net">a link</a>', $html );
 		$this->assertStringNotContainsString( '<script>', $html );
-		$this->assertStringContainsString( '<a href="https://www.example.org/path?source=logos" class="wp-logos-card-website" target="_blank" rel="noopener noreferrer">www.example.org</a>', $html );
+		$this->assertStringContainsString( '<a href="https://www.example.org/path?source=logos" class="wp-logos-card-website" target="_blank" rel="noopener noreferrer">Partner&#039;s page<svg ', $html );
+		$this->assertStringContainsString( 'aria-hidden="true" focusable="false"', $html );
 		$this->assertLessThan( strpos( $html, 'wp-logos-card-categories' ), strpos( $html, '<img ' ) );
 		$this->assertLessThan( strpos( $html, 'wp-logos-label' ), strpos( $html, 'wp-logos-card-categories' ) );
 		$this->assertLessThan( strpos( $html, 'wp-logos-title' ), strpos( $html, 'wp-logos-label' ) );

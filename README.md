@@ -2,11 +2,17 @@
 
 Manage logos and display them with the Logo Showcase, Logo Categories, and Logo
 Full Cards blocks. Each logo can have an optional label, such as “Official
-Nutrition”; enable **Show logo labels** in a block to display it in a padded
-badge. Showcase and Categories position the badge below the logo container.
+Nutrition”; enable **Show logo labels** in a block to display it.
+Showcase places labels below the logo container; Categories centers badges on
+the container's bottom edge without adding extra bottom margins.
 **Logo Full Cards** displays a responsive card grid with the logo, assigned
-categories, optional label and name, description, and a website link showing
-the domain. The name and label can be hidden using the block settings.
+categories, optional label and name, description, and a **Partner's page** link.
+Cards have aligned logo areas, accent-colored category text, and readable
+descriptions, with website links aligned along the bottom of each row.
+The name and label can be hidden using the block settings.
+
+The admin logo listing includes an **Order** column; click its heading to sort
+numerically in either direction. Logos without an explicit order remain listed.
 
 ## Logo Categories block
 
@@ -131,6 +137,8 @@ In WPBakery, find the three elements under **Add Element → YOLO Logos**.
 Elements are mapped on `vc_before_init` and rendered through their registered
 shortcodes, without a separate WPBakery PHP template. For Logo Categories,
 search for categories, select multiple results, and drag them to reorder.
+WPBakery shortcode attribute names are lowercase so selections and display
+settings survive saving and reopening.
 
 Builder integration files are organized per display under `blocks/`, alongside
 the `wpbakery.php` and `elementor.php` integration definitions. Gutenberg source

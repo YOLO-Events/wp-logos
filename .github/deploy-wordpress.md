@@ -49,10 +49,11 @@ Add the following secrets to the GitHub repository (**Settings → Secrets and v
 1. Update the plugin version number in the following files:
    - `wp-logos.php` — `Version:` header field
    - `readme.txt` — `Stable tag:` field and the `== Changelog ==` section
+   - `package.json` — `version` field
 
 2. Commit and push the version bump changes to the main branch:
    ```bash
-   git add wp-logos.php readme.txt
+   git add wp-logos.php readme.txt package.json
    git commit -m "chore: bump version to X.Y.Z"
    git push origin main
    ```
@@ -67,6 +68,8 @@ git push origin X.Y.Z
 ```
 
 > The tag name is used as the **SVN tag** on WordPress.org (e.g. `1.0.1`). Keep it consistent with the `Stable tag` in `readme.txt`.
+
+The deploy workflow requires the Git tag, `readme.txt` `Stable tag`, `wp-logos.php` `Version`, and `package.json` `version` to match before deploying. A leading `v` on the Git tag is accepted (for example, `v1.1.0` deploys as SVN tag `1.1.0`). If they differ, the workflow stops before making any SVN changes.
 
 ### Step 3 — Monitor the Workflow
 
@@ -113,7 +116,7 @@ The `10up/action-wordpress-plugin-deploy` action automatically respects `.distig
 | SVN authentication fails | Double-check `SVN_USERNAME` and `SVN_PASSWORD` secrets in GitHub. |
 | Missing files in release | Review `.distignore` — ensure needed files are not excluded. |
 | Build step fails | Run `npm ci && npm run build` locally to reproduce and fix. |
-| Stable tag mismatch | Ensure the Git tag, `Stable tag` in `readme.txt`, and `Version` in `wp-logos.php` all match. |
+| Stable tag mismatch | Ensure the Git tag, `Stable tag` in `readme.txt`, `Version` in `wp-logos.php`, and `version` in `package.json` all match, then push a matching Git tag. |
 
 ---
 
